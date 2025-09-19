@@ -22,3 +22,22 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Archivos de desarrollo y testing innecesarios
+/database/database.sqlite
+/public/test-responsive.html
+/storage/logs/*
+!/storage/logs/.gitignore
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+
+# Archivos temporales del sistema
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Archivos de backup
+*.bak
+*.backup
