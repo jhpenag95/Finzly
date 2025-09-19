@@ -19,28 +19,7 @@ Finzly es una aplicación web de gestión financiera personal desarrollada con L
 - Gráficos : Chart.js (para visualizaciones del dashboard)
 
 #Estructura del Proyecto
-  Finzly/
-├── app/Http/Controllers/     # Controladores de la aplicación
-│   ├── HomeController.php    # Dashboard principal
-│   ├── PagosController.php   # Gestión de pagos
-│   ├── SaldoInicialController.php
-│   ├── CalendarioController.php
-│   ├── CategoriasController.php
-│   ├── ReporteController.php
-│   └── PerfilController.php
-├── resources/views/          # Vistas Blade
-│   ├── home/                 # Dashboard
-│   ├── pagos/               # Gestión de pagos
-│   ├── saldo_inicial/       # Configuración de saldo
-│   ├── calendario/          # Vista de calendario
-│   ├── categorias/          # Gestión de categorías
-│   ├── reporte/            # Reportes
-│   ├── perfil/             # Perfil de usuario
-│   └── components/         # Componentes reutilizables
-├── public/css/              # Estilos CSS organizados por módulo
-├── database/migrations/     # Migraciones de base de datos
-└── routes/web.php          # Definición de rutas
-
+<img width="528" height="431" alt="image" src="https://github.com/user-attachments/assets/da0b71f1-3717-49d8-8867-4c5a035b9d20" />
 
 
 
