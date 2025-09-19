@@ -1,0 +1,252 @@
+/* Estilos para Saldo Inicial */
+
+.dashboard-container.saldo-inicial-view {
+    padding: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+/* Encabezado */
+.saldo-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.saldo-header h1 {
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+}
+
+.saldo-header h1 i {
+    color: var(--hover-color);
+}
+
+.saldo-header p {
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+    opacity: 0.8;
+}
+
+/* Contenedor del formulario */
+.saldo-form-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--spacing-xl);
+}
+
+.saldo-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* Secciones del formulario */
+.saldo-section {
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    background-color: #fafafa;
+    transition: var(--transition);
+}
+
+.saldo-section:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 2px 8px rgba(47, 72, 124, 0.1);
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.section-header i {
+    font-size: var(--font-size-lg);
+    color: var(--primary-color);
+}
+
+.section-header h3 {
+    color: var(--primary-color);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+}
+
+/* Grupos de formulario */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-color);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+}
+
+/* Grupos de entrada */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+
+.input-group input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 40px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    transition: var(--transition);
+    background-color: var(--white);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(56, 119, 201, 0.1);
+}
+
+.input-group input:hover {
+    border-color: var(--secondary-color);
+}
+
+/* Resumen total */
+.saldo-summary {
+    margin: var(--spacing-xl) 0;
+}
+
+.summary-card {
+    background: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    width: 50%;
+}
+
+.summary-card h3 {
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    opacity: 0.9;
+}
+
+.total-amount {
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de acción */
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+}
+
+.btn-primary, .btn-secondary {
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    min-width: 150px;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #2d8a5a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(36, 156, 117, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.saldo-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.saldo-section:nth-child(1) { animation-delay: 0.1s; }
+.saldo-section:nth-child(2) { animation-delay: 0.2s; }
+.saldo-section:nth-child(3) { animation-delay: 0.3s; }
+.saldo-section:nth-child(4) { animation-delay: 0.4s; }
+
+/* Estados de validación */
+.input-group input.valid {
+    border-color: var(--success-color);
+}
+
+.input-group input.invalid {
+    border-color: var(--danger-color);
+}
+
+.error-message {
+    color: var(--danger-color);
+    font-size: var(--font-size-xs);
+    margin-top: var(--spacing-sm);
+    display: none;
+}
+
+.form-group.has-error .error-message {
+    display: block;
+}
+
+.form-group.has-error input {
+    border-color: var(--danger-color);
+}

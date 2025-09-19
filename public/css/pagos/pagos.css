@@ -1,0 +1,230 @@
+/* Estilos para el contenedor principal */
+
+
+.dashboard-container {
+    padding: var(--spacing-xl);
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: var(--spacing-xl);
+}
+
+.dashboard-container .payments-view {
+    width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.payments-filter {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+
+/* Estilos para la fila de filtros */
+
+.filter-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Estilos para el cuadro de búsqueda */
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+    transition: all 0.2s ease;
+}
+
+.search-box i {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #2f487c;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.search-box input {
+    padding: 12px 12px 12px 45px;
+    width: 100%;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #ffffff;
+    color: #2f487c;
+}
+
+/* Estilos para los grupos de filtros */
+
+.filter-group {
+    position: relative;
+    min-width: 180px;
+}
+
+.filter-group select {
+    appearance: none;
+    padding: 12px 35px 12px 15px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #2f487c;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.filter-group select {
+    color: var(--text-color);   
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Estilos para el botón de agregar pago */
+
+.add-payment-btn {
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(47, 72, 124, 0.2);
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.add-payment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--hover-shadow);
+}
+
+
+/* ======== Estilos para la tabla de pagos ======== */
+
+.payments-table-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payments-table tr {
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.payments-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+
+/* Animación de fade-in */
+.payments-table-header {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.payments-table tr {
+    transition: all var(--transition);  
+    background-color: var(--color-bg-secondary);
+}
+
+
+/* Estilos para la paginación */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: var(--spacing-md);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--white);    
+}
+
+.pagination-pages {
+    display: flex;
+    gap: 10px;
+}
+
+.pagination-page.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(47, 72, 124, 0.3);
+}
+
+.pagination-page {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    background-color: var(--white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}

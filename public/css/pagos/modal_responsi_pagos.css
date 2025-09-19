@@ -1,0 +1,310 @@
+/* ===== MODAL DE PAGOS - ESTILOS RESPONSIVOS ===== */
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .payment-modal .modal-content {
+        width: 95%;
+        max-width: 500px;
+    }
+    
+    .payment-modal .modal-header {
+        padding: 20px 24px 12px;
+    }
+    
+    .payment-modal .modal-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .payment-modal .modal-body {
+        padding: 24px;
+    }
+    
+    .payment-modal .modal-footer {
+        padding: 20px 24px;
+    }
+}
+
+/* Tablets pequeñas (max-width: 768px) */
+@media screen and (max-width: 768px) {
+    .payment-modal .modal-content {
+        width: 95%;
+        max-width: 450px;
+        margin: 20px;
+    }
+    
+    .payment-modal .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .payment-modal .modal-footer {
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+    
+    .payment-modal .btn {
+        width: 100%;
+        padding: 14px 24px;
+    }
+}
+
+/* Móviles grandes (max-width: 640px) */
+@media screen and (max-width: 640px) {
+    .payment-modal {
+        padding: 10px;
+    }
+    
+    .payment-modal .modal-content {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        border-radius: 12px;
+        max-height: 95vh;
+    }
+    
+    .payment-modal .modal-header {
+        padding: 16px 20px 12px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .payment-modal .modal-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .payment-modal .close-modal {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .payment-modal .modal-body {
+        padding: 20px;
+    }
+    
+    .payment-modal .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .payment-modal .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .payment-modal .form-group input,
+    .payment-modal .form-group select {
+        padding: 14px 16px;
+        font-size: 16px; /* Evita zoom en iOS */
+        border-radius: 6px;
+    }
+    
+    .payment-modal .modal-footer {
+        padding: 16px 20px;
+        border-radius: 0 0 12px 12px;
+    }
+    
+    .payment-modal .btn {
+        padding: 16px 24px;
+        font-size: 1rem;
+    }
+}
+
+/* Móviles pequeños (max-width: 480px) */
+@media screen and (max-width: 480px) {
+    .payment-modal {
+        padding: 5px;
+    }
+    
+    .payment-modal .modal-content {
+        border-radius: 8px;
+        max-height: 98vh;
+    }
+    
+    .payment-modal .modal-header {
+        padding: 14px 16px 10px;
+        border-radius: 8px 8px 0 0;
+    }
+    
+    .payment-modal .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .payment-modal .close-modal {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .payment-modal .modal-body {
+        padding: 16px;
+    }
+    
+    .payment-modal .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .payment-modal .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+    }
+    
+    .payment-modal .form-group input,
+    .payment-modal .form-group select {
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+
+    .payment-modal .file-name {
+        font-size: 0.8rem;
+    }
+    
+    .payment-modal .modal-footer {
+        padding: 14px 16px;
+        border-radius: 0 0 8px 8px;
+    }
+    
+    .payment-modal .btn {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        min-width: auto;
+    }
+}
+
+/* Móviles muy pequeños (max-width: 360px) */
+@media screen and (max-width: 360px) {
+    .payment-modal .modal-header h3 {
+        font-size: 1rem;
+    }
+    
+    .payment-modal .close-modal {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .payment-modal .modal-body {
+        padding: 12px;
+    }
+    
+    .payment-modal .form-group {
+        margin-bottom: 14px;
+    }
+    
+    .payment-modal .form-group input,
+    .payment-modal .form-group select {
+        padding: 10px 12px;
+    }
+    
+    .payment-modal .modal-footer {
+        padding: 12px;
+    }
+    
+    .payment-modal .btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Orientación landscape en móviles */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .payment-modal .modal-content {
+        max-height: 95vh;
+        width: 90%;
+        max-width: 600px;
+    }
+    
+    .payment-modal .modal-header {
+        padding: 12px 20px 8px;
+    }
+    
+    .payment-modal .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .payment-modal .modal-body {
+        padding: 16px 20px;
+    }
+    
+    .payment-modal .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .payment-modal .form-group input,
+    .payment-modal .form-group select {
+        padding: 10px 14px;
+    }
+    
+    .payment-modal .modal-footer {
+        padding: 12px 20px;
+    }
+    
+    .payment-modal .btn {
+        padding: 10px 20px;
+    }
+}
+
+/* Mejoras para accesibilidad táctil */
+@media (hover: none) and (pointer: coarse) {
+    .payment-modal .close-modal {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .payment-modal .btn {
+        min-height: 44px;
+    }
+    
+}
+
+/* Animaciones reducidas para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .payment-modal {
+        animation: none;
+    }
+    
+    .payment-modal .modal-content {
+        animation: none;
+        transform: none;
+    }
+    
+    .payment-modal .close-modal {
+        transition: background-color 0.2s ease;
+    }
+    
+    .payment-modal .close-modal:hover {
+        transform: none;
+    }
+    
+    .payment-modal .btn {
+        transition: background-color 0.2s ease;
+    }
+    
+    .payment-modal .btn:hover {
+        transform: none;
+    }
+}
+
+/* Alto contraste para mejor accesibilidad */
+@media (prefers-contrast: high) {
+    .payment-modal .modal-content {
+        border: 2px solid #000;
+    }
+    
+    .payment-modal .form-group input,
+    .payment-modal .form-group select {
+        border: 2px solid #000;
+    }
+    
+    .payment-modal .form-group input:focus,
+    .payment-modal .form-group select:focus {
+        border-color: #0066cc;
+        box-shadow: 0 0 0 2px #0066cc;
+    }
+    
+    .payment-modal .btn-primary {
+        background: #0066cc;
+        border: 2px solid #004499;
+    }
+    
+    .payment-modal .btn-secondary {
+        background: #fff;
+        color: #000;
+        border: 2px solid #000;
+    }
+}

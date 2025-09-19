@@ -1,0 +1,425 @@
+/* Responsividad para Modal de Categorías */
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+    .modal-content {
+        width: 85%;
+        max-width: 450px;
+    }
+    
+    .modal-header {
+        padding: 20px 25px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.4rem;
+    }
+    
+    .modal-body {
+        padding: 25px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+        gap: 8px;
+        padding: 15px;
+    }
+    
+    .icon-option {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .selected-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Móviles grandes (481px - 767px) */
+@media screen and (max-width: 767px) {
+    .category-modal {
+        padding: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-width: none;
+        margin: 0 10px;
+        max-height: 95vh;
+    }
+    
+    .modal-header {
+        padding: 18px 20px;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.3rem;
+        margin-right: auto;
+    }
+    
+    .close-modal {
+        width: 35px;
+        height: 35px;
+        margin-left: 10px;
+    }
+    
+    .close-modal i {
+        font-size: 1rem;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+    
+    .form-group input[type="text"] {
+        padding: 12px 14px;
+        font-size: 0.95rem;
+    }
+    
+    .form-group input[type="color"] {
+        width: 50px;
+        height: 40px;
+    }
+    
+    .icon-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .selected-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .btn.btn-outline {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+        gap: 6px;
+        padding: 12px;
+        max-height: 150px;
+    }
+    
+    .icon-option {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .modal-footer {
+        padding: 15px 20px;
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Orden de botones en móvil */
+    .modal-footer {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .modal-footer .btn-primary {
+        order: 1;
+    }
+    
+    .modal-footer .btn-secondary {
+        order: 2;
+    }
+    
+    .modal-footer .btn-danger {
+        order: 3;
+        margin-top: 10px;
+        background: transparent;
+        color: #dc3545;
+        border: 2px solid #dc3545;
+        box-shadow: none;
+    }
+    
+    .modal-footer .btn-danger:hover {
+        background: #dc3545;
+        color: white;
+    }
+}
+
+/* Móviles pequeños (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .category-modal {
+        padding: 5px;
+    }
+    
+    .modal-content {
+        width: 98%;
+        margin: 0 5px;
+        border-radius: 12px;
+    }
+    
+    .modal-header {
+        padding: 15px 18px;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.2rem;
+    }
+    
+    .close-modal {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .close-modal i {
+        font-size: 0.9rem;
+    }
+    
+    .modal-body {
+        padding: 18px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input[type="text"] {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        border-radius: 8px;
+    }
+    
+    .form-group input[type="color"] {
+        width: 45px;
+        height: 35px;
+        border-radius: 8px;
+    }
+    
+    .selected-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+        border-radius: 8px;
+    }
+    
+    .btn.btn-outline {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+    }
+    
+    .icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+        gap: 5px;
+        padding: 10px;
+        max-height: 120px;
+        border-radius: 8px;
+    }
+    
+    .icon-option {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+        border-radius: 6px;
+    }
+    
+    .modal-footer {
+        padding: 12px 18px;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+        border-radius: 6px;
+        letter-spacing: 0.3px;
+    }
+}
+
+/* Pantallas muy pequeñas (menos de 320px) */
+@media screen and (max-width: 319px) {
+    .modal-content {
+        width: 100%;
+        height: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+        margin: 0;
+    }
+    
+    .modal-header {
+        border-radius: 0;
+        padding: 12px 15px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-body {
+        padding: 15px;
+        flex: 1;
+        overflow-y: auto;
+    }
+    
+    .icons-grid {
+        grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+        max-height: 100px;
+    }
+    
+    .icon-option {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    
+    .selected-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+    
+    .modal-footer {
+        padding: 10px 15px;
+        border-radius: 0;
+    }
+}
+
+/* Orientación horizontal en móviles */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .modal-content {
+        max-height: 95vh;
+        width: 90%;
+        max-width: 600px;
+    }
+    
+    .modal-body {
+        padding: 15px 25px;
+        max-height: calc(95vh - 140px);
+        overflow-y: auto;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .icons-grid {
+        max-height: 100px;
+        grid-template-columns: repeat(auto-fill, minmax(35px, 1fr));
+    }
+    
+    .modal-footer {
+        padding: 10px 25px;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+    
+    .btn {
+        width: auto;
+        min-width: 80px;
+    }
+    
+    .modal-footer .btn-danger {
+        order: 0;
+        margin-top: 0;
+        margin-right: auto;
+    }
+}
+
+/* Mejoras de accesibilidad para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .icon-option {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .btn {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    .close-modal {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .form-group input[type="text"] {
+        min-height: 44px;
+    }
+    
+    .form-group input[type="color"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Reducir animaciones en dispositivos con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+    .category-modal,
+    .modal-content,
+    .btn,
+    .icon-option,
+    .close-modal {
+        animation: none;
+        transition: none;
+    }
+    
+    .btn:hover::before {
+        display: none;
+    }
+}
+
+/* Alto contraste para mejor accesibilidad */
+@media (prefers-contrast: high) {
+    .modal-content {
+        border: 3px solid #000;
+    }
+    
+    .form-group input[type="text"] {
+        border: 2px solid #000;
+    }
+    
+    .form-group input[type="text"]:focus {
+        border: 3px solid #000;
+        box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
+    }
+    
+    .icon-option {
+        border: 2px solid #000;
+    }
+    
+    .btn {
+        border: 2px solid currentColor;
+    }
+}
