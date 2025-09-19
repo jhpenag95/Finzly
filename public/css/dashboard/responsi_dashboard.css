@@ -1,0 +1,351 @@
+/* ===== RESPONSIVE DASHBOARD STYLES ===== */
+
+/* Mobile First Approach - Base styles for mobile */
+@media screen and (max-width: 768px) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    /* Summary cards - Stack vertically on mobile */
+    .dashboard-summary {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .summary-card {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .summary-card .card-icon {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .summary-card .card-content h3 {
+        font-size: 16px;
+    }
+
+    .summary-card .card-content .card-value {
+        font-size: 20px;
+    }
+
+    .summary-card .card-content p {
+        font-size: 12px;
+    }
+
+    /* Chart container */
+    .chart-container {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .chart-container h3 {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .chart-container canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    /* Upcoming payments section */
+    .dashboard-upcoming {
+        padding: 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .section-header h3 {
+        font-size: 16px;
+    }
+
+    .section-header .btn_new_payment {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+
+    /* Payment items */
+    .payment-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+        gap: 10px;
+    }
+
+    .payment-date {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .payment-details {
+        margin-bottom: 10px;
+    }
+
+    .payment-details h4 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    .payment-details .category {
+        font-size: 0.8rem;
+    }
+
+    .payment-amount {
+        margin: 10px 0;
+        font-size: 1.1rem;
+    }
+
+    .payment-actions {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .mark-completed,
+    .edit-payment {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .dashboard-container {
+        padding: 15px;
+    }
+
+    /* Summary cards - 2 columns on tablet */
+    .dashboard-summary {
+        gap: 15px;
+    }
+
+    .summary-card {
+        width: calc(50% - 7.5px);
+        margin-bottom: 15px;
+    }
+
+    .summary-card:last-child {
+        width: 100%;
+    }
+
+    /* Chart container */
+    .chart-container {
+        padding: 18px;
+    }
+
+    .chart-container canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    /* Upcoming payments */
+    .dashboard-upcoming {
+        padding: 18px;
+    }
+
+    .section-header {
+        margin-bottom: 15px;
+    }
+
+    .payment-item {
+        padding: 12px;
+    }
+
+    .payment-actions {
+        gap: 8px;
+    }
+}
+
+/* Large tablet and small desktop */
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+    .dashboard-container {
+        padding: 18px;
+    }
+
+    .summary-card {
+        width: calc(33.333% - 13.33px);
+    }
+
+    .chart-container canvas {
+        max-width: 100%;
+        height: auto !important;
+    }
+}
+
+/* Extra small devices (phones in landscape) */
+@media screen and (max-width: 480px) {
+    .dashboard-container {
+        padding: 8px;
+    }
+
+    .summary-card {
+        padding: 12px;
+    }
+
+    .summary-card .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .summary-card .card-content h3 {
+        font-size: 14px;
+    }
+
+    .summary-card .card-content .card-value {
+        font-size: 18px;
+    }
+
+    .chart-container,
+    .dashboard-upcoming {
+        padding: 12px;
+    }
+
+    .section-header h3 {
+        font-size: 14px;
+    }
+
+    .section-header .btn_new_payment {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    .payment-item {
+        padding: 12px 8px;
+    }
+
+    .payment-date {
+        width: 50px;
+        height: 50px;
+    }
+
+    .payment-date .day {
+        font-size: 1.2rem;
+    }
+
+    .payment-date .month {
+        font-size: 0.7rem;
+    }
+
+    .payment-details h4 {
+        font-size: 0.9rem;
+    }
+
+    .payment-details .category {
+        font-size: 0.75rem;
+    }
+
+    .payment-amount {
+        font-size: 1rem;
+    }
+
+    .mark-completed,
+    .edit-payment {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+    .dashboard-container {
+        padding: 10px;
+    }
+
+    .summary-card {
+        padding: 10px;
+    }
+
+    .summary-card .card-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+
+    .chart-container,
+    .dashboard-upcoming {
+        padding: 10px;
+    }
+
+    .payment-item {
+        padding: 8px;
+    }
+}
+
+/* High DPI displays */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+       screen and (min-resolution: 192dpi) {
+    .summary-card,
+    .chart-container,
+    .dashboard-upcoming,
+    .payment-item {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    }
+}
+
+/* Print styles */
+@media print {
+    .dashboard-container {
+        padding: 0;
+    }
+
+    .summary-card,
+    .chart-container,
+    .dashboard-upcoming {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        break-inside: avoid;
+    }
+
+    .section-header .btn_new_payment,
+    .payment-actions {
+        display: none;
+    }
+
+    .chart-container canvas {
+        max-height: 300px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    .summary-card,
+    .payment-item,
+    .section-header .btn_new_payment i {
+        transition: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .summary-card,
+    .chart-container,
+    .dashboard-upcoming {
+        background-color: #2d3748;
+        color: #e2e8f0;
+    }
+
+    .payment-date {
+        background-color: #4a5568;
+        color: #e2e8f0;
+    }
+
+    .summary-card,
+    .chart-container,
+    .dashboard-upcoming,
+    .payment-item {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+}

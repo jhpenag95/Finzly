@@ -1,0 +1,370 @@
+/* Estilos responsivos para perfil */
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media (max-width: 1024px) {
+    .dashboard-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .profile-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    
+    .user-stats {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .stat-item {
+        min-width: 80px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .session-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-md);
+    }
+    
+    .session-time {
+        align-items: flex-start;
+        width: 100%;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Móviles grandes (481px - 767px) */
+@media (max-width: 767px) {
+    .dashboard-container {
+        padding: var(--spacing-md);
+    }
+    
+    .profile-container {
+        padding: var(--spacing-md);
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .profile-header {
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .profile-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-user-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .user-stats {
+        gap: var(--spacing-md);
+    }
+    
+    .stat-item {
+        padding: var(--spacing-sm);
+        min-width: 70px;
+    }
+    
+    .stat-value {
+        font-size: 1.4rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .profile-form h3 {
+        font-size: 1.2rem;
+        margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    }
+    
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .form-group input {
+        padding: var(--spacing-sm);
+    }
+    
+    .password-requirements {
+        padding: var(--spacing-sm);
+    }
+    
+    .requirement {
+        font-size: 0.8rem;
+    }
+    
+    .session-device i {
+        font-size: 1.2rem;
+    }
+    
+    .device-name {
+        font-size: 0.9rem;
+    }
+    
+    .device-location {
+        font-size: 0.8rem;
+    }
+    
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
+    
+    .close-session {
+        margin-left: 0;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+/* Móviles pequeños (320px - 480px) */
+@media (max-width: 480px) {
+    .dashboard-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .profile-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .change-avatar-btn {
+        width: 28px;
+        height: 28px;
+        bottom: 2px;
+        right: 2px;
+    }
+    
+    .change-avatar-btn i {
+        font-size: 0.8rem;
+    }
+    
+    .profile-user-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .user-stats {
+        gap: var(--spacing-sm);
+    }
+    
+    .stat-item {
+        padding: 6px;
+        min-width: 60px;
+    }
+    
+    .stat-value {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.7rem;
+    }
+    
+    .profile-form h3 {
+        font-size: 1.1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input {
+        font-size: 0.9rem;
+    }
+    
+    .toggle-password {
+        right: var(--spacing-sm);
+    }
+    
+    .password-requirements p {
+        font-size: 0.9rem;
+    }
+    
+    .requirement {
+        font-size: 0.75rem;
+    }
+    
+    .session-item {
+        padding: var(--spacing-sm);
+    }
+    
+    .session-device {
+        gap: var(--spacing-sm);
+    }
+    
+    .session-device i {
+        font-size: 1rem;
+        width: 25px;
+    }
+    
+    .device-name {
+        font-size: 0.8rem;
+    }
+    
+    .device-location {
+        font-size: 0.7rem;
+    }
+    
+    .session-status .current-session {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+    
+    .session-time span {
+        font-size: 0.8rem;
+    }
+    
+    .btn {
+        padding: 10px var(--spacing-sm);
+        font-size: 0.8rem;
+    }
+    
+    .btn i {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajustes específicos para landscape en móviles */
+@media (max-width: 767px) and (orientation: landscape) {
+    .profile-header {
+        flex-direction: row;
+        text-align: left;
+    }
+    
+    .user-stats {
+        justify-content: flex-start;
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Mejoras para accesibilidad en pantallas pequeñas */
+@media (max-width: 767px) {
+    /* Aumentar área de toque para botones */
+    .btn {
+        min-height: 44px;
+    }
+    
+    .toggle-password {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .change-avatar-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Mejorar legibilidad */
+    .form-group input {
+        min-height: 44px;
+    }
+    
+    /* Espaciado mejorado para touch */
+    .session-item {
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+/* Ajustes para pantallas muy anchas */
+@media (min-width: 1400px) {
+    .profile-container {
+        max-width: 1400px;
+    }
+    
+    .profile-header {
+        gap: calc(var(--spacing-xl) * 2);
+    }
+    
+    .user-stats {
+        gap: calc(var(--spacing-lg) * 1.5);
+    }
+    
+    .stat-item {
+        min-width: 120px;
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Modo oscuro responsivo */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --border-color: #333333;
+        --white: #2d2d2d;
+        --light-bg: #333333;
+    }
+}
+
+/* Reducir animaciones para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .profile-container {
+        animation: none;
+    }
+    
+    .btn:hover,
+    .stat-item:hover,
+    .session-item:hover {
+        transform: none;
+    }
+}
+
+/* Ajustes para impresión */
+@media print {
+    .dashboard-container {
+        padding: 0;
+    }
+    
+    .profile-container {
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .change-avatar-btn,
+    .toggle-password,
+    .btn {
+        display: none;
+    }
+    
+    .password-input input {
+        border: none;
+        border-bottom: 1px solid #000;
+    }
+    
+    .sessions-list {
+        display: none;
+    }
+}

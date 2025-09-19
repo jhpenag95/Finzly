@@ -1,0 +1,278 @@
+.dashboard-container {
+    padding: 20px;
+}
+
+.dashboard-summary {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.summary-card_dash {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    width: 30%;
+}
+
+.summary-card_dash:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.summary-card_dash .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius);
+    margin-right: var(--spacing-md);
+    font-size: var(--font-size-md);
+    color: var(--primary-color);
+}
+
+.summary-card_dash .card-content {
+    text-align: center;
+}
+
+.summary-card_dash .card-content h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin: 0;
+}
+
+.summary-card_dash .card-content .card-value {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.summary-card_dash .card-content p {
+    font-size: var(--font-size-sm);
+    color: var(--text-color);
+    margin: var(--spacing-sm) 0;
+}
+
+.summary-card_dash.pending {
+    border-left: 5px solid var(--warning-color);
+}
+
+.summary-card_dash.pending .card-icon {
+    background-color: rgba(243, 156, 18, 0.2);
+    color: #f39c12;
+}
+
+.summary-card_dash.overdue {
+    border-left: 5px solid #ff4d4f;
+}
+
+.summary-card_dash.overdue .card-icon {
+    background-color: rgba(255, 77, 79, 0.2);
+    color: #ff4d4f;
+}
+
+.summary-card_dash.completed {
+    border-left: 5px solid var(--success-color);
+}
+
+.summary-card_dash.completed .card-icon {
+    background-color: rgba(82, 196, 26, 0.2);
+    color: var(--success-color);
+}
+
+
+/*  Gráfica resumen  */
+.dashboard-chart {
+    margin-top: 20px;
+}
+
+.chart-container {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-md);
+}
+
+.chart-container h3 {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    margin: 0;
+}
+
+.chart-container canvas {
+    margin-top: var(--spacing-md);
+}
+
+
+/* proximos pagos */
+
+.dashboard-upcoming {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-md);
+    margin-top: 20px;
+}
+
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.section-header .btn_new_payment {
+    background-color: #2f487c;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.section-header .btn_new_payment i {
+    color: #fff;
+    font-size: var(--font-size-md);
+    margin-right: var(--spacing-sm);
+    transition: var(--transition);
+}
+
+.section-header .btn_new_payment:hover {
+    background-color: var(--hover-color);
+}
+
+.section-header .btn_new_payment:hover i {
+    transform: rotate(180deg);
+    color: var(--white);
+    transition: var(--transition);
+}
+
+
+/* Estilo para la lista de pagos */
+
+.payments-list {
+    margin-top: var(--spacing-md);
+}
+
+.payment-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Estilo para la fecha de pago */
+
+.payment-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: var(--border-radius);
+    background-color: var(--light-bg);
+    margin-right: var(--spacing-md);
+}
+
+.payment-date .day {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.payment-date .month {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+/* Estilo para los detalles del pago */
+
+.payment-details {
+    flex: 1;
+}
+
+.payment-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.payment-details .category {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Estilo para el monto del pago */
+
+.payment-amount {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0 20px;
+}
+
+.payment-actions {
+    display: flex;
+    gap: 5px;
+}
+
+
+/* Estilo para el botón de completar */
+
+.mark-completed {
+    background-color: var(--success-color);
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+.mark-completed i {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.mark-completed:hover {
+    background-color: var(--hover-color);
+}
+
+/* Estilo para el botón de editar */
+
+.edit-payment{
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+}
+
+.edit-payment:hover {
+    background-color: var(--hover-color);
+}
+
+.edit-payment i {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+
+

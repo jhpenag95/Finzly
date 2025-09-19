@@ -1,0 +1,474 @@
+/* Responsive Design */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .calendario-container {
+        margin: 15px;
+        padding: 20px;
+        max-width: 100%;
+    }
+    
+    .calendario-header h2 {
+        font-size: 24px;
+    }
+    
+    .nav-button {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .view-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .nuevo-pago-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    .calendario-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .calendario-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .calendario-header h2 {
+        font-size: 22px;
+        order: 1;
+    }
+    
+    .month-navigation {
+        order: 2;
+        justify-content: center;
+    }
+    
+    .view-buttons {
+        order: 3;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nuevo-pago-btn {
+        order: 4;
+        align-self: center;
+        width: fit-content;
+    }
+    
+    .weekday {
+        font-size: 12px;
+        padding: 10px 5px;
+    }
+
+    .calendar-day {
+        min-height: 90px;
+        padding: 8px;
+    }
+
+    .day-number {
+        font-size: 14px;
+        min-width: 20px;
+        min-height: 20px;
+        margin-bottom: 6px;
+    }
+
+    .calendar-event {
+        font-size: 10px;
+        padding: 2px 4px;
+        margin-bottom: 2px;
+        border-radius: 3px;
+    }
+    
+    .calendar-day.today .day-number {
+        height: 26px;
+        width: 26px;
+        font-size: 12px;
+    }
+    
+    .calendar-day.today {
+        border-width: 1px;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .calendario-container {
+        margin: 5px;
+        padding: 10px;
+    }
+    
+    .calendario-header {
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .calendario-header h2 {
+        font-size: 20px;
+    }
+    
+    .nav-button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .view-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 15px;
+    }
+    
+    .nuevo-pago-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 20px;
+    }
+    
+    .weekday {
+        font-size: 10px;
+        padding: 8px 2px;
+        text-transform: none;
+    }
+    
+    .calendar-day {
+         min-height: 70px;
+         padding: 6px;
+     }
+     
+     .day-number {
+         font-size: 12px;
+         margin-bottom: 4px;
+         min-width: 18px;
+         min-height: 18px;
+     }
+     
+     .calendar-event {
+         font-size: 9px;
+         padding: 1px 3px;
+         border-radius: 2px;
+         margin-bottom: 1px;
+     }
+     
+     .calendar-day.today .day-number {
+         height: 22px;
+         width: 22px;
+         font-size: 10px;
+     }
+     
+     .calendar-day.today {
+         border-width: 1px;
+     }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 320px) {
+    .calendario-container {
+        margin: 2px;
+        padding: 8px;
+    }
+    
+    .calendario-header h2 {
+        font-size: 18px;
+    }
+    
+    .view-buttons {
+        gap: 5px;
+    }
+    
+    .view-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .nuevo-pago-btn {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+    
+    .weekday {
+        font-size: 9px;
+        padding: 6px 1px;
+    }
+    
+    .calendar-day {
+         min-height: 60px;
+         padding: 4px;
+     }
+     
+     .day-number {
+         font-size: 11px;
+         min-width: 16px;
+         min-height: 16px;
+         margin-bottom: 3px;
+     }
+     
+     .calendar-event {
+         font-size: 8px;
+         padding: 1px 2px;
+         border-radius: 2px;
+         margin-bottom: 1px;
+     }
+     
+     .calendar-day.today .day-number {
+         height: 20px;
+         width: 20px;
+         font-size: 9px;
+     }
+     
+     .calendar-day.today {
+         border-width: 1px;
+     }
+}
+
+/* Orientación horizontal en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .calendario-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .month-navigation {
+        order: 1;
+    }
+    
+    .calendario-header h2 {
+        order: 2;
+        font-size: 20px;
+    }
+    
+    .view-buttons {
+        order: 3;
+    }
+    
+    .nuevo-pago-btn {
+        order: 4;
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .calendar-day {
+        min-height: 70px;
+    }
+}
+
+/* Responsividad para Categorías */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    .categorias-container {
+        padding: 15px;
+    }
+    
+    .config-form {
+        padding: 15px;
+    }
+    
+    .categories-tab h3 {
+        font-size: 22px;
+    }
+    
+    .category-item {
+        padding: 12px;
+    }
+    
+    .category-name {
+        font-size: 1rem;
+    }
+    
+    .add-category-btn {
+        width: 50%;
+        padding: 4px !important;
+        font-size: 10px;
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    .categorias-container {
+        padding: 10px;
+    }
+    
+    .config-form {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .categories-tab h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    .section-description p {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    .categories-list {
+        max-height: 300px;
+        padding-right: 5px;
+    }
+    
+    .category-item {
+        padding: 10px;
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .category-color {
+        width: 32px;
+        height: 32px;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .category-name {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+    
+    .category-actions {
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .edit-category {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .add-category-btn {
+        width: 80%;
+        padding: 14px 20px;
+        font-size: 10px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 25px;
+        padding: 4px !important;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .categorias-container {
+        padding: 8px;
+    }
+    
+    .config-form {
+        padding: 10px;
+        border-radius: 6px;
+    }
+    
+    .categories-tab h3 {
+        font-size: 18px;
+    }
+    
+    .section-description p {
+        font-size: 13px;
+    }
+    
+    .categories-list {
+        max-height: 250px;
+        gap: 8px;
+    }
+    
+    .category-item {
+        padding: 8px;
+    }
+    
+    .category-color {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .category-name {
+        font-size: 0.9rem;
+    }
+    
+    .edit-category {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .add-category-btn {
+        width: 85%;
+        padding: 12px 16px;
+        font-size: 10px;
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 22px;
+       padding: 4px !important;
+    }
+}
+
+/* Móviles muy pequeños */
+@media (max-width: 320px) {
+    .categorias-container {
+        padding: 5px;
+    }
+    
+    .config-form {
+        padding: 8px;
+    }
+    
+    .categories-tab h3 {
+        font-size: 16px;
+    }
+    
+    .section-description p {
+        font-size: 12px;
+    }
+    
+    .categories-list {
+        max-height: 200px;
+        gap: 6px;
+    }
+    
+    .category-item {
+        padding: 6px;
+    }
+    
+    .category-color {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .category-name {
+        font-size: 0.85rem;
+    }
+    
+    .edit-category {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .add-category-btn {
+        width: 95%;
+        padding: 12px 16px;
+        font-size: 10px;
+        min-height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        font-weight: 600;
+        padding: 4px !important;
+    }
+}

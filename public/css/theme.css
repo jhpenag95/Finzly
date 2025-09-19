@@ -1,0 +1,44 @@
+/* Theme CSS - Estilos para el sistema de temas */
+
+/* Variables CSS para temas */
+:root {
+    --primary-color: #2f487c;
+    --secondary-color: #3877c9;
+    --success-color: #52c41a;
+    --warning-color: #f39c12;
+    --danger-color: #ff4d4f;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+    --primary-color: #4a6fa5;
+    --secondary-color: #5a8bd4;
+    --background-color: #1a1a1a;
+    --text-color: #ffffff;
+    --border-color: #333333;
+}
+
+/* Aplicar variables a elementos */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Botones de tema */
+.theme-btn {
+    transition: all 0.3s ease;
+}
+
+.theme-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Transiciones suaves para cambio de tema */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

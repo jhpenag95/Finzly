@@ -1,0 +1,232 @@
+/* Contenedor principal del calendario */
+.calendario-container {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-lg);
+    margin: auto;
+    max-width: 900px;
+}
+
+/* Header del calendario */
+.calendario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.calendario-header h2 {
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Navegación del mes */
+.month-navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.nav-button {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--font-size-md);
+    height: var(--spacing-xl);
+    transition: var(--transition);
+    width: var(--spacing-xl);
+}
+
+.nav-button:hover {
+    background-color: var(--hover-color);
+    transform: var(--transform);
+}
+
+/* Botones de vista */
+.view-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.view-btn {
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: var(--spacing-sm) var(--spacing-md);
+    transition: var(--transition);
+}
+
+.view-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--white);
+}
+
+.view-btn:hover:not(.active) {
+    background-color: var(--light-bg);
+    border-color: var(--border-color);
+}
+
+/* Botón nuevo pago */
+.nuevo-pago-btn {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 25px;
+    color: var(--white);
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-md) var(--spacing-lg);
+    transition: var(--transition);
+}
+
+.nuevo-pago-btn:hover {
+    background-color: var(--hover-color);
+    transform: var(--transform);
+}
+
+/* Grid del calendario */
+.calendario-grid {
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+/* Header de días de la semana */
+.calendar-weekdays {
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.weekday {
+    color: var(--white);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Grid de días */
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border: 1px solid var(--border-color);
+    border-top: none;
+}
+
+/* Estilos para cada día */
+.calendar-day {
+    background-color: var(--white);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    min-height: 140px;
+    padding: var(--spacing-md);
+    position: relative;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.calendar-day:hover {
+    background-color: var(--light-bg);
+    box-shadow: var(--box-shadow);
+}
+
+.calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+/* Número del día */
+.day-number {
+    color: var(--text-color);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    min-height: 24px;
+}
+
+/* Días del mes anterior/siguiente */
+.calendar-day.other-month {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.calendar-day.other-month .day-number {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.calendar-day.other-month:hover {
+    background-color: var(--light-bg);
+}
+
+/* Día actual */
+.calendar-day.today {
+    background-color: rgba(47, 72, 124, 0.05);
+    border: 2px solid var(--primary-color);
+}
+
+.calendar-day.today .day-number {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    color: var(--white);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Eventos en el calendario */
+.calendar-event {
+    background-color: var(--warning-color);
+    border-radius: var(--border-radius-sm);
+    color: var(--white);
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-xs);
+    padding: var(--padding-sm);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.calendar-event.netflix {
+    background-color: var(--danger-color);
+}
+
+.calendar-event.internet {
+    background-color: var(--success-color);
+}
+
+.calendar-event.luz {
+    background-color: var(--warning-color);
+}
+
+.calendar-event.credito {
+    background-color: var(--primary-color);
+}
+
+
+

@@ -1,0 +1,281 @@
+/* Estilos Responsivos para Saldo Inicial */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) {
+    .dashboard-container.saldo-inicial-view {
+        padding: var(--spacing-lg);
+        max-width: 100%;
+    }
+    
+    .saldo-header h1 {
+        font-size: var(--font-size-lg);
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .saldo-header p {
+        font-size: var(--font-size-sm);
+    }
+    
+    .saldo-form-container {
+        padding: var(--spacing-lg);
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Móviles (hasta 768px) */
+@media (max-width: 768px) {
+    .dashboard-container.saldo-inicial-view {
+        padding: var(--spacing-md);
+        gap: var(--spacing-md);
+    }
+    
+    .saldo-header {
+        margin-bottom: var(--spacing-lg);
+    }
+    
+    .saldo-header h1 {
+        font-size: var(--font-size-md);
+        text-align: center;
+    }
+    
+    .saldo-header h1 i {
+        font-size: var(--font-size-lg);
+    }
+    
+    .saldo-form-container {
+        padding: var(--spacing-md);
+        border-radius: var(--border-radius-sm);
+    }
+    
+    .saldo-form {
+        gap: var(--spacing-lg);
+    }
+    
+    .saldo-section {
+        padding: var(--spacing-md);
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+        text-align: left;
+    }
+    
+    .section-header i {
+        font-size: var(--font-size-md);
+    }
+    
+    .section-header h3 {
+        font-size: var(--font-size-md);
+    }
+    
+    .form-group {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .form-group label {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .input-group input {
+        padding: var(--spacing-sm) var(--spacing-sm) var(--spacing-sm) 35px;
+        font-size: var(--font-size-xs);
+    }
+    
+    .currency-symbol {
+        left: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+    
+    .summary-card {
+        padding: var(--spacing-lg);
+    }
+    
+    .summary-card h3 {
+        font-size: var(--font-size-md);
+    }
+    
+    .total-amount {
+        font-size: 2rem;
+    }
+    
+    .form-actions {
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-lg);
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: var(--font-size-xs);
+        min-width: 120px;
+    }
+}
+
+/* Móviles pequeños (hasta 480px) */
+@media (max-width: 480px) {
+    .dashboard-container.saldo-inicial-view {
+        padding: var(--spacing-sm);
+    }
+    
+    .saldo-header h1 {
+        font-size: var(--font-size-sm);
+    }
+    
+    .saldo-header p {
+        font-size: var(--font-size-xs);
+    }
+    
+    .saldo-form-container {
+        padding: var(--spacing-sm);
+    }
+    
+    .saldo-section {
+        padding: var(--spacing-sm);
+    }
+    
+    .section-header {
+        margin-bottom: var(--spacing-sm);
+        padding-bottom: var(--spacing-xs);
+    }
+    
+    .section-header h3 {
+        font-size: var(--font-size-sm);
+    }
+    
+    .input-group input {
+        padding: var(--spacing-xs) var(--spacing-xs) var(--spacing-xs) 30px;
+    }
+    
+    .currency-symbol {
+        left: var(--spacing-xs);
+        font-size: var(--font-size-xs);
+    }
+    
+    .summary-card {
+        padding: var(--spacing-md);
+    }
+    
+    .summary-card h3 {
+        font-size: var(--font-size-sm);
+    }
+    
+    .total-amount {
+        font-size: 1.5rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-xxs);
+        min-width: 100px;
+    }
+}
+
+/* Ajustes para orientación horizontal en móviles */
+@media (max-width: 768px) and (orientation: landscape) {
+    .dashboard-container.saldo-inicial-view {
+        padding: var(--spacing-sm);
+    }
+    
+    .saldo-header {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .saldo-form {
+        gap: var(--spacing-md);
+    }
+    
+    .saldo-section {
+        padding: var(--spacing-sm);
+    }
+    
+    .summary-card {
+        padding: var(--spacing-md);
+    }
+    
+    .total-amount {
+        font-size: 1.8rem;
+    }
+}
+
+/* Mejoras de accesibilidad para pantallas táctiles */
+@media (hover: none) and (pointer: coarse) {
+    .input-group input {
+        min-height: 44px;
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 40px;
+    }
+    
+    .btn-primary, .btn-secondary {
+        min-height: 44px;
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .saldo-section:hover {
+        border-color: var(--border-color);
+        box-shadow: none;
+    }
+}
+
+/* Animaciones reducidas para usuarios que prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .saldo-section {
+        animation: none;
+    }
+    
+    .btn-primary:hover,
+    .btn-secondary:hover {
+        transform: none;
+    }
+    
+    * {
+        transition: none !important;
+    }
+}
+
+/* Alto contraste para mejor accesibilidad */
+@media (prefers-contrast: high) {
+    .saldo-section {
+        border-width: 2px;
+    }
+    
+    .input-group input {
+        border-width: 2px;
+    }
+    
+    .input-group input:focus {
+        border-width: 3px;
+    }
+}
+
+/* Modo oscuro básico */
+@media (prefers-color-scheme: dark) {
+    .saldo-section {
+        background-color: #2a2a2a;
+        border-color: #444;
+    }
+    
+    .saldo-form-container {
+        background-color: #1a1a1a;
+    }
+    
+    .input-group input {
+        background-color: #2a2a2a;
+        color: #fff;
+        border-color: #444;
+    }
+    
+    .form-group label {
+        color: #ccc;
+    }
+}
