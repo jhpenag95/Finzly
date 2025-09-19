@@ -18,7 +18,8 @@ Finzly es una aplicación web de gestión financiera personal desarrollada con L
 - Iconos : FontAwesome
 - Gráficos : Chart.js (para visualizaciones del dashboard)
 
-##Estructura del Proyecto
+📁 Estructura del Proyecto
+
 
 <img width="528" height="431" alt="image" src="https://github.com/user-attachments/assets/da0b71f1-3717-49d8-8867-4c5a035b9d20" />
 
