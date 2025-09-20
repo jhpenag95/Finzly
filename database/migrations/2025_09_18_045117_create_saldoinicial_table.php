@@ -12,8 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('saldoinicial', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->string('id_ingresos', 36)->primary();
+            $table->string('nombre', 255);
+            $table->text('descripcion')->nullable();
+            $table->dateTime('fecha_registro');
+            $table->decimal('monto', 10, 2);
+            $table->string('status', 20)->default('activo');
+            $table->unsignedBigInteger('id_usuario');
+            $table->foreign('id_usuario')->references('id')->on('users');
         });
     }
 

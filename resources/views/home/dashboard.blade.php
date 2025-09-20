@@ -1,4 +1,10 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard/responsi_dashboard.css') }}">
+@endpush
+
 @section('content')
     <div class="dashboard-container">
         {{--  Resumen de pagos  --}}
@@ -91,3 +97,7 @@
     </div>
     @include('pagos.modal_new_pago')
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/home/dashboard.js') }}" defer></script>
+@endpush

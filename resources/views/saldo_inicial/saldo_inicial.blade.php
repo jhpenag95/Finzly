@@ -1,4 +1,11 @@
 @extends('components.plantillabase')
+@include('components.alerts-include')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/saldo_inicial.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/responsi_saldo_inicial.css') }}">
+@endpush
+
 @section('content')
     <div class="dashboard-container saldo-inicial-view">
         
@@ -10,7 +17,9 @@
 
         {{-- Formulario de Saldo Inicial --}}
         <div class="saldo-form-container">
+            {{-- <input type="hidden" id="id_usuario" name="id_usuario" value="{{ auth()->user()->id }}"> --}}
             <form class="saldo-form" id="saldoForm">
+                @csrf
                 
                 {{-- Sección Efectivo --}}
                 <div class="saldo-section">
@@ -20,6 +29,7 @@
                     </div>
                     <div class="form-group">
                         <label for="efectivo">Dinero en efectivo</label>
+                        <input type="hidden" id="efectivo_data" name="efectivo_data" value="efectivo">
                         <div class="input-group">
                             <input type="number" id="efectivo" name="efectivo" placeholder="0.00" step="0.01" min="0">
                         </div>
@@ -36,6 +46,7 @@
                     <div class="form-group">
                         <label for="cuenta_corriente">Cuenta Corriente</label>
                         <div class="input-group">
+                            <input type="hidden" id="cuenta_corriente_data" name="cuenta_corriente_data" value="cuenta_corriente">
                             <input type="number" id="cuenta_corriente" name="cuenta_corriente" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -43,6 +54,7 @@
                     <div class="form-group">
                         <label for="cuenta_ahorros">Cuenta de Ahorros</label>
                         <div class="input-group">
+                            <input type="hidden" id="cuenta_ahorros_data" name="cuenta_ahorros_data" value="cuenta_ahorros">
                             <input type="number" id="cuenta_ahorros" name="cuenta_ahorros" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -58,6 +70,7 @@
                     <div class="form-group">
                         <label for="inversiones">Inversiones y Fondos</label>
                         <div class="input-group">
+                            <input type="hidden" id="inversiones_data" name="inversiones_data" value="inversiones">
                             <input type="number" id="inversiones" name="inversiones" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -65,6 +78,7 @@
                     <div class="form-group">
                         <label for="criptomonedas">Criptomonedas</label>
                         <div class="input-group">
+                            <input type="hidden" id="criptomonedas_data" name="criptomonedas_data" value="criptomonedas">
                             <input type="number" id="criptomonedas" name="criptomonedas" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -80,6 +94,7 @@
                     <div class="form-group">
                         <label for="tarjetas_prepago">Tarjetas Prepago</label>
                         <div class="input-group">
+                            <input type="hidden" id="tarjetas_prepago_data" name="tarjetas_prepago_data" value="tarjetas_prepago">
                             <input type="number" id="tarjetas_prepago" name="tarjetas_prepago" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -87,6 +102,7 @@
                     <div class="form-group">
                         <label for="otros_activos">Otros Activos</label>
                         <div class="input-group">
+                            <input type="hidden" id="otros_activos_data" name="otros_activos_data" value="otros_activos">
                             <input type="number" id="otros_activos" name="otros_activos" placeholder="0.00" step="0.01" min="0">
                         </div>
                     </div>
@@ -102,11 +118,11 @@
 
                 {{-- Botones de Acción --}}
                 <div class="form-actions">
-                    <button type="button" class="btn-secondary" id="resetBtn">
+                    <button type="button" class="btn-secondary" id="resetBtn" onclick="limpiarFormularioSaldoInicial()">
                         <i class="fas fa-undo"></i>
                         Limpiar
                     </button>
-                    <button type="submit" class="btn-primary" id="saveBtn">
+                    <button type="submit" class="btn-primary" id="saveBtn" onclick="validarCampos(event)">
                         <i class="fas fa-save"></i>
                         Guardar Saldo Inicial
                     </button>
@@ -115,3 +131,7 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/saldo_inicial/saldo_inicial.js') }}" defer></script>
+@endpush

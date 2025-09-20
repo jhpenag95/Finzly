@@ -1,4 +1,12 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/categorias/categorias.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/categorias/responsi_categorias.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/categorias/modal_categorias.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/categorias/responsi_modal_categorias.css') }}">
+@endpush
+
 @section('content')
     <div class="categorias-container">
         <form action="" class="config-form">
@@ -174,3 +182,7 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/categorias/categorias.js') }}" defer></script>
+@endpush

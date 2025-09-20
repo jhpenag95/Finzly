@@ -1,4 +1,10 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/calendario/calendario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/calendario/responsi_calendario.css') }}">
+@endpush
+
 @section('content')
     <div class="calendario-container">
         <div class="calendario-header">
