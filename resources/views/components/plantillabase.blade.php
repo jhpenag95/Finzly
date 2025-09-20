@@ -21,45 +21,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet"> --}}
 
-    {{-- mis estilos --}}
+    
+
+    {{-- CSS Globales --}}
     <link rel="stylesheet" href="{{ asset('css/variable_global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/plantillabase.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aside.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/dashboard/responsi_dashboard.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/calendario/calendario.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/calendario/responsi_calendario.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/saldo_inicial.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/responsi_saldo_inicial.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/pagos/pagos.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagos/responsi_pagos.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagos/modal_responsi_pagos.css') }}">
-
-
-    <link rel="stylesheet" href="{{ asset('css/categorias/categorias.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/categorias/responsi_categorias.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/categorias/modal_categorias.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/categorias/responsi_modal_categorias.css') }}">
-
-
-    <link rel="stylesheet" href="{{ asset('css/reporte/reporte.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/reporte/responsi_reporte.css') }}">
-
-    <link rel="stylesheet" href="{{ asset('css/perfil/perfil.css') }}">
-
-
-
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
 
-    {{-- JavaScript para modal de pagos --}}
-    <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
-    <script src="{{ asset('js/categorias/categorias.js') }}" defer></script>
+    {{-- Stack para CSS específicos por vista --}}
+    @stack('styles')
+
+    {{-- jQuery (global) --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -161,6 +136,9 @@
             });
         });
     </script>
+
+    {{-- Stack para scripts específicos por vista --}}
+    @stack('scripts')
 </body>
 
 </html>

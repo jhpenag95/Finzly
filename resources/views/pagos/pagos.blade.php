@@ -1,4 +1,12 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/pagos/pagos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/responsi_pagos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/modal_responsi_pagos.css') }}">
+@endpush
+
 @section('content')
     <div class=".dashboard-container payments-view">
 
@@ -169,3 +177,7 @@
     {{-- Incluir modal de nuevo pago --}}
     @include('pagos.modal_new_pago')
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
+@endpush

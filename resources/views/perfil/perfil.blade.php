@@ -1,4 +1,9 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/perfil/perfil.css') }}">
+@endpush
+
 @section('content')
     <div class="dashboard-container">
         <!-- Perfil de usuario -->

@@ -1,4 +1,10 @@
 @extends('components.plantillabase')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/reporte/reporte.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/reporte/responsi_reporte.css') }}">
+@endpush
+
 @section('content')
     <div class="dashboard-container">
         <div class="reports-filter">
