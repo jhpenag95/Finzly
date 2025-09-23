@@ -1,5 +1,9 @@
 /* filtro de fechas */
 
+* {
+    box-sizing: border-box;
+}
+
 .dashboard-container {
     padding: 30px;
     flex-grow: 1;
@@ -9,6 +13,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-x: hidden;
 }
 
 .reports-filter {
@@ -18,6 +23,7 @@
     padding: 25px;
     margin-bottom: 30px;
     width: 100%;
+    overflow-x: auto;
 }
 
 .reports-filter .filter-row {
@@ -26,13 +32,15 @@
     gap: 20px;
     flex-wrap: wrap;
     margin-bottom: 15px;
+    min-width: 100%;
 }
 
 .reports-filter .filter-group {
     display: flex;
     flex-direction: column;
-    min-width: 200px;
-    flex: 1;
+    min-width: 180px;
+    flex: 1 1 auto;
+    max-width: 100%;
 }
 
 .reports-filter label {
@@ -130,6 +138,7 @@
     height: 450px;
     position: relative;
     margin: 10px 0;
+    overflow: hidden;
 }
 
 .main-chart {
@@ -137,6 +146,7 @@
     height: 100%;
     background-color: #f8f9fa;
     border-radius: 8px;
+    max-width: 100%;
 }
 
 .report-cards {
@@ -144,6 +154,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     margin-top: 25px;
+    width: 100%;
 }
 
 .report-card {
@@ -152,6 +163,8 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     padding: 20px;
     transition: transform 0.3s ease;
+    width: 100%;
+    overflow: hidden;
 }
 
 .report-card:hover {
@@ -163,6 +176,7 @@
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
+    width: 100%;
 }
 
 .stat-item {
@@ -173,6 +187,7 @@
     background-color: #f8f9fa;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    max-width: 100%;
 }
 
 .stat-item:hover {

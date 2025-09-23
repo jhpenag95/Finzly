@@ -18,93 +18,75 @@
         {{-- Formulario de Saldo Inicial --}}
         <div class="saldo-form-container">
             {{-- <input type="hidden" id="id_usuario" name="id_usuario" value="{{ auth()->user()->id }}"> --}}
+            <input type="hidden" id="id_usuario" name="id_usuario" value="1">
             <form class="saldo-form" id="saldoForm">
                 @csrf
                 
-                {{-- Sección Efectivo --}}
+                {{-- Sección de Registro de Saldo --}}
                 <div class="saldo-section">
                     <div class="section-header">
-                        <i class="fas fa-money-bill-wave"></i>
-                        <h3>Efectivo</h3>
+                        <i class="fas fa-plus-circle"></i>
+                        <h3>Registrar Saldo Inicial</h3>
                     </div>
-                    <div class="form-group">
-                        <label for="efectivo">Dinero en efectivo</label>
-                        <input type="hidden" id="efectivo_data" name="efectivo_data" value="efectivo">
-                        <div class="input-group">
-                            <input type="number" id="efectivo" name="efectivo" placeholder="0.00" step="0.01" min="0">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="concepto">Concepto</label>
+                            <div class="select-group">
+                                <select id="concepto" name="concepto" required>
+                                    <option value="">Seleccionar concepto...</option>
+                                    <option value="efectivo">💵 Dinero en Efectivo</option>
+                                    <option value="cuenta_corriente">🏦 Cuenta Corriente</option>
+                                    <option value="cuenta_ahorros">💰 Cuenta de Ahorros</option>
+                                    <option value="inversiones">📈 Inversiones y Fondos</option>
+                                    <option value="criptomonedas">₿ Criptomonedas</option>
+                                    <option value="tarjetas_prepago">💳 Tarjetas Prepago</option>
+                                    <option value="otros_activos">🏛️ Otros Activos</option>
+                                </select>
+                                <i class="fas fa-chevron-down select-arrow"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="valor">Valor</label>
+                            <div class="input-group">
+                                <span class="currency-symbol">$</span>
+                                <input type="number" id="valor" name="valor" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="button" class="btn-add" id="addSaldoBtn" onclick="validarCampos(event)">
+                                <i class="fas fa-plus"></i>
+                                Agregar
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                {{-- Sección Cuentas Bancarias --}}
-                <div class="saldo-section">
+                {{-- Lista de Saldos Registrados --}}
+                <div class="saldos-registrados">
                     <div class="section-header">
-                        <i class="fas fa-university"></i>
-                        <h3>Cuentas Bancarias</h3>
+                        <i class="fas fa-table"></i>
+                        <h3>Saldos Registrados</h3>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="cuenta_corriente">Cuenta Corriente</label>
-                        <div class="input-group">
-                            <input type="hidden" id="cuenta_corriente_data" name="cuenta_corriente_data" value="cuenta_corriente">
-                            <input type="number" id="cuenta_corriente" name="cuenta_corriente" placeholder="0.00" step="0.01" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="cuenta_ahorros">Cuenta de Ahorros</label>
-                        <div class="input-group">
-                            <input type="hidden" id="cuenta_ahorros_data" name="cuenta_ahorros_data" value="cuenta_ahorros">
-                            <input type="number" id="cuenta_ahorros" name="cuenta_ahorros" placeholder="0.00" step="0.01" min="0">
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Sección Inversiones --}}
-                <div class="saldo-section">
-                    <div class="section-header">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Inversiones</h3>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="inversiones">Inversiones y Fondos</label>
-                        <div class="input-group">
-                            <input type="hidden" id="inversiones_data" name="inversiones_data" value="inversiones">
-                            <input type="number" id="inversiones" name="inversiones" placeholder="0.00" step="0.01" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="criptomonedas">Criptomonedas</label>
-                        <div class="input-group">
-                            <input type="hidden" id="criptomonedas_data" name="criptomonedas_data" value="criptomonedas">
-                            <input type="number" id="criptomonedas" name="criptomonedas" placeholder="0.00" step="0.01" min="0">
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Sección Otros Activos --}}
-                <div class="saldo-section">
-                    <div class="section-header">
-                        <i class="fas fa-coins"></i>
-                        <h3>Otros Activos</h3>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="tarjetas_prepago">Tarjetas Prepago</label>
-                        <div class="input-group">
-                            <input type="hidden" id="tarjetas_prepago_data" name="tarjetas_prepago_data" value="tarjetas_prepago">
-                            <input type="number" id="tarjetas_prepago" name="tarjetas_prepago" placeholder="0.00" step="0.01" min="0">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="otros_activos">Otros Activos</label>
-                        <div class="input-group">
-                            <input type="hidden" id="otros_activos_data" name="otros_activos_data" value="otros_activos">
-                            <input type="number" id="otros_activos" name="otros_activos" placeholder="0.00" step="0.01" min="0">
-                        </div>
+                    <div class="table-container">
+                        <table class="saldos-table" id="saldos-table">
+                            <thead>
+                            <tr>
+                                <th>CONCEPTO</th>
+                                <th>MONTO</th>
+                                <th>FECHA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="saldos-tbody">
+                            <tr class="empty-row">
+                               <td>Efectivo</td>
+                               <td>$10000</td>
+                               <td>{{ date('d/m/Y') }}</td>
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
                 </div>
 

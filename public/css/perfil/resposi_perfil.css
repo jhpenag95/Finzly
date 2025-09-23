@@ -48,6 +48,11 @@
     .form-actions .btn {
         width: 100%;
     }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
+    }
 }
 
 /* Móviles grandes (481px - 767px) */
@@ -133,6 +138,11 @@
     .close-session {
         margin-left: 0;
         margin-top: var(--spacing-sm);
+    }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
     }
 }
 
@@ -245,6 +255,11 @@
     .btn i {
         font-size: 0.8rem;
     }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
+    }
 }
 
 /* Ajustes específicos para landscape en móviles */
@@ -262,6 +277,11 @@
         width: 80px;
         height: 80px;
     }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
+    }
 }
 
 /* Mejoras para accesibilidad en pantallas pequeñas */
@@ -277,8 +297,8 @@
     }
     
     .change-avatar-btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 30px;
+        min-height: 30px;
     }
     
     /* Mejorar legibilidad */
@@ -289,6 +309,11 @@
     /* Espaciado mejorado para touch */
     .session-item {
         margin-bottom: var(--spacing-lg);
+    }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
     }
 }
 
@@ -309,6 +334,11 @@
     .stat-item {
         min-width: 120px;
         padding: var(--spacing-lg);
+    }
+
+    .user-since {
+        font-size: 0.8rem;
+        justify-content: center;
     }
 }
 

@@ -2,6 +2,7 @@
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/perfil/perfil.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/perfil/resposi_perfil.css') }}">
 @endpush
 
 @section('content')

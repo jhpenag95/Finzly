@@ -1,47 +1,50 @@
 /* Estilos para Saldo Inicial */
 
+/* Contenedor principal */
 .dashboard-container.saldo-inicial-view {
-    padding: var(--spacing-xl);
     max-width: 1200px;
     margin: 0 auto;
+    padding: var(--spacing-xl);
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
 }
 
-/* Encabezado */
+/* Header del saldo inicial */
 .saldo-header {
     text-align: center;
     margin-bottom: var(--spacing-xl);
 }
 
 .saldo-header h1 {
-    color: var(--primary-color);
+    color: var(--text-primary);
     font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
+    font-weight: 700;
     margin-bottom: var(--spacing-sm);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
 }
 
 .saldo-header h1 i {
-    color: var(--hover-color);
+    color: var(--primary-color);
+    font-size: var(--font-size-xl);
 }
 
 .saldo-header p {
-    color: var(--text-color);
+    color: var(--text-secondary);
     font-size: var(--font-size-md);
-    opacity: 0.8;
+    margin: 0;
 }
 
 /* Contenedor del formulario */
 .saldo-form-container {
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
+    background: var(--card-background);
+    border-radius: var(--border-radius-lg);
     padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
 }
 
 .saldo-form {
@@ -52,63 +55,97 @@
 
 /* Secciones del formulario */
 .saldo-section {
+    background: #ffffff;
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    background-color: #fafafa;
-    transition: var(--transition);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xl);
+    transition: all 0.3s ease;
 }
 
 .saldo-section:hover {
-    border-color: var(--secondary-color);
-    box-shadow: 0 2px 8px rgba(47, 72, 124, 0.1);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
 }
 
 .section-header {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid #f8f9fa;
 }
 
 .section-header i {
-    font-size: var(--font-size-lg);
     color: var(--primary-color);
+    font-size: var(--font-size-lg);
 }
 
 .section-header h3 {
-    color: var(--primary-color);
+    color: var(--text-primary);
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
+    font-weight: 600;
     margin: 0;
 }
 
-/* Grupos de formulario */
-.form-group {
-    margin-bottom: var(--spacing-md);
+/* Grid del formulario */
+.form-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: var(--spacing-lg);
+    align-items: end;
 }
 
-.form-group:last-child {
-    margin-bottom: 0;
+.form-group {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group label {
-    display: block;
-    color: var(--text-color);
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* Estilos del select */
+.select-group {
+    position: relative;
+}
+
+.select-group select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    background-color: #ffffff;
+    color: var(--text-primary);
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.select-arrow {
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    pointer-events: none;
     font-size: var(--font-size-sm);
 }
 
-/* Grupos de entrada */
+/* Estilos del input */
 .input-group {
     position: relative;
-    display: flex;
-    align-items: center;
 }
-
 
 .input-group input {
     width: 100%;
@@ -116,101 +153,263 @@
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-sm);
-    transition: var(--transition);
-    background-color: var(--white);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 .input-group input:focus {
     outline: none;
-    border-color: var(--secondary-color);
-    box-shadow: 0 0 0 3px rgba(56, 119, 201, 0.1);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.input-group input:hover {
-    border-color: var(--secondary-color);
+.currency-symbol {
+    position: absolute;
+    left: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: var(--font-size-md);
 }
 
-/* Resumen total */
-.saldo-summary {
-    margin: var(--spacing-xl) 0;
-}
-
-.summary-card {
+/* Botón agregar */
+.btn-add {
     background: var(--primary-color);
-    color: var(--white);
-    display: flex;
-    flex-direction: column;
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    width: 50%;
-}
-
-.summary-card h3 {
-    margin: 0 0 var(--spacing-sm) 0;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-    opacity: 0.9;
-}
-
-.total-amount {
-    font-size: 2.5rem;
-    font-weight: var(--font-weight-bold);
-    margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Botones de acción */
-.form-actions {
-    display: flex;
-    gap: var(--spacing-md);
-    justify-content: center;
-    margin-top: var(--spacing-xl);
-}
-
-.btn-primary, .btn-secondary {
-    padding: var(--spacing-md) var(--spacing-xl);
+    color: white;
     border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
     border-radius: var(--border-radius-sm);
     font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
+    font-weight: 600;
     cursor: pointer;
-    transition: var(--transition);
     display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    min-width: 150px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.2);
+}
+
+.btn-add:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+/* Tabla de saldos registrados - Estilo profesional similar a la imagen */
+.saldos-registrados {
+    margin-top: var(--spacing-xl);
+}
+
+.table-container {
+    background: #ffffff;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.saldos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    background: #ffffff;
+}
+
+/* Encabezados de la tabla - Estilo azul profesional */
+.saldos-table thead {
+    background: var(--primary-color);
+}
+
+.saldos-table thead tr {
+    border: none;
+}
+
+.saldos-table th {
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: left;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+}
+
+
+/* Filas de datos */
+.saldos-table tbody tr {
+    border-bottom: 1px solid #e1e8ed;
+    transition: all 0.2s ease;
+}
+
+.saldos-table tbody tr:not(.empty-row):hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.saldos-table tbody tr:nth-child(even):not(.empty-row) {
+    background-color: #fafbfc;
+}
+
+.saldos-table tbody tr:nth-child(odd):not(.empty-row) {
+    background-color: #ffffff;
+}
+
+.saldos-table td {
+    padding: var(--spacing-md);
+    border: none;
+    vertical-align: middle;
+    font-size: var(--font-size-sm);
+}
+
+/* Estilos específicos por columna */
+.saldo-concepto {
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.saldo-concepto i {
+    color: var(--primary-color);
+    width: 16px;
+    text-align: center;
+}
+
+.saldo-monto {
+    text-align: right;
+    font-weight: 700;
+    color: var(--success-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.saldo-fecha {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+}
+
+.saldo-categoria {
+    text-align: center;
+}
+
+.saldo-categoria .badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.saldo-metodo {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs);
+}
+
+.saldo-estado {
+    text-align: center;
+}
+
+.estado-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.estado-pendiente {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.estado-completado {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.estado-vencido {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Columna de acciones */
+.saldo-acciones {
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
     justify-content: center;
+    align-items: center;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--white);
+.btn-action {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
 }
 
-.btn-primary:hover {
-    background-color: #2d8a5a;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(36, 156, 117, 0.3);
+.btn-check {
+    background-color: #28a745;
+    color: white;
 }
 
-.btn-secondary {
-    background-color: var(--border-color);
-    color: var(--text-color);
+.btn-check:hover {
+    background-color: #218838;
+    transform: scale(1.1);
 }
 
-.btn-secondary:hover {
-    background-color: #d0d0d0;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+.btn-edit {
+    background-color: #007bff;
+    color: white;
 }
 
-/* Animaciones */
-@keyframes fadeIn {
+.btn-edit:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Animación para nuevas filas */
+@keyframes slideInRow {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -218,35 +417,78 @@
     }
 }
 
-.saldo-section {
-    animation: fadeIn 0.5s ease-out;
+.saldos-table tbody tr.new-row {
+    animation: slideInRow 0.3s ease-out;
 }
 
-.saldo-section:nth-child(1) { animation-delay: 0.1s; }
-.saldo-section:nth-child(2) { animation-delay: 0.2s; }
-.saldo-section:nth-child(3) { animation-delay: 0.3s; }
-.saldo-section:nth-child(4) { animation-delay: 0.4s; }
-
-/* Estados de validación */
-.input-group input.valid {
-    border-color: var(--success-color);
+/* Resumen total */
+.summary-card {
+    background: var(--primary-color);
+    color: white;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-lg);
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.input-group input.invalid {
-    border-color: var(--danger-color);
+.summary-card h3 {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
 }
 
-.error-message {
-    color: var(--danger-color);
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-sm);
-    display: none;
+.total-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.form-group.has-error .error-message {
-    display: block;
+/* Acciones del formulario */
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border-color);
 }
 
-.form-group.has-error input {
-    border-color: var(--danger-color);
+.btn-primary, .btn-secondary {
+    padding: var(--spacing-md) var(--spacing-xl);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--hover-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+    box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
 }

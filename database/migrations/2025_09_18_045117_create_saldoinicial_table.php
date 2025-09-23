@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('saldoinicial', function (Blueprint $table) {
             $table->string('id_ingresos', 36)->primary();
             $table->string('nombre', 255);
-            $table->text('descripcion')->nullable();
             $table->dateTime('fecha_registro');
             $table->decimal('monto', 10, 2);
             $table->string('status', 20)->default('activo');
             $table->unsignedBigInteger('id_usuario');
+            $table->string('id_conpsaldo', 36);
             $table->foreign('id_usuario')->references('id')->on('users');
+            $table->foreign('id_conpsaldo')->references('id_conpsaldo')->on('conceptosaldo_init');
         });
     }
 

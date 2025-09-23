@@ -3,6 +3,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/calendario/calendario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendario/responsi_calendario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
 @endpush
 
 @section('content')
@@ -158,4 +159,7 @@
         </div>
     </div>
     @include('pagos.modal_new_pago')
+    @push('scripts')
+    <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
+@endpush
 @endsection

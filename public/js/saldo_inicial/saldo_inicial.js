@@ -65,11 +65,12 @@ function configurarInputsNumericos() {
 function validarCampos(event) {
     event.preventDefault();
 
-    // Convertir a array y verificar si alguno tiene valor
-    const tieneAlgunValor = $('#saldoForm input[type="number"]').toArray().some(input => {
-        const valor = $(input).val();
-        return valor !== '' && parseFloat(valor) > 0;
-    });
+    var valor = $('#valor').val();
+    var concepto = $('#concepto').select();
+
+    console.log("concepto: ", concepto);
+    console.log("valor: ", valor);
+
 
     if (!tieneAlgunValor) {
         showAlert.error(
@@ -81,10 +82,75 @@ function validarCampos(event) {
             }
         );
         return;
-    }
+    }else{
 
-    // Continuar con el envío del formulario
-    console.log('Formulario válido');
+        var efectivo_data = $('#efectivo_data').val();
+        var efectivo = $('#efectivo').val();
+        var cuenta_corriente_data = $('#cuenta_corriente_data').val();
+        var cuenta_corriente = $('#cuenta_corriente').val();
+        var cuenta_ahorros_data = $('#cuenta_ahorros_data').val();
+        var cuenta_ahorros = $('#cuenta_ahorros').val();
+        var inversiones_data = $('#inversiones_data').val();
+        var inversiones = $('#inversiones').val();
+        var criptomonedas_data = $('#criptomonedas_data').val();
+        var criptomonedas = $('#criptomonedas').val();
+        var tarjetas_prepago_data = $('#tarjetas_prepago_data').val();
+        var tarjetas_prepago = $('#tarjetas_prepago').val();
+        var otros_activos_data = $('#otros_activos_data').val();
+        var otros_activos = $('#otros_activos').val();
+
+        var datos = {
+            efectivo_data: efectivo_data,
+            efectivo: efectivo,
+            cuenta_corriente_data: cuenta_corriente_data,
+            cuenta_corriente: cuenta_corriente,
+            cuenta_ahorros_data: cuenta_ahorros_data,
+            cuenta_ahorros: cuenta_ahorros,
+            inversiones_data: inversiones_data,
+            inversiones: inversiones,
+            criptomonedas_data: criptomonedas_data,
+            criptomonedas: criptomonedas,
+            tarjetas_prepago_data: tarjetas_prepago_data,
+            tarjetas_prepago: tarjetas_prepago,
+            otros_activos_data: otros_activos_data,
+            otros_activos: otros_activos,
+        };
+
+        $.ajax({
+            url: '/saldo_inicial',
+            type: 'POST',
+            data: datos,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                console.log(response);
+                showAlert.success(
+                    'Saldo Inicial',
+                    'El saldo inicial se ha registrado correctamente',
+                    {
+                        duration: 3000,
+                        animation: 'slide'
+                    }
+                );
+                limpiarFormularioSaldoInicial();
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+                showAlert.error(
+                    'Error',
+                    'Hubo un error al registrar el saldo inicial',
+                    {
+                        duration: 3000,
+                        animation: 'slide'
+                    }
+                );
+            }
+        });
+            
+
+
+    }
 }
 
 function validarNumero(input) {
@@ -109,18 +175,6 @@ function limpiarFormularioSaldoInicial() {
         {
             duration: 3000,
             animation: 'slide'
-        }
-    );
-}
-
-// Función para mostrar alertas de validación en tiempo real
-function mostrarAlertaValidacion(mensaje, tipo = 'warning') {
-    showAlert[tipo](
-        'Validación de Campo',
-        mensaje,
-        {
-            duration: 4000,
-            closable: true
         }
     );
 }
