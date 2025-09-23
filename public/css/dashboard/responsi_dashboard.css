@@ -6,6 +6,10 @@
         padding: 10px;
     }
 
+    .summary-card_dash {
+        width: 100%;
+    }
+
     /* Summary cards - Stack vertically on mobile */
     .dashboard-summary {
         flex-direction: column;
@@ -126,6 +130,10 @@
         padding: 15px;
     }
 
+    .summary-card_dash {
+        width: 100%;
+    }
+
     /* Summary cards - 2 columns on tablet */
     .dashboard-summary {
         gap: 15px;
@@ -172,6 +180,10 @@
 @media screen and (min-width: 1025px) and (max-width: 1200px) {
     .dashboard-container {
         padding: 18px;
+    }
+
+    .summary-card_dash {
+        width: 100%;
     }
 
     .summary-card {

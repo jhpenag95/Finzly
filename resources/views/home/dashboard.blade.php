@@ -3,6 +3,7 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard/responsi_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
 @endpush
 
 @section('content')
@@ -100,4 +101,5 @@
 
 @push('scripts')
     <script src="{{ asset('js/home/dashboard.js') }}" defer></script>
+    <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
 @endpush
