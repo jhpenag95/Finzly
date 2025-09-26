@@ -6,77 +6,107 @@
         padding: var(--spacing-lg);
         max-width: 100%;
     }
-    
+
     .saldo-header h1 {
         font-size: var(--font-size-lg);
         flex-direction: column;
         gap: var(--spacing-xs);
     }
-    
+
     .saldo-header p {
         font-size: var(--font-size-sm);
     }
-    
+
     .saldo-form-container {
         padding: var(--spacing-lg);
     }
-    
+
     /* Ajustar grid para tablets */
     .form-row {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         gap: var(--spacing-md);
     }
-    
+
     .form-row .form-group:nth-child(3) {
         grid-column: 1 / -1;
         justify-self: center;
     }
-    
+
     .btn-add {
         padding: var(--spacing-sm);
         min-width: 120px;
         width: auto;
     }
-    
+
+    /* Estilos responsivos para section-header en tablets */
+    .section-header .btn-concepto {
+        right: var(--spacing-sm);
+        min-width: 85px;
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+
+    .section-header .btn-concepto .fas {
+        font-size: var(--font-size-xs);
+    }
+
     /* Tabla responsiva para tablets - scroll horizontal */
     .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
-    
+
     .saldos-table {
         min-width: 800px;
     }
-    
+
     .saldos-table th,
     .saldos-table td {
         padding: var(--spacing-sm);
     }
-    
+
     .saldos-table th {
         font-size: var(--font-size-xxs);
     }
-    
+
     /* Ajustar tamaños de columnas para tablets */
-    .th-monto { width: 12%; }
-    .th-fecha { width: 12%; }
-    .th-categoria { width: 16%; }
-    .th-metodo { width: 16%; }
-    .th-estado { width: 12%; }
-    .th-acciones { width: 14%; }
-    
+    .th-monto {
+        width: 12%;
+    }
+
+    .th-fecha {
+        width: 12%;
+    }
+
+    .th-categoria {
+        width: 16%;
+    }
+
+    .th-metodo {
+        width: 16%;
+    }
+
+    .th-estado {
+        width: 12%;
+    }
+
+    .th-acciones {
+        width: 14%;
+    }
+
     .summary-card {
         width: 70%;
         margin: 0 auto;
     }
-    
+
     .form-actions {
         flex-direction: column;
         align-items: center;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         width: 100%;
         max-width: 300px;
     }
@@ -88,116 +118,137 @@
         padding: var(--spacing-md);
         gap: var(--spacing-md);
     }
-    
+
     .saldo-header {
         margin-bottom: var(--spacing-lg);
     }
-    
+
     .saldo-header h1 {
         font-size: var(--font-size-md);
         text-align: center;
     }
-    
+
     .saldo-header h1 i {
         font-size: var(--font-size-lg);
     }
-    
+
     .saldo-form-container {
         padding: var(--spacing-md);
         border-radius: var(--border-radius-sm);
     }
-    
+
     .saldo-form {
         gap: var(--spacing-lg);
     }
-    
+
     .saldo-section {
         padding: var(--spacing-md);
     }
-    
+
     .section-header {
-        flex-direction: column;
         align-items: flex-start;
-        gap: var(--spacing-xs);
         text-align: left;
+        position: relative;
     }
-    
+
     .section-header i {
         font-size: var(--font-size-md);
     }
-    
+
     .section-header h3 {
         font-size: var(--font-size-md);
     }
-    
+
+    .section-header .btn-concepto {
+        position: static;
+        transform: none;
+        margin-top: var(--spacing-sm);
+        align-self: flex-end;
+        min-width: 80px;
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-sm);
+    }
+
+    .section-header .btn-concepto:hover {
+        transform: none;
+    }
+
+    .section-header .btn-concepto:active {
+        transform: none;
+    }
+
+    .section-header .btn-concepto .fas {
+        font-size: var(--font-size-sm);
+    }
+
     /* Grid responsivo para móviles */
     .form-row {
         grid-template-columns: 1fr;
         gap: var(--spacing-sm);
     }
-    
+
     .form-group {
         margin-bottom: var(--spacing-sm);
     }
-    
+
     .form-group label {
         font-size: var(--font-size-xs);
         margin-bottom: var(--spacing-xs);
     }
-    
+
     .select-group select {
         padding: var(--spacing-mds);
         font-size: var(--font-size-xs);
     }
-    
+
     .select-arrow {
         right: var(--spacing-sm);
         font-size: var(--font-size-xs);
     }
-    
+
     .input-group input {
         padding: var(--spacing-sm);
         font-size: var(--font-size-xs);
     }
-    
+
     .currency-symbol {
         left: var(--spacing-sm);
         font-size: var(--font-size-sm);
         margin-left: 4px;
     }
-    
+
     .btn-add {
         width: 100%;
         padding: var(--spacing-sm);
         font-size: var(--font-size-xs);
     }
-    
+
     /* Tabla responsiva para móviles - diseño de tarjetas */
     .saldos-registrados {
         padding: var(--spacing-md);
     }
-    
+
     .table-container {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         border-radius: var(--border-radius-sm);
     }
-    
+
     .saldos-table {
         min-width: 700px;
         font-size: var(--font-size-xs);
     }
-    
+
     .saldos-table th,
     .saldos-table td {
         padding: var(--spacing-sm);
     }
-    
+
     .saldos-table th {
         font-size: 10px;
         padding: var(--spacing-sm);
     }
-    
+
     /* Ocultar algunas columnas en móviles para mejor legibilidad */
     .th-categoria,
     .th-metodo,
@@ -205,60 +256,61 @@
     .saldo-metodo {
         display: none;
     }
-    
+
     .saldo-concepto {
         font-size: var(--font-size-xs);
         gap: var(--spacing-xs);
     }
-    
+
     .saldo-concepto i {
         width: 14px;
         font-size: var(--font-size-xxs);
     }
-    
+
     .saldo-monto {
         font-size: var(--font-size-sm);
     }
-    
+
     .saldo-fecha {
         font-size: 10px;
     }
-    
+
     .estado-badge {
         padding: 4px 6px;
         font-size: 9px;
     }
-    
+
     .btn-action {
         width: 28px;
         height: 28px;
         font-size: 10px;
     }
-    
+
     .action-buttons {
         gap: 2px;
     }
-    
-    
+
+
     .summary-card {
         width: 100%;
         padding: var(--spacing-lg);
     }
-    
+
     .summary-card h3 {
         font-size: var(--font-size-md);
     }
-    
+
     .total-amount {
         font-size: 2rem;
     }
-    
+
     .form-actions {
         gap: var(--spacing-sm);
         margin-top: var(--spacing-lg);
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         padding: var(--spacing-sm);
         font-size: var(--font-size-xs);
         min-width: 120px;
@@ -270,125 +322,157 @@
     .dashboard-container.saldo-inicial-view {
         padding: var(--spacing-sm);
     }
-    
+
     .saldo-header h1 {
         font-size: var(--font-size-sm);
     }
-    
+
     .saldo-header p {
         font-size: var(--font-size-xs);
     }
-    
+
     .saldo-form-container {
         padding: var(--spacing-sm);
     }
-    
+
     .saldo-section {
         padding: var(--spacing-sm);
     }
-    
+
     .section-header {
         margin-bottom: var(--spacing-sm);
         padding-bottom: var(--spacing-xs);
+        position: relative;
     }
-    
+
     .section-header h3 {
         font-size: var(--font-size-sm);
     }
-    
+
+    .section-header .btn-concepto {
+        position: static;
+        transform: none;
+        margin-top: var(--spacing-xs);
+        align-self: flex-end;
+        min-width: 70px;
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-xxs);
+        gap: var(--spacing-xs);
+    }
+
+    .section-header .btn-concepto .fas {
+        margin-right: 8px;
+        font-size: var(--font-size-xxs);
+    }
+
+    .section-header .btn-concepto:active {
+        transform: none;
+        box-shadow: 0 1px 4px rgba(36, 156, 117, 0.2);
+    }
+
     .form-group label {
         font-size: var(--font-size-xxs);
     }
-    
+
     .select-group select {
         padding: var(--spacing-mds);
         font-size: var(--font-size-xxs);
     }
-    
+
     .input-group input {
         padding: var(--spacing-mds);
         font-size: var(--font-size-xxs);
     }
-    
+
     .currency-symbol {
         left: var(--spacing-xs);
         font-size: var(--font-size-xs);
     }
-    
+
     .btn-add {
         padding: var(--spacing-sm);
         font-size: var(--font-size-xxs);
     }
-    
+
     /* Tabla muy compacta para móviles pequeños */
     .saldos-registrados {
         padding: var(--spacing-sm);
     }
-    
+
     .saldos-table {
         min-width: 500px;
         font-size: var(--font-size-xxs);
     }
-    
+
     .saldos-table th,
     .saldos-table td {
         padding: var(--spacing-sm);
     }
-    
+
     .saldos-table th {
         font-size: 9px;
         padding: var(--spacing-sm);
     }
-    
+
     /* Ocultar más columnas en pantallas muy pequeñas */
     .th-fecha,
     .saldo-fecha {
         display: none;
     }
-    
+
     /* Redistribuir anchos para pantallas muy pequeñas */
-    .th-monto { width: 25%; }
-    .th-estado { width: 20%; }
-    .th-acciones { width: 15%; }
-    
+    .th-monto {
+        width: 25%;
+    }
+
+    .th-estado {
+        width: 20%;
+    }
+
+    .th-acciones {
+        width: 15%;
+    }
+
     .saldo-concepto {
         font-size: var(--font-size-xxs);
     }
-    
+
     .saldo-concepto i {
-        display: none; /* Ocultar iconos en pantallas muy pequeñas */
+        display: none;
+        /* Ocultar iconos en pantallas muy pequeñas */
     }
-    
+
     .saldo-monto {
         font-size: var(--font-size-xs);
     }
-    
+
     .estado-badge {
         padding: 2px 4px;
         font-size: 8px;
     }
-    
+
     .btn-action {
         width: 24px;
         height: 24px;
         font-size: 9px;
     }
-    
-   
-    
+
+
+
     .summary-card {
         padding: var(--spacing-md);
     }
-    
+
     .summary-card h3 {
         font-size: var(--font-size-sm);
     }
-    
+
     .total-amount {
         font-size: 1.5rem;
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         padding: var(--spacing-sm);
         font-size: var(--font-size-xxs);
         min-width: 100px;
@@ -400,25 +484,25 @@
     .dashboard-container.saldo-inicial-view {
         padding: var(--spacing-sm);
     }
-    
+
     .saldo-header {
         margin-bottom: var(--spacing-md);
     }
-    
+
     .saldo-form {
         gap: var(--spacing-md);
     }
-    
+
     .saldo-section {
         padding: var(--spacing-sm);
     }
-    
+
     .form-row {
         grid-template-columns: 2fr 1fr auto;
         gap: var(--spacing-sm);
         align-items: end;
     }
-    
+
     /* Mostrar más columnas en landscape */
     .th-categoria,
     .th-metodo,
@@ -426,22 +510,22 @@
     .saldo-metodo {
         display: table-cell;
     }
-    
+
     .saldos-table {
         min-width: 800px;
     }
-    
+
     .saldos-table th,
     .saldos-table td {
         padding: var(--spacing-xs);
     }
-    
 
-    
+
+
     .summary-card {
         padding: var(--spacing-md);
     }
-    
+
     .total-amount {
         font-size: 1.8rem;
     }
@@ -452,26 +536,26 @@
     .saldos-registrados {
         margin-top: var(--spacing-md);
     }
-    
+
     .table-container {
         border-radius: var(--border-radius-sm);
     }
-    
+
     /* Scroll horizontal suave */
     .table-container::-webkit-scrollbar {
         height: 8px;
     }
-    
+
     .table-container::-webkit-scrollbar-track {
         background: #f1f1f1;
         border-radius: 4px;
     }
-    
+
     .table-container::-webkit-scrollbar-thumb {
         background: #4a6fa5;
         border-radius: 4px;
     }
-    
+
     .table-container::-webkit-scrollbar-thumb:hover {
         background: #3a5f95;
     }
@@ -482,11 +566,11 @@
         grid-column: 1;
         justify-self: stretch;
     }
-    
+
     .btn-add {
         justify-content: center;
     }
-    
+
     /* Indicador de scroll para la tabla */
     .table-container::after {
         content: "← Desliza para ver más →";
@@ -498,7 +582,7 @@
         background: #f8f9fa;
         border-top: 1px solid #e1e8ed;
     }
-    
+
     .table-container::-webkit-scrollbar {
         height: 6px;
     }
@@ -506,6 +590,7 @@
 
 /* Estados hover mejorados para dispositivos táctiles */
 @media (hover: none) and (pointer: coarse) {
+
     .saldo-section:hover,
     .saldos-table tbody tr:hover,
     .btn-add:hover,
@@ -515,16 +600,16 @@
         transform: none;
         box-shadow: none;
     }
-    
+
     .saldo-section:active,
     .saldos-table tbody tr:active {
         background-color: #f0f0f0;
     }
-    
+
     .btn-add:active {
         background-color: #2d8a5a;
     }
-    
+
     .btn-action:active {
         transform: scale(0.95);
     }
@@ -536,17 +621,18 @@
         min-height: 44px;
         padding: var(--spacing-sm);
     }
-    
-    .btn-primary, .btn-secondary {
+
+    .btn-primary,
+    .btn-secondary {
         min-height: 44px;
         padding: var(--spacing-sm);
     }
-    
+
     .btn-action {
         min-width: 44px;
         min-height: 44px;
     }
-    
+
     .saldo-section:hover {
         border-color: var(--border-color);
         box-shadow: none;
@@ -555,47 +641,46 @@
 
 /* Animaciones reducidas para usuarios que prefieren menos movimiento */
 @media (prefers-reduced-motion: reduce) {
+
     .saldo-section,
     .saldos-table tbody tr,
     .btn-action {
         animation: none;
         transition: none;
     }
-    
+
     .btn-primary:hover,
     .btn-secondary:hover,
     .btn-action:hover {
         transform: none;
     }
-    
-    * {
-        transition: none !important;
-    }
+
 }
 
 /* Alto contraste para mejor accesibilidad */
 @media (prefers-contrast: high) {
+
     .saldo-section,
     .table-container {
         border-width: 2px;
     }
-    
+
     .input-group input {
         border-width: 2px;
     }
-    
+
     .input-group input:focus {
         border-width: 3px;
     }
-    
+
     .saldos-table th {
         border-bottom-width: 3px;
     }
-    
+
     .saldos-table td {
         border-bottom-width: 2px;
     }
-    
+
     .estado-badge {
         border-width: 2px;
     }
@@ -603,38 +688,39 @@
 
 /* Modo oscuro básico */
 @media (prefers-color-scheme: dark) {
+
     .saldo-section,
     .table-container {
         background-color: #2a2a2a;
         border-color: #444;
     }
-    
+
     .saldo-form-container {
         background-color: #1a1a1a;
     }
-    
+
     .input-group input {
         background-color: #2a2a2a;
         color: #fff;
         border-color: #444;
     }
-    
+
     .form-group label {
         color: #ccc;
     }
-    
+
     .saldos-table {
         background-color: #2a2a2a;
     }
-    
+
     .saldos-table thead {
         background: linear-gradient(135deg, #3a4a6a, #4a5a7a);
     }
-    
+
     .saldos-table tbody tr:nth-child(even):not(.empty-row) {
         background-color: #333;
     }
-    
+
     .saldos-table tbody tr:nth-child(odd):not(.empty-row) {
         background-color: #2a2a2a;
     }

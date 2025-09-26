@@ -8,6 +8,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-sm);
 }
 
 /* Header del saldo inicial */
@@ -41,10 +43,8 @@
 /* Contenedor del formulario */
 .saldo-form-container {
     background: var(--card-background);
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius-sm);
     padding: var(--spacing-xl);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-color);
 }
 
 .saldo-form {
@@ -56,15 +56,16 @@
 /* Secciones del formulario */
 .saldo-section {
     background: #ffffff;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius-md);
+    /* border: 1px solid var(--border-color); */
+    box-shadow: var(--shadow-md);
+    border-radius: var(--border-radius-sm);
     padding: var(--spacing-xl);
     transition: all 0.3s ease;
 }
 
 .saldo-section:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+    box-shadow: var(--shadow-md);
 }
 
 .section-header {
@@ -72,8 +73,9 @@
     align-items: center;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
     border-bottom: 2px solid #f8f9fa;
+    position: relative;
 }
 
 .section-header i {
@@ -86,6 +88,45 @@
     font-size: var(--font-size-lg);
     font-weight: 600;
     margin: 0;
+}
+
+.section-header .btn-concepto {
+    color: white;
+    background: var(--primary-color);
+    border-radius: var(--border-radius-sm);
+    border: none;
+    position: absolute;
+    right: var(--spacing-md);
+    top: 50%;
+    transform: translateY(-50%);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    min-width: 90px;
+    justify-content: center;
+}
+
+.section-header .btn-concepto .fas {
+    color: var(--white);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+}
+
+.section-header .btn-concepto:hover {
+    background: var(--hover-color);
+    transform: translateY(-51%);
+    box-shadow: 0 4px 10px rgba(36, 156, 117, 0.3);
+}
+
+.section-header .btn-concepto:active {
+    transform: translateY(-49%);
+    box-shadow: 0 1px 4px rgba(36, 156, 117, 0.2);
 }
 
 /* Grid del formulario */
@@ -171,33 +212,6 @@
     color: var(--text-secondary);
     font-weight: 600;
     font-size: var(--font-size-md);
-}
-
-/* Botón agregar */
-.btn-add {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--border-radius-sm);
-    font-size: var(--font-size-sm);
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(46, 204, 113, 0.2);
-}
-
-.btn-add:hover {
-    background: var(--hover-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
-}
-
-.btn-add:active {
-    transform: translateY(0);
 }
 
 /* Tabla de saldos registrados - Estilo profesional similar a la imagen */
@@ -425,24 +439,24 @@
 .summary-card {
     background: var(--primary-color);
     color: white;
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius-lg);
-    text-align: center;
-    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    text-align: center;;
     box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
-    width: 60%;
+    width: 40%;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
 }
 
 .summary-card h3 {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-sm);
     font-weight: 600;
 }
 
 .total-amount {
-    font-size: 2.5rem;
+    font-size: var(--font-size-lg);
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -491,4 +505,186 @@
     background: #5a6268;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
+}
+
+/* ===== ESTILOS PARA TABLA DE CONCEPTOS REGISTRADOS ===== */
+
+/* Contenedor de conceptos registrados */
+.conceptos-registrados {
+    margin-top: var(--spacing-xl);
+}
+
+/* Contenedor de la tabla de conceptos */
+.conceptos-registrados .table-container {
+    background: #ffffff;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: var(--spacing-lg);
+}
+
+/* Tabla de conceptos - Estilo consistente con saldos-table */
+.conceptos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    background: #ffffff;
+}
+
+/* Encabezados de la tabla de conceptos */
+.conceptos-table thead {
+    background: var(--primary-color);
+}
+
+.conceptos-table thead tr {
+    border: none;
+}
+
+.conceptos-table th {
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: left;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+}
+
+/* Filas del cuerpo de la tabla de conceptos */
+.conceptos-table tbody tr {
+    border-bottom: 1px solid #e1e8ed;
+    transition: all 0.2s ease;
+}
+
+.conceptos-table tbody tr:not(.empty-row):hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.conceptos-table tbody tr:nth-child(even):not(.empty-row) {
+    background-color: #fafbfc;
+}
+
+.conceptos-table tbody tr:nth-child(odd):not(.empty-row) {
+    background-color: #ffffff;
+}
+
+.conceptos-table td {
+    padding: var(--spacing-md);
+    border: none;
+    vertical-align: middle;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Estilo específico para celdas de concepto */
+.conceptos-table .concepto-nombre {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.conceptos-table .concepto-nombre i {
+    color: var(--primary-color);
+    width: 16px;
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+/* Columna de acciones para conceptos */
+.conceptos-table .concepto-acciones {
+    text-align: center;
+    width: 120px;
+}
+
+.conceptos-table .action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+}
+
+.conceptos-table .btn-action {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.conceptos-table .btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.conceptos-table .btn-edit:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.conceptos-table .btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.conceptos-table .btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Fila vacía o de ejemplo */
+.conceptos-table .empty-row td {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+/* Animación para nuevas filas de conceptos */
+@keyframes slideInConcepto {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.conceptos-table tbody tr.new-concepto {
+    animation: slideInConcepto 0.3s ease-out;
+}
+
+/* Estado de tabla vacía */
+.conceptos-table tbody:empty::after {
+    content: "No hay conceptos registrados";
+    display: block;
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Responsive para tabla de conceptos */
+@media (max-width: 768px) {
+    .conceptos-table th,
+    .conceptos-table td {
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-xs);
+    }
+    
+    .conceptos-registrados .section-header h3 {
+        font-size: var(--font-size-md);
+    }
 }

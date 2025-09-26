@@ -1,6 +1,11 @@
 $(document).ready(function () {
+    $('#concepto').val('');
+    $('#valor').val('');
+    $('#nuevoConcepto').val('');
     // Configurar restricciones para todos los inputs numéricos
     configurarInputsNumericos();
+    // Solicitar conceptos al cargar la página
+    solicitarConceptos();
 });
 
 function configurarInputsNumericos() {
@@ -66,91 +71,74 @@ function validarCampos(event) {
     event.preventDefault();
 
     var valor = $('#valor').val();
-    var concepto = $('#concepto').select();
-
-    console.log("concepto: ", concepto);
-    console.log("valor: ", valor);
-
+    var concepto = $('#concepto').val();
+    var tieneAlgunValor = valor.trim() !== '' || concepto.trim() !== '';
 
     if (!tieneAlgunValor) {
+
+        $('#valor').css('border-color', 'var(--border-color-required)');
+        $('#concepto').css('border-color', 'var(--border-color-required)');
+
         showAlert.error(
             'Campo requerido',
-            'Por favor, ingrese datos en al menos uno de los campos.',
+            'Por favor, ingrese datos en los campos requeridos.',
             {
-                duration: 3000,
+                duration: 4000,
                 animation: 'slide'
             }
         );
         return;
-    }else{
+    } else {
 
-        var efectivo_data = $('#efectivo_data').val();
-        var efectivo = $('#efectivo').val();
-        var cuenta_corriente_data = $('#cuenta_corriente_data').val();
-        var cuenta_corriente = $('#cuenta_corriente').val();
-        var cuenta_ahorros_data = $('#cuenta_ahorros_data').val();
-        var cuenta_ahorros = $('#cuenta_ahorros').val();
-        var inversiones_data = $('#inversiones_data').val();
-        var inversiones = $('#inversiones').val();
-        var criptomonedas_data = $('#criptomonedas_data').val();
-        var criptomonedas = $('#criptomonedas').val();
-        var tarjetas_prepago_data = $('#tarjetas_prepago_data').val();
-        var tarjetas_prepago = $('#tarjetas_prepago').val();
-        var otros_activos_data = $('#otros_activos_data').val();
-        var otros_activos = $('#otros_activos').val();
+        var concepto_data = $('#concepto').val();
+        var valor_data = $('#valor').val();
 
         var datos = {
-            efectivo_data: efectivo_data,
-            efectivo: efectivo,
-            cuenta_corriente_data: cuenta_corriente_data,
-            cuenta_corriente: cuenta_corriente,
-            cuenta_ahorros_data: cuenta_ahorros_data,
-            cuenta_ahorros: cuenta_ahorros,
-            inversiones_data: inversiones_data,
-            inversiones: inversiones,
-            criptomonedas_data: criptomonedas_data,
-            criptomonedas: criptomonedas,
-            tarjetas_prepago_data: tarjetas_prepago_data,
-            tarjetas_prepago: tarjetas_prepago,
-            otros_activos_data: otros_activos_data,
-            otros_activos: otros_activos,
+            concepto: concepto_data,
+            valor: valor_data,
         };
 
         $.ajax({
-            url: '/saldo_inicial',
+            url: '/saldo_inicial/registrar',
             type: 'POST',
             data: datos,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function (response) {
-                console.log(response);
                 showAlert.success(
                     'Saldo Inicial',
                     'El saldo inicial se ha registrado correctamente',
                     {
-                        duration: 3000,
+                        duration: 4000,
                         animation: 'slide'
                     }
                 );
                 limpiarFormularioSaldoInicial();
             },
             error: function (xhr) {
-                console.log(xhr.responseText);
                 showAlert.error(
                     'Error',
                     'Hubo un error al registrar el saldo inicial',
                     {
-                        duration: 3000,
+                        duration: 4000,
                         animation: 'slide'
                     }
                 );
             }
         });
-            
+
 
 
     }
+}
+
+function actualizarCamposConcepto() {
+    $('#concepto').css('border-color', 'var(--border-color-valid)');
+}
+
+function actualizarCamposValor() {
+    $('#valor').css('border-color', 'var(--border-color-valid)');
 }
 
 function validarNumero(input) {
@@ -168,13 +156,179 @@ function validarNumero(input) {
 function limpiarFormularioSaldoInicial() {
     $('#saldoForm')[0].reset();
 
+    $('#concepto').val('');
+    $('#valor').val('');
+
+    $('#concepto').css('border-color', 'var(--border-color)');
+    $('#valor').css('border-color', 'var(--border-color)');
+
     // Mostrar confirmación con alerta moderna
     showAlert.info(
         'Formulario Limpiado',
         'Todos los campos han sido restablecidos',
         {
-            duration: 3000,
+            duration: 4000,
             animation: 'slide'
         }
     );
 }
+
+// === Modal Concepto ===
+function abrirModalConcepto() {
+    var modal = $("#addConceptoModal");
+    modal.css("display", "block");
+}
+
+function closeModal() {
+    $('#nuevoConcepto').val('');
+    var modal = $("#addConceptoModal");
+    modal.css("display", "none");
+    $('#nuevoConcepto').css('border-color', 'var(--border-color)');
+}
+
+//solicitar conceptos de saldo inicial
+
+function solicitarConceptos() {
+    $.ajax({
+        url: '/ConceptoSaldoInicial/concepto',
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                // Limpiar el select antes de agregar los nuevos conceptos
+                $('#concepto').empty();
+                // Agregar los conceptos al select
+                $('#concepto').append(new Option('Seleccione un concepto', ''));
+
+                if (response.data.length > 0) {
+                    response.data.forEach(function (concepto) {
+                        $('#concepto').append(new Option(concepto.concepto, concepto.id_conpsaldo));
+                    });
+                } else {
+                    $('#concepto').append($('<option disabled>').text('No hay conceptos disponibles').css({
+                        'pointer-events': 'none',
+                        'background-color': '#f5f5f5',
+                        'color': '#999'
+                    }));
+                }
+            } else {
+                showAlert.error(
+                    'Error',
+                    response.message || 'Hubo un error al obtener los conceptos',
+                    {
+                        duration: 4000,
+                        animation: 'slide'
+                    }
+                );
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+            showAlert.error(
+                'Error',
+                'Hubo un error al obtener los conceptos',
+                {
+                    duration: 4000,
+                    animation: 'slide'
+                }
+            );
+        }
+    });
+}
+
+function agregarConcepto() {
+    var concepto = $('#nuevoConcepto').val();
+
+    if (!concepto) {
+        $('#nuevoConcepto').css('border-color', 'var(--border-color-required)');
+
+        showAlert.error(
+            'Campo requerido',
+            'Por favor, ingrese un nombre para el concepto.',
+            {
+                duration: 4000,
+                animation: 'slide'
+            }
+        );
+        return;
+    } else {
+        $.ajax({
+            url: '/ConceptoSaldoInicial/concepto',
+            type: 'POST',
+            data: {
+                concepto: concepto
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+                if (response.success) {
+
+                    showAlert.success(
+                        'Concepto',
+                        response.message || 'El concepto se ha registrado correctamente',
+                        {
+                            duration: 4000,
+                            animation: 'slide'
+                        }
+                    );
+                    closeModal();
+                    solicitarConceptos();
+                    $('#nuevoConcepto').val('');
+
+                    //  Actualizar el select de conceptos si existe
+                    if ($('#concepto').length > 0) {
+                        $('#concepto').append(new Option(concepto, response.data.id_conpsaldo));
+                    }
+                } else {
+                    showAlert.error(
+                        'Error',
+                        response.message || 'Hubo un error al registrar el concepto',
+                        {
+                            duration: 4000,
+                            animation: 'slide'
+                        }
+                    );
+                }
+            },
+            error: function (xhr) {
+                console.log(xhr.responseText);
+                let errorMessage = 'Hubo un error al registrar el concepto';
+
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    if (response.message) {
+                        errorMessage = response.message;
+                    }
+                } catch (e) {
+                    console.log('Error parsing JSON:', e);
+                }
+
+                showAlert.error(
+                    'Error',
+                    errorMessage,
+                    {
+                        duration: 4000,
+                        animation: 'slide'
+                    }
+                );
+            }
+        });
+
+    }
+
+}
+
+function validarCampoConcepto() {
+    var concepto = $('#nuevoConcepto').val();
+    if (!concepto) {
+        $('#nuevoConcepto').css('border-color', 'var(--border-color-required)');
+        return false;
+    } else {
+        $('#nuevoConcepto').css('border-color', 'var(--border-color-valid)');
+        return true;
+    }
+}
+

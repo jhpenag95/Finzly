@@ -19,7 +19,10 @@
     --background-color: #f8f9fa;
     --text-color: #333;
     --border-color: #e0e0e0;
+    --border-color-required: #ff4d4f;
+    --border-color-valid: rgb(36, 156, 117);
     --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.1);;
     --spacing-sm: 8px;
     --spacing-mds: 12px;  
     --spacing-md: 16px;
