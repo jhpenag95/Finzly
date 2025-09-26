@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('conceptosaldo_init', function (Blueprint $table) {
             $table->string('id_conpsaldo', 36)->primary();
+            $table->string('concepto', 255);
             $table->dateTime('fecha_registro');
             $table->string('status', 20)->default('activo');
         });

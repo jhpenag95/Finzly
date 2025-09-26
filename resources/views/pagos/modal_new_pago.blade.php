@@ -1,3 +1,4 @@
+
 <!-- Modal para crear nuevo pago -->
 <div class="modal payment-modal" id="new-payment-modal">
     <div class="modal-content">

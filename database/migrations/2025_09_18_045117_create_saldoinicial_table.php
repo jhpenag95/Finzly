@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('saldoinicial', function (Blueprint $table) {
             $table->string('id_ingresos', 36)->primary();
-            $table->string('nombre', 255);
+            $table->string('descripcion', 255);
             $table->dateTime('fecha_registro');
             $table->decimal('monto', 10, 2);
             $table->string('status', 20)->default('activo');
