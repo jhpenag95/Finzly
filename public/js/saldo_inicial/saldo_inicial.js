@@ -6,8 +6,11 @@ $(document).ready(function () {
     configurarInputsNumericos();
     // Solicitar conceptos al cargar la página
     solicitarConceptos();
+    // Consultar el total de saldo inicial al cargar la página
+    consultarTotalSaldoInicial();
 });
 
+// Configurar restricciones para todos los inputs numéricos
 function configurarInputsNumericos() {
     const inputs = $('#saldoForm input[type="number"]');
 
@@ -66,11 +69,13 @@ function configurarInputsNumericos() {
     });
 }
 
-
+// Función para validar campos requeridos en saldo inicial
 function validarCampos(event) {
     event.preventDefault();
 
     var valor = $('#valor').val();
+    // console.log("valor:", valor);
+    
     var concepto = $('#concepto').val();
     var tieneAlgunValor = valor.trim() !== '' || concepto.trim() !== '';
 
@@ -114,7 +119,18 @@ function validarCampos(event) {
                         animation: 'slide'
                     }
                 );
-                limpiarFormularioSaldoInicial();
+
+                var accion = 'registrar';
+
+                limpiarFormularioSaldoInicial(accion);
+                // Recargar la tabla de saldos después de registrar
+                consultarTotalSaldoInicial();
+                consultar_listado();
+
+                // Recargar el listado de la tabla si la función existe
+                if (typeof recargarTablaSaldoInicial === 'function') {
+                    recargarTablaSaldoInicial();
+                }
             },
             error: function (xhr) {
                 showAlert.error(
@@ -141,6 +157,7 @@ function actualizarCamposValor() {
     $('#valor').css('border-color', 'var(--border-color-valid)');
 }
 
+// Validar número para permitir solo números y un solo punto decimal
 function validarNumero(input) {
     // Eliminar cualquier carácter no numérico excepto el punto decimal
     input.value = input.value.replace(/[^0-9.]/g, '');
@@ -152,8 +169,23 @@ function validarNumero(input) {
     }
 }
 
+//formatear el valor ingresado a miles con 2 decimales
+function formatearMiles(input) {
+    // Eliminar todos los caracteres que no sean dígitos
+    let valor = input.value.replace(/\D/g, '');
+
+    // Si está vacío, no hace nada
+    if (!valor) {
+        input.value = '';
+        return;
+    }
+
+    // Agregar puntos como separador de miles
+    input.value = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 // Limpiar formulario
-function limpiarFormularioSaldoInicial() {
+function limpiarFormularioSaldoInicial(accion) {
     $('#saldoForm')[0].reset();
 
     $('#concepto').val('');
@@ -162,15 +194,16 @@ function limpiarFormularioSaldoInicial() {
     $('#concepto').css('border-color', 'var(--border-color)');
     $('#valor').css('border-color', 'var(--border-color)');
 
-    // Mostrar confirmación con alerta moderna
-    showAlert.info(
-        'Formulario Limpiado',
-        'Todos los campos han sido restablecidos',
-        {
-            duration: 4000,
-            animation: 'slide'
-        }
-    );
+    if (accion === 'limpiar') {
+        showAlert.info(
+            'Formulario Limpiado',
+            'Todos los campos han sido restablecidos',
+            {
+                duration: 4000,
+                animation: 'slide'
+            }
+        );
+    }
 }
 
 // === Modal Concepto ===
@@ -187,7 +220,6 @@ function closeModal() {
 }
 
 //solicitar conceptos de saldo inicial
-
 function solicitarConceptos() {
     $.ajax({
         url: '/ConceptoSaldoInicial/concepto',
@@ -225,7 +257,6 @@ function solicitarConceptos() {
             }
         },
         error: function (xhr) {
-            console.log(xhr.responseText);
             showAlert.error(
                 'Error',
                 'Hubo un error al obtener los conceptos',
@@ -278,10 +309,6 @@ function agregarConcepto() {
                     solicitarConceptos();
                     $('#nuevoConcepto').val('');
 
-                    //  Actualizar el select de conceptos si existe
-                    if ($('#concepto').length > 0) {
-                        $('#concepto').append(new Option(concepto, response.data.id_conpsaldo));
-                    }
                 } else {
                     showAlert.error(
                         'Error',
@@ -330,5 +357,114 @@ function validarCampoConcepto() {
         $('#nuevoConcepto').css('border-color', 'var(--border-color-valid)');
         return true;
     }
+}
+
+//consultar el total de saldo inicial
+function consultarTotalSaldoInicial() {
+    $.ajax({
+        url: '/saldo_inicial/total',
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                $('#totalAmount').text('$ ' + response.total);
+            } else {
+                showAlert.error(
+                    'Error',
+                    'Hubo un error al consultar el total de saldo inicial',
+                    {
+                        duration: 4000,
+                        animation: 'slide'
+                    }
+                );
+            }
+        },
+        error: function (xhr) {
+            showAlert.error(
+                'Error',
+                'Hubo un error al consultar el total de saldo inicial',
+                {
+                    duration: 4000,
+                    animation: 'slide'
+                }
+            );
+        }
+    });
+}
+
+//Eliminar registro de saldo inicial
+function eliminarSaldoInicial(id) {
+
+    console.log("id: " + id);
+
+    var modal = $("#confirmDeleteModal");
+    modal.css("display", "flex");
+
+    // Remover cualquier evento anterior y asignar el nuevo
+    $('#confirmDelete').off('click').on('click', function () {
+        confirmDelete_saldoinit(id);
+    });
+
+}
+
+
+function closeDeleteModal() {
+    var modal = $("#confirmDeleteModal");
+    modal.css("display", "none");
+}
+
+
+//confirmar eliminacion de saldo inicial
+function confirmDelete_saldoinit(id) {
+
+    var modal = $("#confirmDeleteModal");
+
+    modal.css("display", "none");
+
+    $.ajax({
+        url: '/saldo_inicial/eliminar/' + id,
+        type: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                showAlert.success(
+                    'Eliminado',
+                    'El registro se ha eliminado correctamente',
+                    {
+                        duration: 4000,
+                        animation: 'slide'
+                    }
+                );
+
+                // Refrescar el listado completo para mantener coherencia con los datos del servidor
+                consultar_listado();
+                renderizarPagina(paginaActual);
+
+            } else {
+                showAlert.error(
+                    'Error',
+                    'Hubo un error al eliminar el registro',
+                    {
+                        duration: 4000,
+                        animation: 'slide'
+                    }
+                );
+            }
+        },
+        error: function (xhr) {
+            showAlert.error(
+                'Error',
+                'Hubo un error al eliminar el registro',
+                {
+                    duration: 4000,
+                    animation: 'slide'
+                }
+            );
+        }
+    });
 }
 

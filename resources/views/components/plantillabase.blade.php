@@ -57,8 +57,8 @@
             <a href="{{ url('/') }}"><i class="fas fa-home"></i> Inicio</a>
             <a href="{{ url('/calendario') }}"><i class="fas fa-calendar"></i> Calendario</a>
             <a href="{{ url('/saldo_inicial') }}"><i class="fas fa-hand-holding-usd"></i> Saldo Inicial</a>
-            <a href="{{ url('/pagos') }}"><i class="fas fa-credit-card"></i> Pagos</a>
             <a href="{{ url('/categorias') }}"><i class="fas fa-tags"></i> Categorías</a>
+            <a href="{{ url('/pagos') }}"><i class="fas fa-credit-card"></i> Pagos</a>
             <a href="{{ url('/reportes') }}"><i class="fas fa-chart-bar"></i> Reportes</a>
             <a href="{{ url('/perfil') }}" class="profile"><i class="fas fa-user"></i> Perfil</a>
 

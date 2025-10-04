@@ -10,14 +10,15 @@
         </div>
         <div class="modal-body">
             <form id="payment-form">
+                @csrf
                 <div class="form-group">
                     <label for="payment-name">Nombre del pago</label>
-                    <input type="text" id="payment-name" placeholder="Ej: Netflix, Renta, etc.">
+                    <input type="text" id="paymentname" placeholder="Ej: Netflix, Renta, etc.">
                 </div>
 
                 <div class="form-group">
                     <label for="payment-category">Categoría</label>
-                    <select id="payment-category">
+                    <select id="paymentcategory">
                         <option value="services">Servicios</option>
                         <option value="subscriptions">Suscripciones</option>
                         <option value="rent">Alquiler</option>
@@ -30,18 +31,18 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="payment-amount">Monto</label>
-                        <input type="number" id="payment-amount" placeholder="0.00" step="0.01" min="0">
+                        <input type="number" id="paymentamount" placeholder="0.00" step="0.01" min="0">
                     </div>
 
                     <div class="form-group">
-                        <label for="payment-date">Fecha vencimiento</label>
-                        <input type="date" id="payment-date">
+                        <label for="paymentdate">Fecha vencimiento</label>
+                        <input type="date" id="paymentdate">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="payment-repeat">Repetición</label>
-                    <select id="payment-repeat">
+                    <label for="paymentrepeat">Repetición</label>
+                    <select id="paymentrepeat">
                         <option value="none">Único</option>
                         <option value="monthly">Mensual</option>
                         <option value="yearly">Anual</option>
@@ -49,8 +50,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="payment-method">Método de pago sugerido</label>
-                    <select id="payment-method">
+                    <label for="paymentmethod">Método de pago sugerido</label>
+                    <select id="paymentmethod">
                         <option value="card">Tarjeta</option>
                         <option value="cash">Efectivo</option>
                         <option value="transfer">Transferencia</option>
@@ -60,8 +61,8 @@
             </form>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancel-payment" onclick="closeModal_pagos()">Cancelar</button>
-                <button class="btn btn-primary" id="save-payment">Guardar Pago</button>
+                <button class="btn btn-primary" id="save-payment" onclick="guardarPago()">Guardar Pago</button>
             </div>
         </div>
-    </div>
+    </d>
 </div>

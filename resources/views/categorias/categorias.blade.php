@@ -1,10 +1,12 @@
 @extends('components.plantillabase')
+@include('components.alerts-include')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/categorias/categorias.css') }}">
     <link rel="stylesheet" href="{{ asset('css/categorias/responsi_categorias.css') }}">
     <link rel="stylesheet" href="{{ asset('css/categorias/modal_categorias.css') }}">
     <link rel="stylesheet" href="{{ asset('css/categorias/responsi_modal_categorias.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal_conrf_delete.css') }}">
 @endpush
 
 @section('content')
@@ -19,18 +21,10 @@
                     </p>
                 </div>
 
-                {{-- Listado de Categorías --}}
+                {{-- Listado de Categorías - Cargado dinámicamente por JavaScript --}}
 
                 <div class="categories-list">
-                    <div class="category-item">
-                        <div class="category-color"></div>
-                        <div class="category-name">Servicios</div>
-                        <div class="category-actions">
-                            <button type="button" class="edit-category" onclick="openModal()">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </div>
-                    </div>
+                    {{-- El contenido se carga dinámicamente desde categorias.js usando la función obtenerCategorias() --}}
                 </div>
 
                 {{-- Botón para agregar categoría --}}
@@ -44,6 +38,7 @@
 
                 <!-- Modal para crear categoría -->
                 <div class="category-modal" id="create-category-modal">
+                    {{-- <input type="hidden" id="id_categoria"> --}}
                     <div class="modal-content">
                         <div class="modal-header">
                             <h3>Crear Nueva Categoría</h3>
@@ -55,7 +50,8 @@
                             <form id="create-category-form">
                                 <div class="form-group">
                                     <label for="create-category-name-input">Nombre</label>
-                                    <input type="text" id="create-category-name-input" placeholder="Nombre de la categoría">
+                                    <input type="text" id="create-category-name-input"
+                                        placeholder="Nombre de la categoría" onchange="validateCreateCategoryName()">
                                 </div>
 
                                 <div class="form-group">
@@ -70,7 +66,8 @@
                                             <i class="fas fa-bolt" id="create-selected-icon-preview"></i>
                                             <input type="hidden" id="create-category-icon" value="fa-bolt">
                                         </div>
-                                        <button type="button" class="btn btn-outline" id="create-change-icon-btn" onclick="showCreateIconsGrid()">
+                                        <button type="button" class="btn btn-outline" id="create-change-icon-btn"
+                                            onclick="showCreateIconsGrid()">
                                             Cambiar ícono
                                         </button>
                                     </div>
@@ -104,7 +101,8 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" id="create-cancel-category" onclick="closeCreateModal()">Cancelar</button>
+                            <button class="btn btn-secondary" id="create-cancel-category"
+                                onclick="closeCreateModal(event)">Cancelar</button>
                             <button class="btn btn-primary" id="create-save-category">Crear Categoría</button>
                         </div>
                     </div>
@@ -138,7 +136,8 @@
                                             <i class="fas fa-bolt" id="selected-icon-preview"></i>
                                             <input type="hidden" id="category-icon" value="fa-bolt">
                                         </div>
-                                        <button type="button" class="btn btn-outline" id="change-icon-btn" onclick="showIconsGrid()">
+                                        <button type="button" class="btn btn-outline" id="change-icon-btn"
+                                            onclick="showIconsGrid()">
                                             Cambiar ícono
                                         </button>
                                     </div>
@@ -172,8 +171,8 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-danger" id="delete-category">Eliminar</button>
-                            <button class="btn btn-secondary" id="cancel-category" onclick="closeModal()">Cancelar</button>
+                            <button class="btn btn-secondary" id="cancel-category"
+                                onclick="closeModal(event)">Cancelar</button>
                             <button class="btn btn-primary" id="save-category">Guardar</button>
                         </div>
                     </div>
@@ -182,6 +181,9 @@
         </form>
     </div>
 @endsection
+
+{{-- modal eliminar data --}}
+@include('modal_conrf_delete.modal_conrf_delete')
 
 @push('scripts')
     <script src="{{ asset('js/categorias/categorias.js') }}" defer></script>

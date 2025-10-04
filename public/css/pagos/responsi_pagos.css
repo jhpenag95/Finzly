@@ -1,337 +1,4 @@
-/* Estilos responsivos para la tabla de pagos */
-
-/* Contenedor principal */
-.payments-view {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Filtros responsivos */
-.payments-filter {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
-}
-
-.filter-row {
-    display: flex;
-    gap: 15px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.search-box {
-    position: relative;
-    flex: 1;
-    min-width: 250px;
-}
-
-.search-box input {
-    width: 100%;
-    padding: 12px 12px 12px 45px;
-    border: 2px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50px;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    background-color: #ffffff;
-    color: #2f487c;
-}
-
-.search-box input:focus {
-    outline: none;
-    border-color: #2f487c;
-    box-shadow: 0 0 0 3px rgba(47, 72, 124, 0.1);
-}
-
-.search-box i {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #2f487c;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-}
-
-.filter-group select {
-    padding: 12px 15px;
-    border: 2px solid #e1e5e9;
-    border-radius: 8px;
-    font-size: 14px;
-    min-width: 180px;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-group select:focus {
-    outline: none;
-    border-color: #2f487c;
-    box-shadow: 0 0 0 3px rgba(47, 72, 124, 0.1);
-}
-
-.add-payment-btn {
-    background: #2f487c;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.add-payment-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(47, 72, 124, 0.3);
-}
-
-/* Contenedor de tabla responsivo */
-.payments-table-container {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-bottom: 25px;
-}
-
-/* Estilos de tabla mejorados */
-.payments-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-}
-
-.payments-table thead {
-    background: linear-gradient(135deg, #2f487c, #3877c9);
-    color: white;
-}
-
-.payments-table th {
-    padding: 18px 15px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: none;
-}
-
-.payments-table tbody tr {
-    border-bottom: 1px solid #f0f2f5;
-    transition: all 0.3s ease;
-}
-
-.payments-table tbody tr:hover {
-    background-color: #f8f9fa;
-    transform: scale(1.01);
-}
-
-.payments-table tbody tr:last-child {
-    border-bottom: none;
-}
-
-.payments-table td {
-    padding: 18px 15px;
-    vertical-align: middle;
-}
-
-/* Celdas específicas */
-.payment-name-cell {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.payment-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 15px;
-}
-
-.payment-category {
-    color: #666;
-    font-size: 12px;
-    background: #f0f2f5;
-    padding: 2px 8px;
-    border-radius: 12px;
-    display: inline-block;
-    width: fit-content;
-}
-
-.payment-amount {
-    font-weight: 700;
-    font-size: 16px;
-    color: #2f487c;
-}
-
-.payment-currency {
-    color: #666;
-    font-size: 12px;
-    margin-left: 4px;
-}
-
-.payment-date {
-    color: #666;
-    font-size: 13px;
-}
-
-.payment-repeat {
-    background: #e6f7ff;
-    color: #1890ff;
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-}
-
-/* Estados de pago */
-.payment-status {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.status-pending {
-    background: #fff7e6;
-    color: #fa8c16;
-    border: 1px solid #ffd591;
-}
-
-.status-overdue {
-    background: #fff2f0;
-    color: #ff4d4f;
-    border: 1px solid #ffccc7;
-}
-
-.status-completed {
-    background: #f6ffed;
-    color: #52c41a;
-    border: 1px solid #b7eb8f;
-}
-
-/* Acciones */
-.actions-cell {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-}
-
-.btn-sm {
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-    font-size: 14px;
-}
-
-.complete-payment {
-    background: #52c41a;
-    color: white;
-}
-
-.complete-payment:hover {
-    background: #73d13d;
-    transform: scale(1.1);
-}
-
-.edit-payment {
-    background: #1890ff;
-    color: white;
-}
-
-.edit-payment:hover {
-    background: #40a9ff;
-    transform: scale(1.1);
-}
-
-.delete-payment {
-    background: #ff4d4f;
-    color: white;
-}
-
-.delete-payment:hover {
-    background: #ff7875;
-    transform: scale(1.1);
-}
-
-/* Paginación */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-}
-
-.pagination-btn {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #e1e5e9;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.pagination-btn:hover:not(:disabled) {
-    border-color: #2f487c;
-    color: #2f487c;
-}
-
-.pagination-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.pagination-pages {
-    display: flex;
-    gap: 5px;
-}
-
-.pagination-page {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #e1e5e9;
-    background: white;
-    border-radius: 8px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.pagination-page:hover {
-    border-color: #2f487c;
-    color: #2f487c;
-}
-
-.pagination-page.active {
-    background: #2f487c;
-    color: white;
-    border-color: #2f487c;
-}
+/* Estilos responsivos para la tabla de pagos - Solo @media queries */
 
 /* RESPONSIVE DESIGN */
 
@@ -439,69 +106,65 @@
         font-size: 13px;
     }
     
-    /* Convertir tabla en cards para móviles muy pequeños */
+    /* Mantener estructura de tabla con scroll horizontal */
     .payments-table-container {
-        background: transparent;
-        box-shadow: none;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #2f487c #f0f2f5;
     }
     
-    .payments-table,
-    .payments-table thead,
-    .payments-table tbody,
+    /* Estilos para scrollbar en webkit */
+    .payments-table-container::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .payments-table-container::-webkit-scrollbar-track {
+        background: #f0f2f5;
+        border-radius: 4px;
+    }
+    
+    .payments-table-container::-webkit-scrollbar-thumb {
+        background: #2f487c;
+        border-radius: 4px;
+    }
+    
+    .payments-table-container::-webkit-scrollbar-thumb:hover {
+        background: #1e3a5f;
+    }
+    
+    .payments-table {
+        min-width: 800px; /* Ancho mínimo para mantener estructura */
+    }
+    
     .payments-table th,
-    .payments-table td,
-    .payments-table tr {
-        display: block;
-    }
-    
-    .payments-table thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
-    }
-    
-    .payments-table tbody tr {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        margin-bottom: 15px;
-        padding: 15px;
-        position: relative;
-    }
-    
-    .payments-table tbody tr:hover {
-        transform: none;
-    }
-    
     .payments-table td {
-        border: none;
-        padding: 8px 0;
-        position: relative;
-        padding-left: 35%;
-        text-align: right;
-    }
-    
-    .payments-table td:before {
-        content: attr(data-label);
-        position: absolute;
-        left: 0;
-        width: 30%;
-        padding-right: 10px;
+        padding: 10px 8px;
+        font-size: 12px;
         white-space: nowrap;
-        font-weight: 600;
-        color: #2f487c;
-        text-align: left;
     }
     
-    .payment-name-cell {
-        align-items: flex-end;
+    .payment-name {
+        font-size: 13px;
+    }
+    
+    .payment-category {
+        font-size: 11px;
+        padding: 1px 6px;
+    }
+    
+    .payment-amount {
+        font-size: 14px;
+    }
+    
+    .btn-sm {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
     }
     
     .actions-cell {
-        justify-content: flex-end;
-        padding-top: 15px;
-        border-top: 1px solid #f0f2f5;
-        margin-top: 10px;
+        gap: 4px;
     }
     
     .pagination {

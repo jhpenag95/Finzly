@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Saldoinicial extends Model
+class SaldoInicial extends Model
 {
     //
     protected $table = 'saldoinicial'; //esta linea es para especificar la tabla a la que se va a hacer referencia
