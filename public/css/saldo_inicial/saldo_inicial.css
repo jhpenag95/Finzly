@@ -225,6 +225,7 @@
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
+    position: relative;
 }
 
 .saldos-table {
@@ -245,7 +246,7 @@
 
 .saldos-table th {
     padding: var(--spacing-lg) var(--spacing-md);
-    text-align: left;
+    text-align: center;
     font-weight: 700;
     font-size: var(--font-size-xs);
     color: #ffffff;
@@ -281,6 +282,7 @@
     border: none;
     vertical-align: middle;
     font-size: var(--font-size-sm);
+    height: 68px;
 }
 
 /* Estilos específicos por columna */
@@ -496,13 +498,13 @@
 }
 
 .btn-secondary {
-    background: #6c757d;
+    background: var(--secondary-color);
     color: white;
     box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
 }
 
 .btn-secondary:hover {
-    background: #5a6268;
+    background: var(--hover-color-secondary);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3);
 }

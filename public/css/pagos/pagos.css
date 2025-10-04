@@ -1,6 +1,5 @@
 /* Estilos para el contenedor principal */
 
-
 .dashboard-container {
     padding: var(--spacing-xl);
     flex-grow: 1;
@@ -15,7 +14,20 @@
     padding-bottom: 30px;
 }
 
+/* Contenedor principal */
+.payments-view {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Filtros */
 .payments-filter {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 25px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -24,9 +36,7 @@
     transition: all 0.3s ease;
 }
 
-
 /* Estilos para la fila de filtros */
-
 .filter-row {
     display: flex;
     align-items: center;
@@ -43,13 +53,13 @@
 }
 
 .search-box i {
-  position: absolute;
-  left: 18px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #2f487c;
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #2f487c;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
 }
 
 .search-box input {
@@ -63,8 +73,13 @@
     color: #2f487c;
 }
 
-/* Estilos para los grupos de filtros */
+.search-box input:focus {
+    outline: none;
+    border-color: #2f487c;
+    box-shadow: 0 0 0 3px rgba(47, 72, 124, 0.1);
+}
 
+/* Estilos para los grupos de filtros */
 .filter-group {
     position: relative;
     min-width: 180px;
@@ -81,6 +96,14 @@
     cursor: pointer;
     transition: all 0.2s ease;
     width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 180px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .filter-group select {
@@ -89,8 +112,13 @@
     cursor: pointer;
 }
 
-/* Estilos para el botón de agregar pago */
+.filter-group select:focus {
+    outline: none;
+    border-color: #2f487c;
+    box-shadow: 0 0 0 3px rgba(47, 72, 124, 0.1);
+}
 
+/* Estilos para el botón de agregar pago */
 .add-payment-btn {
     padding: 12px 20px;
     border-radius: 50px;
@@ -103,16 +131,29 @@
     box-shadow: 0 4px 6px rgba(47, 72, 124, 0.2);
     background-color: var(--primary-color);
     color: var(--white);
+    background: #2f487c;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .add-payment-btn:hover {
     transform: translateY(-2px);
     box-shadow: var(--hover-shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(47, 72, 124, 0.3);
 }
 
-
 /* ======== Estilos para la tabla de pagos ======== */
-
 .payments-table-container {
     background-color: var(--white);
     border-radius: var(--border-radius);
@@ -120,16 +161,40 @@
     overflow: hidden;
     margin-bottom: 20px;
     transition: all 0.3s ease;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 25px;
 }
 
 .payments-table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 14px;
+}
+
+.payments-table thead {
+    background: linear-gradient(135deg, #2f487c, #3877c9);
+    color: white;
 }
 
 .payments-table tr {
     transition: all 0.3s ease;
     background-color: #f9f9f9;
+    transition: all var(--transition);  
+    background-color: var(--color-bg-secondary);
+    border-bottom: 1px solid #f0f2f5;
+    transition: all 0.3s ease;
+}
+
+.payments-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.01);
+}
+
+.payments-table tbody tr:last-child {
+    border-bottom: none;
 }
 
 .payments-table th {
@@ -141,8 +206,146 @@
     position: sticky;
     top: 0;
     z-index: 10;
+    padding: 18px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: none;
 }
 
+.payments-table td {
+    padding: 18px 15px;
+    vertical-align: middle;
+}
+
+/* Celdas específicas */
+.payment-name-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.payment-name {
+    font-weight: 600;
+    color: #333;
+    font-size: 15px;
+}
+
+.payment-category {
+    color: #666;
+    font-size: 12px;
+    background: #f0f2f5;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.payment-amount {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2f487c;
+}
+
+.payment-currency {
+    color: #666;
+    font-size: 12px;
+    margin-left: 4px;
+}
+
+.payment-date {
+    color: #666;
+    font-size: 13px;
+}
+
+.payment-repeat {
+    background: #e6f7ff;
+    color: #1890ff;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Estados de pago */
+.payment-status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-pending {
+    background: #fff7e6;
+    color: #fa8c16;
+    border: 1px solid #ffd591;
+}
+
+.status-overdue {
+    background: #fff2f0;
+    color: #ff4d4f;
+    border: 1px solid #ffccc7;
+}
+
+.status-completed {
+    background: #f6ffed;
+    color: #52c41a;
+    border: 1px solid #b7eb8f;
+}
+
+/* Acciones */
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.btn-sm {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+.complete-payment {
+    background: #52c41a;
+    color: white;
+}
+
+.complete-payment:hover {
+    background: #73d13d;
+    transform: scale(1.1);
+}
+
+.edit-payment {
+    background: #1890ff;
+    color: white;
+}
+
+.edit-payment:hover {
+    background: #40a9ff;
+    transform: scale(1.1);
+}
+
+.delete-payment {
+    background: #ff4d4f;
+    color: white;
+}
+
+.delete-payment:hover {
+    background: #ff7875;
+    transform: scale(1.1);
+}
 
 /* Animación de fade-in */
 .payments-table-header {
@@ -153,20 +356,14 @@
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.payments-table tr {
-    transition: all var(--transition);  
-    background-color: var(--color-bg-secondary);
-}
-
-
 /* Estilos para la paginación */
-
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
     margin-top: var(--spacing-md);
+    padding: 20px;
 }
 
 .pagination-btn:disabled {
@@ -182,15 +379,29 @@
     justify-content: center;
     border-radius: 50%;
     border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
+    background-color: var(--white);
     cursor: pointer;
     transition: all 0.3s ease;
-    color: var(--white);    
+    color: var(--primary-color);
+    border: 2px solid #e1e5e9;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    border-color: #2f487c;
+    color: #2f487c;
 }
 
 .pagination-pages {
     display: flex;
     gap: 10px;
+    gap: 5px;
 }
 
 .pagination-page.active {
@@ -199,6 +410,9 @@
     border-color: var(--primary-color);
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(47, 72, 124, 0.3);
+    background: #2f487c;
+    color: white;
+    border-color: #2f487c;
 }
 
 .pagination-page {
@@ -213,18 +427,18 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
-}
-
-.pagination-btn {
-    width: 40px;
-    height: 40px;
+    border: 2px solid #e1e5e9;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--primary-color);
-    background-color: var(--white);
-    cursor: pointer;
+    font-weight: 600;
     transition: all 0.3s ease;
-    color: var(--primary-color);
+}
+
+.pagination-page:hover {
+    border-color: #2f487c;
+    color: #2f487c;
 }

@@ -1,4 +1,5 @@
 @extends('components.plantillabase')
+@include('components.alerts-include')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/pagos/pagos.css') }}">

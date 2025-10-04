@@ -1,0 +1,373 @@
+/* Modal de Confirmación de Eliminación - Estilos personalizados */
+
+
+/* Overlay del modal */
+.delete-modal {
+    position: fixed ;
+    top: 0 ;
+    left: 0 ;
+    width: 100% ;
+    height: 100% ;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-out;
+    padding: 20px;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Contenido del modal */
+.delete-modal .modal-content-delete {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    overflow: hidden;
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    flex-shrink: 0;
+}
+
+/* Header del modal - Estilo de peligro */
+.delete-modal .modal-header {
+    background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+    color: var(--white);
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.delete-modal .modal-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.delete-modal .modal-header h5 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-semibold);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.delete-modal .modal-header h5::before {
+    content: '⚠️';
+    font-size: 1.2rem;
+}
+
+.delete-modal .btn-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+    font-size: 1.1rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.delete-modal .btn-close:hover,
+.delete-modal .btn-close:focus {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+    outline: none;
+}
+
+.delete-modal .btn-close:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+/* Cuerpo del modal */
+.delete-modal .modal-body {
+    padding: 30px 25px;
+    background: white;
+    text-align: center;
+}
+
+.delete-modal .modal-body p {
+    margin: 0 0 15px 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: var(--font-weight-medium);
+}
+
+.delete-modal .modal-body .text-muted {
+    font-size: 0.95rem;
+    color: var(--secondcolor);
+    font-weight: var(--font-weight-regular);
+    font-style: italic;
+}
+
+/* Footer del modal */
+.delete-modal .modal-footer {
+    padding: 20px 25px;
+    background: var(--light-bg);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Botones del modal */
+.delete-modal .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.95rem;
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+    line-height: 1.4;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.delete-modal .btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+}
+
+.delete-modal .btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.delete-modal .btn-secondary {
+    background: var(--secondcolor);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.delete-modal .btn-secondary:hover,
+.delete-modal .btn-secondary:focus {
+    background: var(--hover-color-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
+    outline: none;
+}
+
+.delete-modal .btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(108, 117, 125, 0.3);
+}
+
+.delete-modal .btn-danger {
+    background: linear-gradient(135deg, var(--danger-color), #e74c3c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 77, 79, 0.3);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.delete-modal .btn-danger:hover,
+.delete-modal .btn-danger:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 77, 79, 0.4);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    outline: none;
+}
+
+.delete-modal .btn-danger:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 77, 79, 0.3);
+}
+
+/* Icono de advertencia en el cuerpo */
+.delete-modal .modal-body::before {
+    content: '🗑️';
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .delete-modal .modal-content-delete {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .delete-modal .modal-content-delete {
+        max-width: 350px;
+    }
+    
+    .delete-modal .modal-header h5 {
+        font-size: 1.2rem;
+    }
+    
+    .delete-modal .modal-body p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .delete-modal .modal-content-delete {
+        width: 95%;
+        max-width: 320px;
+    }
+    
+    .delete-modal .modal-header,
+    .delete-modal .modal-body,
+    .delete-modal .modal-footer {
+        padding: 20px;
+    }
+    
+    .delete-modal .modal-header h5 {
+        font-size: 1.1rem;
+    }
+    
+    .delete-modal .modal-body p {
+        font-size: 0.95rem;
+    }
+    
+    .delete-modal .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .delete-modal .btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .delete-modal.show {
+        padding: 15px;
+    }
+    
+    .delete-modal .modal-content-delete {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .delete-modal .modal-header,
+    .delete-modal .modal-body,
+    .delete-modal .modal-footer {
+        padding: 15px;
+    }
+    
+    .delete-modal .modal-header h5 {
+        font-size: 1rem;
+    }
+    
+    .delete-modal .modal-body p {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+    
+    .delete-modal .modal-body .text-muted {
+        font-size: 0.85rem;
+    }
+    
+    .delete-modal .modal-body::before {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .delete-modal .btn {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+        min-width: auto;
+    }
+    
+    .delete-modal .btn-close {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .delete-modal .modal-content-delete {
+        max-width: 260px;
+    }
+    
+    .delete-modal .modal-header h5 {
+        font-size: 0.95rem;
+    }
+    
+    .delete-modal .modal-body p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Media query para dispositivos con altura pequeña (landscape móviles) */
+@media (max-height: 600px) and (orientation: landscape) {
+    .delete-modal .modal-content-delete {
+        max-height: 85vh;
+    }
+    
+    .delete-modal .modal-header,
+    .delete-modal .modal-body,
+    .delete-modal .modal-footer {
+        padding: 12px 20px;
+    }
+    
+    .delete-modal .modal-body::before {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+}

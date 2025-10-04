@@ -12,8 +12,8 @@ class ConceptoSaldoInicial extends Model
   
     protected $table = 'conceptosaldo_init'; //esta linea es para especificar la tabla a la que se va a hacer referencia
     protected $primaryKey = 'id_conpsaldo'; //esta linea es para especificar la llave primaria de la tabla
-    public $incrementing = false; //esta linea especifica que la clave primaria NO es auto-incremental
     protected $keyType = 'string'; //esta linea especifica que la clave primaria es de tipo string
+    public $incrementing = false; //esta linea especifica que la clave primaria NO es auto-incremental
     public $timestamps = false; //esta linea es para especificar si la tabla tiene campos de fecha de creacion y actualizacion
 
    
