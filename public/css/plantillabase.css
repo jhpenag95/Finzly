@@ -13,7 +13,7 @@
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 1001;
+    z-index: 1000;
     background-color: #fff;
     border: 2px solid #2f487c;
     border-radius: 8px;

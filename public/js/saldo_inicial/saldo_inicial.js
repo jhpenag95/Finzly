@@ -75,7 +75,7 @@ function validarCampos(event) {
 
     var valor = $('#valor').val();
     // console.log("valor:", valor);
-    
+
     var concepto = $('#concepto').val();
     var tieneAlgunValor = valor.trim() !== '' || concepto.trim() !== '';
 
@@ -126,11 +126,6 @@ function validarCampos(event) {
                 // Recargar la tabla de saldos después de registrar
                 consultarTotalSaldoInicial();
                 consultar_listado();
-
-                // Recargar el listado de la tabla si la función existe
-                if (typeof recargarTablaSaldoInicial === 'function') {
-                    recargarTablaSaldoInicial();
-                }
             },
             error: function (xhr) {
                 showAlert.error(
@@ -307,6 +302,7 @@ function agregarConcepto() {
                     );
                     closeModal();
                     solicitarConceptos();
+                    consultarListadoConceptos();
                     $('#nuevoConcepto').val('');
 
                 } else {
@@ -397,8 +393,6 @@ function consultarTotalSaldoInicial() {
 //Eliminar registro de saldo inicial
 function eliminarSaldoInicial(id) {
 
-    console.log("id: " + id);
-
     var modal = $("#confirmDeleteModal");
     modal.css("display", "flex");
 
@@ -433,7 +427,7 @@ function confirmDelete_saldoinit(id) {
             if (response.success) {
                 showAlert.success(
                     'Eliminado',
-                    'El registro se ha eliminado correctamente',
+                    response.message,
                     {
                         duration: 4000,
                         animation: 'slide'
@@ -441,13 +435,14 @@ function confirmDelete_saldoinit(id) {
                 );
 
                 // Refrescar el listado completo para mantener coherencia con los datos del servidor
+                consultarTotalSaldoInicial();
                 consultar_listado();
                 renderizarPagina(paginaActual);
 
             } else {
                 showAlert.error(
                     'Error',
-                    'Hubo un error al eliminar el registro',
+                    response.message,
                     {
                         duration: 4000,
                         animation: 'slide'
@@ -456,9 +451,10 @@ function confirmDelete_saldoinit(id) {
             }
         },
         error: function (xhr) {
+            const mensaje = xhr.responseJSON?.message || 'Ocurrió un error al eliminar el registro.';
             showAlert.error(
                 'Error',
-                'Hubo un error al eliminar el registro',
+                mensaje,
                 {
                     duration: 4000,
                     animation: 'slide'

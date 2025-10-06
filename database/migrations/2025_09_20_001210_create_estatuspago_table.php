@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('estatuspago', function (Blueprint $table) {
             $table->string('id_estado_pg', 36)->primary();
             $table->string('nombre_sp', 255);
-            $table->string('estatus_sp', 20)->default('activo');
+            $table->string('estatus_sp', 20)->default('Activo');
             $table->timestamps();
         });
     }

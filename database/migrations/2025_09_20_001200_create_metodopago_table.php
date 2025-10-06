@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('metodopago', function (Blueprint $table) {
             $table->string('id_met_pag', 36)->primary();
             $table->string('nombre_mp', 255);
-            $table->string('estatus_mp', 20)->default('activo');
+            $table->string('estatus_mp', 20)->default('Activo');
             $table->timestamps();
         });
     }

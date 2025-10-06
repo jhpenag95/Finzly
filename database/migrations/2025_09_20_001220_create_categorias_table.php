@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre_cat', 255);
             $table->string('color_cat', 20);
             $table->string('icono_cat', 20);
-            $table->string('estatus_cat', 20)->default('activo');
+            $table->string('estatus_cat', 20)->default('Activo');
             $table->timestamps();
         });
     }

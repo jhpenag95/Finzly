@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="{{ asset('css/aside.css') }}">
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tables_design.css') }}">
 
     {{-- Stack para CSS específicos por vista --}}
     @stack('styles')
