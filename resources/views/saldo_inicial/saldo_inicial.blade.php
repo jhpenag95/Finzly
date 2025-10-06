@@ -5,7 +5,14 @@
     <link rel="stylesheet" href="{{ asset('css/saldo_inicial/saldo_inicial.css') }}">
     <link rel="stylesheet" href="{{ asset('css/saldo_inicial/responsi_saldo_inicial.css') }}">
     <link rel="stylesheet" href="{{ asset('css/saldo_inicial/modal_conceptos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tables_design.css') }}">
+
     <link rel="stylesheet" href="{{ asset('css/saldo_inicial/pagiandorSaldoInicial.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/pagiandorConceptos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/modal_table_historial.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/saldo_inicial/mocal_EditConcepto.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/modal_confir_edit.css') }}">
     <link rel="stylesheet" href="{{ asset('css/modal_conrf_delete.css') }}">
 @endpush
 
@@ -74,12 +81,17 @@
                 {{-- Resumen Total --}}
                 <div class="saldo-summary">
                     <div class="summary-card">
-                        <h3>Total de Activos</h3>
+                        <h3>Total de Saldo Inicial</h3>
                         <div class="total-amount" id="totalAmount">0.00</div>
                     </div>
                 </div>
 
             </form>
+
+
+            {{-- ====================================================================================
+            ======== Sección de de tablas de Saldos Registrados y Listado conceptos =================
+            ======================================================================================== --}}
 
             {{-- Lista de Saldos Registrados --}}
             <div class="saldos-registrados">
@@ -139,36 +151,51 @@
                     <h3>Conceptos Registrados</h3>
                 </div>
                 <div class="table-container">
+                    <!-- Selector de registros por página - PARTE SUPERIOR -->
+                    <div class="pagination-top">
+                        <div class="pagination-selector_concepto">
+                            <label for="registros-select_concepto">Mostrar:</label>
+                            <select id="registros-select_concepto" class="registros-select_concepto">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="all">Todos</option>
+                            </select>
+                            <span>registros</span>
+                        </div>
+                    </div>
+
+                    <!-- Spinner de carga -->
+                    <div id="loading-spinner_concepto" class="spinner-container">
+                        <div class="spinner"></div>
+                    </div>
+
+
                     <table class="conceptos-table" id="conceptos-table">
                         <thead>
                             <tr>
                                 <th>CONCEPTO</th>
+                                <th>FECHA REGISTRO</th>
+                                <th>ESTATUS</th>
                                 <th>ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody id="conceptos-tbody">
-                            <tr class="empty-row">
-                                <td class="concepto-nombre">
-                                    <i class="fas fa-money-bill-wave"></i>
-                                    Efectivo
-                                </td>
-                                <td class="concepto-acciones">
-                                    <div class="action-buttons">
-                                        <button class="btn-action btn-edit" title="Editar concepto">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn-action btn-delete" title="Eliminar concepto">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
+                    <!-- Controles de paginación inferior -->
+                    <div id="pagination-controls_concepto" class="pagination-controls"></div>
                 </div>
             </div>
 
         </div>
+
+        {{-- ====================================================================================
+            ======== Sección modal para agregar Concepto y lista de historicos =================
+            ======================================================================================== --}}
+
 
         {{-- Modal para agregar Concepto --}}
         <div id="addConceptoModal" class="modal_concepto" style="display: none;">
@@ -199,14 +226,108 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
 
-{{-- modal eliminar data --}}
-@include('modal_conrf_delete.modal_conrf_delete')
+        {{-- Modal para editar Concepto --}}
+        <div class="addEditConcepto" class="addEditConcepto" style="display: none">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Editar Concepto</h3>
+                    <button class="close" onclick="closeModalEdit()" type="button">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="editConceptoForm" onsubmit="return false;">
+                        @csrf
+                        <div class="form-group">
+                            <label for="editarConcepto">Nombre del Concepto</label>
+                            <input type="text" id="editarConcepto" name="editarConcepto" required oninput="validarCampoConcepto()">
+                        </div>
+                        <div class="form-group">
+                            <label for="editarEstatus">Estatus</label>
+                            <select id="editarEstatus" name="editarEstatus" required>
+                                <option value="Activo" selected>Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModalEdit()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="submit" id="btn-actualizarConcepto" class="btn btn-primary" onclick="actualizarConcepto()">
+                        <i class="fas fa-plus"></i>
+                        Actualizar Concepto
+                    </button>
+                </div>
+            </div>
+        </div>
 
 
-@push('scripts')
-    <script src="{{ asset('js/saldo_inicial/saldo_inicial.js') }}" defer></script>
-    <script src="{{ asset('js/saldo_inicial/tableSaldoInicial.js') }}" defer></script>
-@endpush
+        {{-- Modal para ver historial de movimientos por concepto --}}
+        <div id="verHistorialModal" class="modal_historial" style="display: none;">
+            <div class="modal_content_historial">
+                <div class="modal-header">
+                    <h3 class="modal-title">Historial de Movimientos por Concepto</h3>
+                    <button class="close" onclick="closeModal_historial()" type="button">&times;</button>
+                </div>
+                <div class="table-container">
+                    <input type="hidden" id="id_concepto_historial" value="">
+                    <!-- Selector de registros por página - PARTE SUPERIOR -->
+                    <div class="pagination-top">
+                        <div class="pagination-selector_concepto">
+                            <label for="registros-select_concepto">Mostrar:</label>
+                            <select id="registros-select_historial" class="registros-select_concepto">
+                                <option value="5" selected>5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="all">Todos</option>
+                            </select>
+                            <span>registros</span>
+                        </div>
+                    </div>
+
+                    <!-- Spinner de carga -->
+                    <div id="loading-spinner_historial" class="spinner-container">
+                        <div class="spinner"></div>
+                    </div>
+
+
+                    <table class="conceptos-table" id="historial-table" style="margin: 20px 0;">
+                        <thead>
+                            <tr>
+                                <th>CONCEPTO</th>
+                                <th>MONTO</th>
+                                <th>MONTO ANTERIOR</th>
+                                <th>DESCRIPCION</th>
+                                <th>FECHA</th>
+                                <th>TIPO MOVIMIENTO</th>
+                                <th>ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historial-tbody">
+                        </tbody>
+                    </table>
+                    <!-- Controles de paginación inferior -->
+                    <div id="pagination-controls_historial" class="pagination-controls"></div>
+                </div>
+
+            </div>
+        </div>
+    @endsection
+
+    {{-- modal eliminar data --}}
+    @include('modal_conrf_delete.modal_conrf_delete')
+    {{-- modal confirmar editar data --}}
+    @include('modal_confir_edit.modal_confir_edit')
+
+
+    @push('scripts')
+        <script src="{{ asset('js/saldo_inicial/saldo_inicial.js') }}" defer></script>
+        <script src="{{ asset('js/saldo_inicial/tableSaldoInicial.js') }}" defer></script>
+        <script src="{{ asset('js/saldo_inicial/tableConceptos.js') }}" defer></script>
+        <script src="{{ asset('js/saldo_inicial/tableHitorialSaldos.js') }}" defer></script>
+        <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+    @endpush

@@ -12,7 +12,9 @@ class ConceptoSaldoInicialController extends Controller
     public function index()
     {
         try {
-            $conceptos = ConceptoSaldoInicial::all();
+            $conceptos = ConceptoSaldoInicial::select('id_conpsaldo', 'concepto', 'fecha_registro', 'status')
+                ->where('status', 'activo')
+                ->get();
 
             return response()->json([
                 'success' => true,
@@ -26,7 +28,40 @@ class ConceptoSaldoInicialController extends Controller
         }
     }
 
+    //obtener concepto de saldo inicial por id
+    public function show($id)
+    {
+        $concepto = ConceptoSaldoInicial::select('id_conpsaldo', 'concepto', 'fecha_registro', 'status')
+            ->where('id_conpsaldo', $id)
+            ->first();
 
+        if (!$concepto) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Concepto no encontrado'
+            ], 404);
+        } else {
+            return response()->json([
+                'success' => true,
+                'concepto' => $concepto
+            ], 200);
+        }
+    }
+
+    //obtener conceptos de saldo inicial
+    public function index_concepto()
+    {
+        $concepto_saldo_inicial = ConceptoSaldoInicial::select('id_conpsaldo', 'concepto', 'fecha_registro', 'status')
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'concepto_saldo_inicial' => $concepto_saldo_inicial
+        ], 200);
+    }
+
+
+    //guardar concepto de saldo inicial
     public function store(Request $request)
     {
         $id_conpsaldo = 'CSI' . substr(uniqid(), 0, 8) . rand(10, 99);
@@ -35,7 +70,7 @@ class ConceptoSaldoInicialController extends Controller
 
         // Verificar si el concepto ya existe
         $exists = ConceptoSaldoInicial::where('concepto', $concepto)->exists();
-        
+
         if ($exists) {
             return response()->json([
                 'success' => false,
@@ -58,6 +93,50 @@ class ConceptoSaldoInicialController extends Controller
                     'success' => true
                 ], 201);
             }
+        }
+    }
+
+    //actualizar concepto de saldo inicial
+    public function update(Request $request, $id)
+    {
+        $concepto = ConceptoSaldoInicial::find($id);
+
+        if (!$concepto) {
+            return response()->json([
+                'success' => false
+            ], 404);
+        } else {
+            $concepto->update([
+                'concepto' => $request->input('concepto'),
+                'status' => $request->input('status')
+            ]);
+
+            return response()->json([
+                'success' => true
+            ], 200);
+        }
+    }
+
+    //eliminar concepto de saldo inicial
+    public function destroy($id)
+    {
+        $validarExiste = ConceptoSaldoInicial::select('id_conpsaldo')
+            ->where('id_conpsaldo', $id)
+            ->first();
+
+        if (!$validarExiste) {
+            return response()->json([
+                'success' => false
+            ], 404);
+        } else {
+            $concepto = ConceptoSaldoInicial::find($id);
+            $concepto->update([
+                'status' => 'Inactivo'
+            ]);
+
+            return response()->json([
+                'success' => true
+            ], 200);
         }
     }
 }

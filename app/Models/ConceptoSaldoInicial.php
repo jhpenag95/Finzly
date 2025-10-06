@@ -17,7 +17,7 @@ class ConceptoSaldoInicial extends Model
     public $timestamps = false; //esta linea es para especificar si la tabla tiene campos de fecha de creacion y actualizacion
 
    
-    protected $fillable = ['id_conpsaldo', 'concepto', 'fecha_registro']; //esta linea es para especificar los campos que se pueden llenar con datos
+    protected $fillable = ['id_conpsaldo', 'concepto', 'fecha_registro', 'status']; //esta linea es para especificar los campos que se pueden llenar con datos
     
     
 }

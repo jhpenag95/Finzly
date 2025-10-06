@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('descripcion', 255);
             $table->dateTime('fecha_registro');
             $table->decimal('monto', 10, 2);
-            $table->string('status', 20)->default('activo');
+            $table->string('status', 20)->default('Activo');
             $table->unsignedBigInteger('id_usuario');
             $table->string('id_conpsaldo', 36);
             $table->foreign('id_usuario')->references('id')->on('users');

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('id_conpsaldo', 36)->primary();
             $table->string('concepto', 255);
             $table->dateTime('fecha_registro');
-            $table->string('status', 20)->default('activo');
+            $table->string('status', 20)->default('Activo');
         });
     }
 

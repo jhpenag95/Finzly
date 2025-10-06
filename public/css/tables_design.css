@@ -1,0 +1,188 @@
+/* ===== ESTILOS PARA TABLA DE CONCEPTOS REGISTRADOS ===== */
+
+/* Contenedor de conceptos registrados */
+.conceptos-registrados {
+    margin-top: var(--spacing-xl);
+}
+
+/* Contenedor de la tabla de conceptos */
+.conceptos-registrados .table-container {
+    background: #ffffff;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin-top: var(--spacing-lg);
+}
+
+/* Tabla de conceptos - Estilo consistente con saldos-table */
+.conceptos-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+    background: #ffffff;
+}
+
+/* Encabezados de la tabla de conceptos */
+.conceptos-table thead {
+    background: var(--primary-color);
+}
+
+.conceptos-table thead tr {
+    border: none;
+}
+
+.conceptos-table th {
+    padding: var(--spacing-lg) var(--spacing-md);
+    text-align: center;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+}
+
+/* Filas del cuerpo de la tabla de conceptos */
+.conceptos-table tbody tr {
+    border-bottom: 1px solid #e1e8ed;
+    transition: all 0.2s ease;
+}
+
+.conceptos-table tbody tr:not(.empty-row):hover {
+    background-color: #f8f9fa;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.conceptos-table tbody tr:nth-child(even):not(.empty-row) {
+    background-color: #fafbfc;
+}
+
+.conceptos-table tbody tr:nth-child(odd):not(.empty-row) {
+    background-color: #ffffff;
+}
+
+.conceptos-table td {
+    padding: var(--spacing-md);
+    border: none;
+    vertical-align: middle;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Estilo específico para celdas de concepto */
+.conceptos-table .concepto-nombre {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.conceptos-table .concepto-nombre i {
+    color: var(--primary-color);
+    width: 16px;
+    text-align: center;
+    font-size: var(--font-size-sm);
+}
+
+/* Columna de acciones para conceptos */
+.conceptos-table .concepto-acciones {
+    text-align: center;
+    width: 120px;
+}
+
+.conceptos-table .action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    align-items: center;
+}
+
+.conceptos-table .btn-action {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.conceptos-table .btn-edit {
+    background-color: #007bff;
+    color: white;
+}
+
+.conceptos-table .btn-edit:hover {
+    background-color: #0056b3;
+    transform: scale(1.1);
+}
+
+.conceptos-table .btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.conceptos-table .btn-delete:hover {
+    background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Fila vacía o de ejemplo */
+.conceptos-table .empty-row td {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+/* Animación para nuevas filas de conceptos */
+@keyframes slideInConcepto {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.conceptos-table tbody tr.new-concepto {
+    animation: slideInConcepto 0.3s ease-out;
+}
+
+/* Estado de tabla vacía */
+.conceptos-table tbody:empty::after {
+    content: "No hay conceptos registrados";
+    display: block;
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Responsive para tabla de conceptos */
+@media (max-width: 768px) {
+
+    .conceptos-registrados .table-container {
+        overflow-x: auto;
+        position: relative;
+    }
+
+    .conceptos-table th,
+    .conceptos-table td {
+        padding: var(--spacing-sm);
+        font-size: var(--font-size-xs);
+    }
+
+    .conceptos-registrados .section-header h3 {
+        font-size: var(--font-size-md);
+    }
+}

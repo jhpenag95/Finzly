@@ -54,7 +54,6 @@ function consultar_listado() {
                 renderizarPagina(paginaActual);
                 crearControlesPaginacion();
             } else {
-                console.log('No hay datos disponibles');
                 $('#saldos-tbody').html(`
                     <tr>
                         <td colspan="4" class="text-center">No hay datos disponibles</td>
@@ -92,9 +91,12 @@ function renderizarPagina(numeroPagina) {
         let fila = `
             <tr style="text-align: center;">
                 <td>${item.concepto}</td>
-                <td>$${parseFloat(item.monto).toLocaleString('es-MX', { minimumFractionDigits: 2 })}</td>
+                <td>$${parseFloat(item.monto).toLocaleString('es-CL', { minimumFractionDigits: 2 })}</td>
                 <td>${formatearFecha(item.fecha_registro)}</td>
                 <td style="display: flex; gap: 5px; justify-content: center;">
+                    <button class="btn-action btn-view" onclick="verRegistro_historial('${item.id_ingresos}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
                     <button class="btn-action btn-delete" onclick="eliminarSaldoInicial('${item.id_ingresos}')">
                         <i class="fas fa-trash-alt"></i>
                     </button>
@@ -134,7 +136,7 @@ function actualizarControlesPaginacion() {
     if (totalPaginas > 1) {
         // Botón Anterior
         paginacionHTML += `
-            <button class="page-btn" id="btn-anterior" ${paginaActual === 1 ? 'disabled' : ''}>
+            <button class="page-btn" id="btn-anterior-saldo" ${paginaActual === 1 ? 'disabled' : ''}>
                 ‹ Anterior
             </button>
         `;
@@ -144,7 +146,7 @@ function actualizarControlesPaginacion() {
             // Mostrar solo páginas cercanas a la actual (máximo 5 botones)
             if (i === 1 || i === totalPaginas || (i >= paginaActual - 1 && i <= paginaActual + 1)) {
                 paginacionHTML += `
-                    <button class="page-btn ${i === paginaActual ? 'active' : ''}" data-page="${i}">
+                    <button class="page-btn page-number ${i === paginaActual ? 'active' : ''}" data-page="${i}">
                         ${i}
                     </button>
                 `;
@@ -155,7 +157,7 @@ function actualizarControlesPaginacion() {
 
         // Botón Siguiente
         paginacionHTML += `
-            <button class="page-btn" id="btn-siguiente" ${paginaActual === totalPaginas ? 'disabled' : ''}>
+            <button class="page-btn" id="btn-siguiente-saldo" ${paginaActual === totalPaginas ? 'disabled' : ''}>
                 Siguiente ›
             </button>
         `;
@@ -190,13 +192,13 @@ function actualizarControlesPaginacion() {
         renderizarPagina(pagina);
     });
 
-    $('#btn-anterior').on('click', function () {
+    $('#btn-anterior-saldo').on('click', function () {
         if (paginaActual > 1) {
             renderizarPagina(paginaActual - 1);
         }
     });
 
-    $('#btn-siguiente').on('click', function () {
+    $('#btn-siguiente-saldo').on('click', function () {
         const totalPaginas = Math.ceil(datosCompletos.length / registrosPorPagina);
         if (paginaActual < totalPaginas) {
             renderizarPagina(paginaActual + 1);
@@ -204,15 +206,4 @@ function actualizarControlesPaginacion() {
     });
 }
 
-// Función auxiliar para formatear fechas
-function formatearFecha(fecha) {
-    if (!fecha) return '';
-
-    const date = new Date(fecha);
-    const dia = String(date.getDate()).padStart(2, '0');
-    const mes = String(date.getMonth() + 1).padStart(2, '0');
-    const anio = date.getFullYear();
-
-    return `${dia}/${mes}/${anio}`;
-}
 
