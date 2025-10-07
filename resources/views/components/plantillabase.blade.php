@@ -15,12 +15,12 @@
     <script src="https://kit.fontawesome.com/e848d349d3.js" crossorigin="anonymous"></script>
 
     {{-- Google Fonts --}}
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"> --}}
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"> 
 
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet"> --}}
+        rel="stylesheet">
 
     
 
@@ -59,6 +59,8 @@
             <a href="{{ url('/calendario') }}"><i class="fas fa-calendar"></i> Calendario</a>
             <a href="{{ url('/saldo_inicial') }}"><i class="fas fa-hand-holding-usd"></i> Saldo Inicial</a>
             <a href="{{ url('/categorias') }}"><i class="fas fa-tags"></i> Categorías</a>
+            <a href="{{ url('/metodos_pago') }}"><i class="fas fa-money-check-alt"></i> Métodos de Pago</a>
+        
             <a href="{{ url('/pagos') }}"><i class="fas fa-credit-card"></i> Pagos</a>
             <a href="{{ url('/reportes') }}"><i class="fas fa-chart-bar"></i> Reportes</a>
             <a href="{{ url('/perfil') }}" class="profile"><i class="fas fa-user"></i> Perfil</a>

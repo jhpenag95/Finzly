@@ -164,20 +164,6 @@ function validarNumero(input) {
     }
 }
 
-//formatear el valor ingresado a miles con 2 decimales
-function formatearMiles(input) {
-    // Eliminar todos los caracteres que no sean dígitos
-    let valor = input.value.replace(/\D/g, '');
-
-    // Si está vacío, no hace nada
-    if (!valor) {
-        input.value = '';
-        return;
-    }
-
-    // Agregar puntos como separador de miles
-    input.value = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-}
 
 // Limpiar formulario
 function limpiarFormularioSaldoInicial(accion) {
