@@ -19,19 +19,13 @@
                 <div class="form-group">
                     <label for="payment-category">Categoría</label>
                     <select id="paymentcategory">
-                        <option value="services">Servicios</option>
-                        <option value="subscriptions">Suscripciones</option>
-                        <option value="rent">Alquiler</option>
-                        <option value="loans">Préstamos</option>
-                        <option value="banking">Bancario</option>
-                        <option value="other">Otro</option>
                     </select>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="payment-amount">Monto</label>
-                        <input type="number" id="paymentamount" placeholder="0.00" step="0.01" min="0">
+                        <input type="text" id="paymentamount" placeholder="0.00" step="0.01" min="0" oninput="formatearMiles(this)">
                     </div>
 
                     <div class="form-group">
@@ -61,7 +55,7 @@
             </form>
             <div class="modal-footer">
                 <button class="btn btn-secondary" id="cancel-payment" onclick="closeModal_pagos()">Cancelar</button>
-                <button class="btn btn-primary" id="save-payment" onclick="guardarPago()">Guardar Pago</button>
+                <button class="btn btn-primary" id="save-payment" onclick="validarCampos()">Guardar Pago</button>
             </div>
         </div>
     </d>

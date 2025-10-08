@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('css/pagos/responsi_pagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/modal_responsi_pagos.css') }}">
+
+
 @endpush
 
 @section('content')
@@ -28,15 +30,9 @@
                     </select>
                 </div>
 
+                {{-- Filtro de categoría --}}
                 <div class="filter-group">
                     <select id="filter-category">
-                        <option value="all">Todas las categorías</option>
-                        <option value="services">Servicios</option>
-                        <option value="subscriptions">Suscripciones</option>
-                        <option value="rent">Alquiler</option>
-                        <option value="loans">Préstamos</option>
-                        <option value="banking">Bancario</option>
-                        <option value="other">Otros</option>
                     </select>
                 </div>
 
@@ -177,8 +173,10 @@
 
     {{-- Incluir modal de nuevo pago --}}
     @include('pagos.modal_new_pago')
+
 @endsection
 
 @push('scripts')
     <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
+    <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>  
 @endpush
