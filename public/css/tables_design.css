@@ -114,7 +114,7 @@
 }
 
 .conceptos-table .btn-edit {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
 }
 
@@ -130,6 +130,17 @@
 
 .conceptos-table .btn-delete:hover {
     background-color: #c82333;
+    transform: scale(1.1);
+}
+
+/* Botón de completar pago */
+.conceptos-table .btn-complete {
+    background-color: #73d13d;
+    color: white;
+}
+
+.conceptos-table .btn-complete:hover {
+    background-color: #5cb85c;
     transform: scale(1.1);
 }
 
@@ -167,6 +178,7 @@
     color: var(--text-secondary);
     font-style: italic;
 }
+
 
 /* Responsive para tabla de conceptos */
 @media (max-width: 768px) {

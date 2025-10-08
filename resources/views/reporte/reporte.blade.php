@@ -7,6 +7,8 @@
 
 @section('content')
     <div class="dashboard-container">
+        <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">Reporte</h2>
+        {{-- Filtros de búsqueda --}}
         <div class="reports-filter">
             <div class="filter-row">
                 {{-- filtro por rango de fechas --}}

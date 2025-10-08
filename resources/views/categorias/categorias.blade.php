@@ -10,6 +10,9 @@
 @endpush
 
 @section('content')
+    <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">
+        Gestión de Categorías</h2>
+
     <div class="categorias-container">
         <form action="" class="config-form">
             <div class="categories-tab">

@@ -8,10 +8,33 @@ function getStatusBadge(status) {
     'Inactivo': {
       bg: '#f8d7da',
       color: '#dc3545'
-    }
+    },
+    'PENDIENTE': {
+      bg: '#fff7e6',
+      color: '#fa8c16',
+      border: '#ffd591'
+    },
+    'COMPLETADO': {
+      bg: '#f6ffed',
+      color: '#52c41a',
+      border: '#b7eb8f'
+    },
+    'VENCIDO': {
+      bg: '#fff2f0',
+      color: '#ff4d4f',
+      border: '#ffccc7'
+    },
   };
 
-  const style = styles[status];
+  // Obtener el estilo correspondiente al estado
+  const style = styles[status] || styles[status?.toUpperCase()];
+
+  // Si no se encuentra un estilo, devolver un badge genérico
+  if (!style) {
+    return `<span style="display:inline-block;padding:6px 16px;border-radius:20px;background:#eee;color:#888;font-size:13px;font-weight:600;text-transform:uppercase;">${status}</span>`;
+  }
+
+  // Devolver el badge con el estilo adecuado
   return `
     <span style="
       display: inline-block;
@@ -19,6 +42,7 @@ function getStatusBadge(status) {
       border-radius: 20px;
       background-color: ${style.bg};
       color: ${style.color};
+      border: 1px solid ${style.border ? style.border : 'transparent'};
       font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;

@@ -14,7 +14,11 @@
 
 @section('content')
     {{-- Formulario para Registrar Método de Pago --}}
+    <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">
+        Registrar Métodos de Pago</h2>
+
     <div class="conten_metodopago">
+
         <form action="" class="form_metodopago">
             <h2 class="title_metodopago">Registrar Métodos de Pago</h2>
             @csrf
@@ -106,30 +110,30 @@
                     <div class="form-group">
                         <label for="editarMetodoPago_nombre">Nombre del Método de Pago</label>
                         <input type="text" id="editarMetodoPago_nombre" name="editarMetodoPago_nombre" required ">
-                    </div>
-                    <div class="form-group">
-                        <label for="editarEstatus_metodopago">Estatus</label>
-                        <select id="editarEstatus_metodopago" name="editarEstatus_metodopago" required>
-                            <option value="">Selecciona un estatus</option>
-                            <option value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" onclick="closeModalEdit()">
-                    <i class="fas fa-times"></i>
-                    Cancelar
-                </button>
-                <button type="button" id="btn-actualizarMetodoPago" class="btn btn-primary"
-                    onclick="actualizarmetodopago()">
-                    <i class="fas fa-plus"></i>
-                    Actualizar
-                </button>
+                        </div>
+                        <div class="form-group">
+                            <label for="editarEstatus_metodopago">Estatus</label>
+                            <select id="editarEstatus_metodopago" name="editarEstatus_metodopago" required>
+                                <option value="">Selecciona un estatus</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModalEdit()">
+                        <i class="fas fa-times"></i>
+                        Cancelar
+                    </button>
+                    <button type="button" id="btn-actualizarMetodoPago" class="btn btn-primary"
+                        onclick="actualizarmetodopago()">
+                        <i class="fas fa-plus"></i>
+                        Actualizar
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 @endsection
 
 {{-- modal eliminar data --}}
@@ -139,6 +143,6 @@
 
 @push('scripts')
     <script src="{{ asset('js/metodopago/metodopago.js') }}"></script>
-    <script src="{{ asset('js/metodopago/tableMetodoPago.js') }}"></script>
-    <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+        <script src="{{ asset('js/metodopago/tableMetodoPago.js') }}"></script>
+        <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
 @endpush

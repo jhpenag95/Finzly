@@ -1,6 +1,5 @@
-
 /* Selector de registros por página */
-.pagination-selector_concepto {
+.pagination-selector_pago {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -9,12 +8,12 @@
     padding: 12px;
 }
 
-.pagination-selector_concepto label {
+.pagination-selector_pago label {
     font-weight: 500;
     margin: 0;
 }
 
-.registros-select_concepto {
+.registros-select_pago {
     padding: 8px 32px 8px 12px;
     border: 1px solid #ced4da;
     border-radius: 4px;
@@ -28,12 +27,12 @@
     background-position: right 10px center;
 }
 
-.registros-select_concepto:hover {
+.registros-select_pago:hover {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.1rem rgba(0, 123, 255, 0.15);
 }
 
-.registros-select_concepto:focus {
+.registros-select_pago:focus {
     outline: none;
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -41,7 +40,7 @@
 
 
 /* Controles de registros por página */
-.pagination-settings_concepto {
+.pagination-settings_pago {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -49,19 +48,19 @@
     padding: 10px 0;
 }
 
-.records-per-page_concepto {
+.records-per-page_pago {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.records-per-page_concepto label {
+.records-per-page_pago label {
     font-size: 14px;
     color: #666;
     font-weight: 500;
 }
 
-.records-selector_concepto {
+.records-selector_pago {
     padding: 6px 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -73,18 +72,18 @@
     min-width: 70px;
 }
 
-.records-selector_concepto:hover {
-    border-color: #2f487c;
+.records-selector_pago:hover {
+    border-color: #007bff;
 }
 
-.records-selector_concepto:focus {
+.records-selector_pago:focus {
     outline: none;
-    border-color: #2f487c;
+    border-color: #007bff;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
 /* Controles de paginación */
-.pagination-controls_concepto {
+.pagination-controls_pago {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,7 +93,7 @@
     flex-wrap: wrap;
 }
 
-.page-btn_concepto {
+.page-btn_pago {
     padding: 8px 12px;
     border: 1px solid #ddd;
     background-color: white;
@@ -106,20 +105,20 @@
     min-width: 40px;
 }
 
-.page-btn_concepto:hover:not(:disabled) {
+.page-btn_pago:hover:not(:disabled) {
     background-color: #2f487c;
     color: white;
     border-color: #2f487c;
 }
 
-.page-btn_concepto.active {
+.page-btn_pago.active {
     background-color: #2f487c;
     color: white;
     border-color: #2f487c;
     font-weight: bold;
 }
 
-.page-btn_concepto:disabled {
+.page-btn_pago:disabled {
     background-color: #f5f5f5;
     color: #999;
     cursor: not-allowed;
@@ -131,38 +130,51 @@
     color: #999;
 }
 
-.page-info_concepto {
+.page-info_pago {
     margin-left: 15px;
     color: #666;
     font-size: 14px;
     white-space: nowrap;
 }
 
+.textnamepago {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.textserv {
+    border-radius: 12px;
+    background-color: #f0f2f5;
+    color: #666;
+    font-size: 10px;
+    padding: 4px 8px;
+}
 
 @media (max-width: 768px) {
-    .pagination-settings_concepto {
+    .pagination-settings_pago {
         justify-content: center;
         flex-direction: column;
         gap: 10px;
     }
 
-    .records-per-page_concepto {
+    .records-per-page_pago {
         flex-direction: column;
         text-align: center;
         gap: 5px;
     }
 
-    .pagination-controls_concepto { 
+    .pagination-controls_pago {
         font-size: 12px;
     }
 
-    .page-btn_concepto {
+    .page-btn_pago {
         padding: 6px 10px;
         font-size: 12px;
         min-width: 35px;
     }
 
-    .page-info_concepto {
+    .page-info_pago {
         width: 100%;
         text-align: center;
         margin-left: 0;

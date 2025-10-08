@@ -74,12 +74,12 @@
 }
 
 .records-selector:hover {
-    border-color: #007bff;
+    border-color: #2f487c;
 }
 
 .records-selector:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #2f487c;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
@@ -107,15 +107,15 @@
 }
 
 .page-btn:hover:not(:disabled) {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
 }
 
 .page-btn.active {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
     font-weight: bold;
 }
 

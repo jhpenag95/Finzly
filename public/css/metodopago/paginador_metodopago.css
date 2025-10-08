@@ -73,12 +73,12 @@
 }
 
 .records-selector_metodopago:hover {
-    border-color: #007bff;
+    border-color: #2f487c;
 }
 
 .records-selector_metodopago:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: #2f487c;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
 }
 
@@ -106,15 +106,15 @@
 }
 
 .page-btn_metodopago:hover:not(:disabled) {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
 }
 
 .page-btn_metodopago.active {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
     font-weight: bold;
 }
 
@@ -138,15 +138,15 @@
 }
 
 .page-btn_metodopago:hover:not(:disabled) {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
 }
 
 .page-btn_metodopago.active {
-    background-color: #007bff;
+    background-color: #2f487c;
     color: white;
-    border-color: #007bff;
+    border-color: #2f487c;
     font-weight: bold;
 }
 
