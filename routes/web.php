@@ -48,8 +48,9 @@ Route::delete('/ConceptoSaldoInicial/concepto/eliminar/{id}', [ConceptoSaldoInic
 Route::get('/metodos_pago', [MetodopagoController::class, 'metodos_pago']);
 Route::post('/metodos_pago/registrar', [MetodopagoController::class, 'store']);
 Route::get('/metodos_pago/obtener', [MetodopagoController::class, 'index']);
-Route::post('/metodos_pago/editar', [MetodopagoController::class, 'update']);
-Route::delete('/metodos_pago/eliminar', [MetodopagoController::class, 'destroy']);
+Route::get('/metodos_pago/consulta/{id}', [MetodopagoController::class, 'show']);
+Route::put('/metodos_pago/editar/{id}', [MetodopagoController::class, 'update']);
+Route::delete('/metodos_pago/eliminar/{id}', [MetodopagoController::class, 'destroy']);
 
 // Rutas para pagos
 Route::get('/pagos', [PagosController::class, 'pagos']);

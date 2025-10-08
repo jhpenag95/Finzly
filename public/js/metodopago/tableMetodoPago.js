@@ -26,6 +26,8 @@ $(document).ready(function () {
     consultarListadometodopagos();
 });
 
+
+// Función para consultar el listado de metodopagos
 function consultarListadometodopagos() {
     $('#loading-spinner_metodopago').show();
     $('#metodopagos-table').hide();
@@ -77,6 +79,7 @@ function consultarListadometodopagos() {
     });
 }
 
+// Función para renderizar una página de metodopagos
 function renderizarPagina_metodopago(pagina) {
     const inicio = (pagina - 1) * registrosPorPaginametodopago;
     const fin = inicio + registrosPorPaginametodopago;
@@ -110,6 +113,7 @@ function renderizarPagina_metodopago(pagina) {
     actualizarControlesPaginacion_metodopago();
 }
 
+// Función para crear los controles de paginación
 function crearControlesPaginacion_metodopago() {
     const totalPaginas = Math.ceil(datosCompletosmetodopago.length / registrosPorPaginametodopago);
 
@@ -122,6 +126,7 @@ function crearControlesPaginacion_metodopago() {
     }
 }
 
+// Función para actualizar los controles de paginación
 function actualizarControlesPaginacion_metodopago() {
     const totalPaginas = mostrarTodosmetodopago ? 1 : Math.ceil(datosCompletosmetodopago.length / registrosPorPaginametodopago); // Calcular total de páginas basado en la visibilidad
 
@@ -172,8 +177,8 @@ function actualizarControlesPaginacion_metodopago() {
         inicio = 1;
         fin = datosCompletosmetodopago.length;
     } else {
-    inicio = (paginaActualmetodopago - 1) * registrosPorPaginametodopago + 1;
-    fin = Math.min(paginaActualmetodopago * registrosPorPaginametodopago, datosCompletosmetodopago.length);
+        inicio = (paginaActualmetodopago - 1) * registrosPorPaginametodopago + 1;
+        fin = Math.min(paginaActualmetodopago * registrosPorPaginametodopago, datosCompletosmetodopago.length);
     }
     paginacionHTML += `
         <span class="page-info_metodopago">
@@ -219,23 +224,25 @@ function eliminarmetodopago(id) {
 
 }
 
+// Función para editar un metodopago
 function editarmetodopago(id) {
-    var modal = $(".addEditmetodopago");
-    modal.css("display", "flex");
+    // Ocultar el modal de confirmación de eliminación
+    $('.addEditmetodopago').css('display', 'flex').addClass('show');
 
-    // Obtener los datos del metodopago por ID
+    // Obtener los datos del metodopago por ID y mostrarlos en el modal
     $.ajax({
-        url: '/metodopagoSaldoInicial/metodopago/' + id,
+        url: '/metodos_pago/consulta/' + id,
         type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
         success: function (response) {
             if (response.success) {
                 // Llenar el formulario con los datos del metodopago
-                $('#editarmetodopago').val(response.metodopago.metodopago);
-                $('#editarEstatus').val(response.metodopago.status === 'Activo' ? 'Activo' : 'Inactivo');
+                $('#editarMetodoPago_nombre').val(response.metodopago.nombre_mp);
+                $('#editarEstatus_metodopago').val(response.metodopago.estatus_mp === 'Activo' ? 'Activo' : 'Inactivo');
                 // Guardar el ID del metodopago en el formulario para usarlo en la actualización
-                $('#btn-actualizarmetodopago').off('click').on('click', function () {
-                    actualizarmetodopago(id);
-                });
+                $('#editarMetodoPago_id').val(id);
             } else {
                 // Mostrar mensaje de error
                 showAlert.error(
@@ -251,34 +258,60 @@ function editarmetodopago(id) {
     });
 }
 
-function actualizarmetodopago(id) {
-    var modal = $("#confirmEditModal");
-    modal.css("display", "flex");
+// Función para actualizar un metodopago
+function actualizarmetodopago() {
 
-    // Remover cualquier evento anterior y asignar el nuevo
+    // Obtener el ID del metodopago del formulario
+    let id = $('#editarMetodoPago_id').val().trim();
+    let nombre = $('#editarMetodoPago_nombre').val().trim();
+    let estatus = $('#editarEstatus_metodopago').val().trim();
+
+    console.log("nombre:", nombre);
+    console.log("estatus:", estatus);
+
+    if (nombre === '' || estatus === '') {
+        if (nombre === '') $('#editarMetodoPago_nombre').css('border-color', 'var(--border-color-required)');
+        if (estatus === '') $('#editarEstatus_metodopago').css('border-color', 'var(--border-color-required)');
+
+        showAlert.error('Error', 'Por favor, complete todos los campos.', {
+            duration: 4000,
+            animation: 'slide'
+        });
+        return;
+    }
+
+    $("#confirmEditModal").css("display", "flex");
     $('#confirmEditBtn').off('click').on('click', function () {
         confirmarEditmetodopago(id);
     });
 }
 
+
+//cambiar el color si el campo es llenado
+$('#editarMetodoPago_nombre, #editarEstatus_metodopago').on('input change', function () {
+    if ($(this).val() !== '') {
+        $(this).css('border-color', 'var(--border-color-valid)');
+    }
+});
+
+// Cerrar el modal de edición
 function closeModalEdit() {
     $('.addEditmetodopago').hide();
+    $('#editarMetodoPago_nombre').css('border-color', 'var(--border-color)');
+    $('#editarEstatus_metodopago').css('border-color', 'var(--border-color)');
 }
 
-function closeEditModalConfirn() {
-    $('.edit-modal').hide();
-}
 
 
 // Función para confirmar la eliminación de un metodopago
-confirmarDeletemetodopago = function (id) {
+function confirmarDeletemetodopago(id) {
 
     var modal = $("#confirmDeleteModal");
     modal.css("display", "none");
 
     // Enviar solicitud al servidor para eliminar el metodopago
     $.ajax({
-        url: '/metodopagoSaldoInicial/metodopago/eliminar/' + id,
+        url: '/metodos_pago/eliminar/' + id,
         type: 'DELETE',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -287,8 +320,8 @@ confirmarDeletemetodopago = function (id) {
             if (response.success) {
                 // Mostrar mensaje de éxito
                 showAlert.success(
-                    'Cambio de Estado',
-                    'El metodopago ha sido cambiado a Inactivo correctamente.',
+                    'Eliminación Exitosa',
+                    'El metodopago ha sido eliminado correctamente.',
                     {
                         duration: 4000,
                         animation: 'slide'
@@ -318,19 +351,19 @@ function confirmarEditmetodopago(id) {
     modal.css("display", "none");
 
     // Obtener los datos del formulario
-    var metodopago = $('#editarmetodopago').val();
-    var estatus = $('#editarEstatus').val();
+    var metodopago = $('#editarMetodoPago_nombre').val();
+    var estatus = $('#editarEstatus_metodopago').val();
 
     // Enviar solicitud al servidor para actualizar el metodopago
     $.ajax({
-        url: '/metodopagoSaldoInicial/metodopago/actualizar/' + id,
+        url: '/metodos_pago/editar/' + id,
         type: 'PUT',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         data: {
             metodopago: metodopago,
-            status: estatus
+            estatus: estatus
         },
         success: function (response) {
             if (response.success) {

@@ -19,7 +19,7 @@ class MetodopagoController extends Controller
         return view('metodopago.metodopago');
     }
 
-    //
+    // Registra un nuevo método de pago
     public function store(Request $request)
     {
         $request->validate([
@@ -61,5 +61,78 @@ class MetodopagoController extends Controller
     {
         $metodosPago = Metodopago::all();
         return response()->json(['metodopago' => $metodosPago]);
+    }
+
+
+    // Obtener un método de pago por ID
+    public function show($id)
+    {
+        $metodoPago = Metodopago::Select('id_met_pag', 'nombre_mp', 'estatus_mp')
+            ->where('id_met_pag', $id)
+            ->first();
+
+        if (!$metodoPago) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Método de pago no encontrado.'
+            ], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'metodopago' => $metodoPago
+        ], 200);
+    }
+
+
+
+    // Actualizar un método de pago existente
+    public function update(Request $request, $id_met_pag)
+    {
+        $metodoPago = Metodopago::find($id_met_pag);
+
+        if (!$metodoPago) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Método de pago no encontrado.'
+            ], 404);
+        }
+
+        $request->validate([
+            'metodopago' => 'required|string|max:255',
+            'estatus' => 'nullable|string',
+        ]);
+
+        $metodoPago->update([
+            'id_met_pag' => $id_met_pag,
+            'nombre_mp' => $request->input('metodopago'),
+            'estatus_mp' => $request->input('estatus'), 
+            'updated_at' => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Método de pago actualizado exitosamente.'
+        ], 200);
+    }
+
+    // Eliminar un método de pago
+    public function destroy($id_met_pag)
+    {
+        $metodoPago = Metodopago::find($id_met_pag);
+
+        if (!$metodoPago) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Método de pago no encontrado.'
+            ], 404);
+        }
+
+        $metodoPago->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Método de pago eliminado exitosamente.'
+        ], 200);
     }
 }
