@@ -37,19 +37,15 @@
                 <div class="form-group">
                     <label for="paymentrepeat">Repetición</label>
                     <select id="paymentrepeat">
-                        <option value="none">Único</option>
-                        <option value="monthly">Mensual</option>
-                        <option value="yearly">Anual</option>
+                        <option value="Unico" selected>Único</option>
+                        <option value="Mensual">Mensual</option>
+                        <option value="Anual">Anual</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="paymentmethod">Método de pago sugerido</label>
                     <select id="paymentmethod">
-                        <option value="card">Tarjeta</option>
-                        <option value="cash">Efectivo</option>
-                        <option value="transfer">Transferencia</option>
-                        <option value="other">Otro</option>
                     </select>
                 </div>
             </form>

@@ -56,6 +56,12 @@ Route::delete('/metodos_pago/eliminar/{id}', [MetodopagoController::class, 'dest
 Route::get('/pagos', [PagosController::class, 'pagos']);
 Route::get('/pagos/consulta/categorias', [PagosController::class, 'index_categorias']);
 Route::post('/pagos/registrar', [PagosController::class, 'store']);
+Route::get('/pagos/consulta/metodos', [PagosController::class, 'index_metodos']);
+
+Route::get('/pagos/obtener', [PagosController::class, 'index']);
+Route::get('/pagos/consulta/{id}', [PagosController::class, 'show']);
+Route::put('/pagos/editar/{id}', [PagosController::class, 'update']);
+Route::delete('/pagos/eliminar/{id}', [PagosController::class, 'destroy']);
 
 
 Route::get('/reportes', [ReporteController::class, 'reportes']);

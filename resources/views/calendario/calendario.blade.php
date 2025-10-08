@@ -1,12 +1,16 @@
 @extends('components.plantillabase')
+@include('components.alerts-include')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/calendario/calendario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/calendario/responsi_calendario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/modal_responsi_pagos.css') }}">
 @endpush
 
 @section('content')
+    <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">
+        Calendario</h2>
     <div class="calendario-container">
         <div class="calendario-header">
             <div class="month-navigation">
@@ -21,7 +25,7 @@
             </div>
             <button class="nuevo-pago-btn" onclick="showModal_pagos()">+ Nuevo Pago</button>
         </div>
-        
+
         <div class="calendario-grid">
             <!-- Header de días de la semana -->
             <div class="calendar-weekdays">
@@ -33,7 +37,7 @@
                 <div class="weekday">VIERNES</div>
                 <div class="weekday">SÁBADO</div>
             </div>
-            
+
             <!-- Grid de días -->
             <div class="calendar-days">
                 <!-- Días del mes anterior -->
@@ -43,7 +47,7 @@
                 <div class="calendar-day other-month">
                     <div class="day-number">31</div>
                 </div>
-                
+
                 <!-- Días de abril -->
                 <div class="calendar-day">
                     <div class="day-number">1</div>
@@ -60,7 +64,7 @@
                 <div class="calendar-day">
                     <div class="day-number">5</div>
                 </div>
-                
+
                 <div class="calendar-day">
                     <div class="day-number">6</div>
                 </div>
@@ -82,7 +86,7 @@
                 <div class="calendar-day">
                     <div class="day-number">12</div>
                 </div>
-                
+
                 <div class="calendar-day">
                     <div class="day-number">13</div>
                 </div>
@@ -107,7 +111,7 @@
                 <div class="calendar-day">
                     <div class="day-number">19</div>
                 </div>
-                
+
                 <div class="calendar-day">
                     <div class="day-number">20</div>
                     <div class="calendar-event netflix">Netflix</div>
@@ -131,7 +135,7 @@
                 <div class="calendar-day">
                     <div class="day-number">26</div>
                 </div>
-                
+
                 <div class="calendar-day">
                     <div class="day-number">27</div>
                 </div>
@@ -144,7 +148,7 @@
                 <div class="calendar-day">
                     <div class="day-number">30</div>
                 </div>
-                
+
                 <!-- Días del mes siguiente -->
                 <div class="calendar-day other-month">
                     <div class="day-number">1</div>
@@ -158,8 +162,11 @@
             </div>
         </div>
     </div>
+
     @include('pagos.modal_new_pago')
+
     @push('scripts')
-    <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
-@endpush
+        <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
+        <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+    @endpush
 @endsection

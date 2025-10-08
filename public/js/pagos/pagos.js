@@ -37,6 +37,29 @@ function showModal_pagos() {
             showAlert.error('Error', 'No se pudo consultar las categorias.');
         }
     });
+
+    // Consultar los metodos de pago para el select del modal
+    $.ajax({
+        url: '/pagos/consulta/metodos',
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                // Llenar el select con los metodos de pago
+                $('#paymentmethod').empty();
+                $('#paymentmethod').append(new Option('Seleccione un método de pago', ''));
+
+                response.metodos.forEach(metodos => {
+                    $('#paymentmethod').append(new Option(metodos.nombre_mp, metodos.id_met_pag));
+                });
+            }
+        },
+        error: function () {
+            showAlert.error('Error', 'No se pudo consultar los metodos de pago.');
+        }
+    });
 }
 
 // Cerrar el modal de nuevo pago
@@ -46,7 +69,7 @@ function closeModal_pagos() {
 }
 
 
-//consultar categorias
+//consultar categorias para el select del filtro
 function consultarCategorias() {
     $.ajax({
         url: '/pagos/consulta/categorias',
@@ -168,7 +191,7 @@ function validarCampos() {
     if (!$('#paymentmethod').val()) {
         showAlert.error('Error', 'El método de pago es obligatorio.');
         return;
-    }   
+    }
 
 
     // Si todos los campos son válidos, llamar a la función para registrar el pago
@@ -186,12 +209,12 @@ $('#paymentname, #paymentcategory, #paymentamount, #paymentdate, #paymentmethod,
 
 // registrar pagos en la base de datos
 function registrarPago() {
-    var paymentname         = $('#paymentname').val();
-    var paymentcategory     = $('#paymentcategory').val();
-    var paymentamount       = $('#paymentamount').val();
-    var paymentdate         = $('#paymentdate').val();
-    var paymentrepeat       = $('#paymentrepeat').val();
-    var paymentmethod       = $('#paymentmethod').val();
+    var paymentname = $('#paymentname').val();
+    var paymentcategory = $('#paymentcategory').val();
+    var paymentamount = $('#paymentamount').val();
+    var paymentdate = $('#paymentdate').val();
+    var paymentrepeat = $('#paymentrepeat').val();
+    var paymentmethod = $('#paymentmethod').val();
 
     var datos = {
         concepto: paymentname,
@@ -213,7 +236,7 @@ function registrarPago() {
             if (response.success) {
                 showAlert.success('Éxito', 'Pago registrado correctamente.');
                 closeModal_pagos();
-                consultarPagos();
+                consultarListadoPagos();
             } else {
                 showAlert.error('Error', 'No se pudo registrar el pago.');
             }
@@ -224,37 +247,6 @@ function registrarPago() {
     });
 }
 
-// Función para consultar los pagos
-function consultarPagos() {
-    $.ajax({
-        url: '/pagos/consulta',
-        type: 'GET',
-        dataType: 'json',
-        success: function (response) {
-            if (response.success) {
-                // Llenar la tabla con los datos de los pagos
-                $('#paymentTable').empty();
-                response.data.forEach(payment => {
-                    $('#paymentTable').append(`
-                        <tr>
-                            <td>${payment.id}</td>
-                            <td>${payment.concepto}</td>
-                            <td>${payment.monto}</td>
-                            <td>${payment.fecha}</td>
-                        </tr>
-                    `);
-                });
-            } else {
-                showAlert.error('Error', 'No se pudieron consultar los pagos.');
-            }
-        },
-        error: function () {
-            showAlert.error('Error', 'No se pudieron consultar los pagos.');
-        }
-    });
-}
-
-
 function limpiarCampos() {
     // Limpiar los campos del formulario
     $('#paymentname').val('');
@@ -264,5 +256,5 @@ function limpiarCampos() {
     $('#paymentrepeat').val('');
     $('#paymentmethod').val('');
     $('#paymentcategory').val('');
-    $('#paymentmethod').val('');    
+    $('#paymentmethod').val('');
 }

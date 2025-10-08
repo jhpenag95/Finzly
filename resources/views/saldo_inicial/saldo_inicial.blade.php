@@ -18,6 +18,7 @@
 
 @section('content')
     <div class="dashboard-container saldo-inicial-view">
+        <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">Saldo Inicial</h2>
 
         {{-- Encabezado --}}
         <div class="saldo-header">
