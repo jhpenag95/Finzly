@@ -46,7 +46,14 @@ class PagosController extends Controller
         $fecha_creacion = now();
         $fecha_actualizacion = now();
 
-        $id_estado_pg = 'ESP68e4782515';
+
+        //buscar el id del estado pg PENDIENTE en la tabla estatuspago
+        $estatus_pago = \App\Models\EstatusPago::where('nombre_sp', 'PENDIENTE')->first();
+        if ($estatus_pago) {
+            $id_estado_pg = $estatus_pago->id_estado_pg;
+        }
+        
+
         // 2. Obtener usuario autenticado
         $id_usuario = auth()->id() ?? 1; // Fallback solo para desarrollo
 
