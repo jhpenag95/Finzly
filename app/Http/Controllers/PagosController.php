@@ -72,7 +72,6 @@ class PagosController extends Controller
         ], 201);
     }
 
-
     // Consultar las categorias
     public function index_categorias()
     {
@@ -96,15 +95,102 @@ class PagosController extends Controller
     // Obtener el listado de pagos
     public function index()
     {
-        $pagos = Pagos::select('id_pagos', 'nombre_pg','categorias.nombre_cat', 'monto_pg', 'fecha_pg', 'repetcion_pg', 'metodopago.nombre_mp','estatuspago.nombre_sp')
-        ->join('categorias', 'pagos.id_categoria', '=', 'categorias.id_categoria')
-        ->join('metodopago', 'pagos.id_met_pag', '=', 'metodopago.id_met_pag')
-        ->join('estatuspago', 'pagos.id_estado_pg', '=', 'estatuspago.id_estado_pg')
-        ->get();
+        $pagos = Pagos::select(
+                'pagos.id_pagos',
+                'pagos.nombre_pg',
+                'pagos.id_categoria',
+                'pagos.id_met_pag',
+                'categorias.nombre_cat',
+                'pagos.monto_pg',
+                'pagos.fecha_pg',
+                'pagos.repetcion_pg',
+                'metodopago.nombre_mp',
+                'estatuspago.nombre_sp'
+            )
+            ->join('categorias', 'pagos.id_categoria', '=', 'categorias.id_categoria')
+            ->join('metodopago', 'pagos.id_met_pag', '=', 'metodopago.id_met_pag')
+            ->join('estatuspago', 'pagos.id_estado_pg', '=', 'estatuspago.id_estado_pg')
+            ->get();
 
         return response()->json([
             'success' => true,
             'pagos' => $pagos
+        ], 200);
+    }
+
+    // Obtener un pago por ID
+    public function show($id)
+    {
+        $pago = Pagos::select(
+                'pagos.id_pagos',
+                'pagos.nombre_pg',
+                'pagos.id_categoria',
+                'pagos.id_met_pag',
+                'categorias.nombre_cat',
+                'pagos.monto_pg',
+                'pagos.fecha_pg',
+                'pagos.repetcion_pg',
+                'metodopago.nombre_mp',
+                'estatuspago.nombre_sp'
+            )
+            ->join('categorias', 'pagos.id_categoria', '=', 'categorias.id_categoria')
+            ->join('metodopago', 'pagos.id_met_pag', '=', 'metodopago.id_met_pag')
+            ->join('estatuspago', 'pagos.id_estado_pg', '=', 'estatuspago.id_estado_pg')
+            ->where('id_pagos', $id)
+            ->first();
+
+        return response()->json([
+            'success' => true,
+            'pago' => $pago
+        ], 200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        // return $request->all();
+        // Validar los datos de entrada
+        $validated = $request->validate([
+            'concepto'                  => 'required|string|max:255',
+            'monto'                     => 'required|numeric',
+            'fecha'                     => 'nullable|date',
+            'repeticion'                => 'nullable|string|max:255',
+            'metodo_pago'               => 'nullable|string|max:36',
+            'id_categoria'              => 'required|string|max:36',
+        ]);
+
+        // Limpiar y formatear el monto
+        $valorLimpio = str_replace(['.', ','], ['', '.'], $validated['monto']);
+        $monto = number_format((float)$valorLimpio, 2, '.', '');
+        //return $monto;
+        // Actualizar el pago
+        $pago = Pagos::findOrFail($id);
+        $pago->update([
+            'nombre_pg'                 => $validated['concepto'],
+            'monto_pg'                  => $monto,
+            'fecha_pg'                  => $validated['fecha'],
+            'repetcion_pg'              => $validated['repeticion'],
+            'id_met_pag'                => $validated['metodo_pago'],
+            'id_categoria'              => $validated['id_categoria'],
+            'updated_at'                => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
+        ], 200);
+    }
+
+    // Completar un pago
+    public function complete($id)
+    {
+        // Actualizar el estado del pago a completado
+        $pago = Pagos::findOrFail($id);
+        $pago->update([
+            'id_estado_pg'              => 2, // Completado
+            'updated_at'                => now(),
+        ]);
+
+        return response()->json([
+            'success' => true,
         ], 200);
     }
 }

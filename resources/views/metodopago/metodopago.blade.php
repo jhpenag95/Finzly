@@ -109,31 +109,31 @@
                     <input type="hidden" id="editarMetodoPago_id" name="editarMetodoPago_id" value="">
                     <div class="form-group">
                         <label for="editarMetodoPago_nombre">Nombre del Método de Pago</label>
-                        <input type="text" id="editarMetodoPago_nombre" name="editarMetodoPago_nombre" required ">
-                        </div>
-                        <div class="form-group">
-                            <label for="editarEstatus_metodopago">Estatus</label>
-                            <select id="editarEstatus_metodopago" name="editarEstatus_metodopago" required>
-                                <option value="">Selecciona un estatus</option>
-                                <option value="Activo">Activo</option>
-                                <option value="Inactivo">Inactivo</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModalEdit()">
-                        <i class="fas fa-times"></i>
-                        Cancelar
-                    </button>
-                    <button type="button" id="btn-actualizarMetodoPago" class="btn btn-primary"
-                        onclick="actualizarmetodopago()">
-                        <i class="fas fa-plus"></i>
-                        Actualizar
-                    </button>
-                </div>
+                        <input type="text" id="editarMetodoPago_nombre" name="editarMetodoPago_nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editarEstatus_metodopago">Estatus</label>
+                        <select id="editarEstatus_metodopago" name="editarEstatus_metodopago" required>
+                            <option value="">Selecciona un estatus</option>
+                            <option value="Activo">Activo</option>
+                            <option value="Inactivo">Inactivo</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModalEdit()">
+                    <i class="fas fa-times"></i>
+                    Cancelar
+                </button>
+                <button type="button" id="btn-actualizarMetodoPago" class="btn btn-primary"
+                    onclick="actualizarmetodopago()">
+                    <i class="fas fa-plus"></i>
+                    Actualizar
+                </button>
             </div>
         </div>
+    </div>
 @endsection
 
 {{-- modal eliminar data --}}
@@ -143,6 +143,9 @@
 
 @push('scripts')
     <script src="{{ asset('js/metodopago/metodopago.js') }}"></script>
-        <script src="{{ asset('js/metodopago/tableMetodoPago.js') }}"></script>
-        <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+    <script src="{{ asset('js/metodopago/tableMetodoPago.js') }}"></script>
+    <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+
+    <script src="{{ asset('js/modal_conrf_delete.js') }}" defer></script>
+    <script src="{{ asset('js/modal_confir_edit.js') }}" defer></script>
 @endpush

@@ -5,14 +5,20 @@
     <link rel="stylesheet" href="{{ asset('css/pagos/pagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/responsi_pagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/modal_pagos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/pagos/ModalEditarPagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/modal_responsi_pagos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagos/pagiandor_tablaPagos.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/modal_confir_edit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal_conrf_delete.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/modal_confirm.css') }}">
 @endpush
 
 @section('content')
     <div class=".dashboard-container payments-view">
-        <h2 class="title" style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">Pagos</h2>
-        
+        <h2 class="title"
+            style="color: #2f487c; border-bottom: 2px solid #2f487c; padding-bottom: 10px; margin-bottom: 20px;">Pagos</h2>
+
         {{-- Filtros de búsqueda --}}
         <div class="payments-filter">
             <div class="filter-row">
@@ -49,11 +55,25 @@
 
     {{-- Incluir modal de nuevo pago --}}
     @include('pagos.modal_new_pago')
-
+    {{-- Incluir modal de editar pago --}}
+    @include('pagos.ModalEditarPagos')
 @endsection
+
+{{-- modal eliminar data --}}
+@include('modal_conrf_delete.modal_conrf_delete')
+{{-- modal confirmar editar data --}}
+@include('modal_confir_edit.modal_confir_edit')
+{{-- modal confirmar pagar --}}
+@include('modal_confirm.modal_confirm')
+
+
 
 @push('scripts')
     <script src="{{ asset('js/pagos/pagos.js') }}" defer></script>
     <script src="{{ asset('js/pagos/tablaPagos.js') }}" defer></script>
-    <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>  
+    <script src="{{ asset('js/recursosGenerales.js') }}" defer></script>
+
+    <script src="{{ asset('js/modal_conrf_delete.js') }}" defer></script>
+    <script src="{{ asset('js/modal_confirm.js') }}" defer></script>    
+    <script src="{{ asset('js/modal_confir_edit.js') }}" defer></script>
 @endpush

@@ -2,7 +2,7 @@
 
 /* Modal overlay */
 .payment-modal {
-    display:  none;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -66,7 +66,7 @@
     justify-content: center;
     cursor: pointer;
     transition: var(--transition);
-    color: var(--white);    
+    color: var(--white);
 }
 
 .payment-modal .close-modal:hover {
@@ -147,13 +147,13 @@
 }
 
 .payment-modal .btn-secondary {
-    background: var(--light-bg);
-    color: var(--text-color);
+    background: var(--secondcolor);
+    color: var(--white);
     border: 1px solid var(--border-color);
 }
 
 .payment-modal .btn-secondary:hover {
-    background: var(--hover-color);
+    background: #4b5563;
     transform: translateY(-1px);
 }
 
@@ -164,8 +164,9 @@
 }
 
 .payment-modal .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--hover-shadow);
+    background: var(--hover-color);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
 }
 
 /* Animations */
@@ -173,6 +174,7 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -183,6 +185,7 @@
         transform: scale(0.9) translateY(-20px);
         opacity: 0;
     }
+
     to {
         transform: scale(1) translateY(0);
         opacity: 1;

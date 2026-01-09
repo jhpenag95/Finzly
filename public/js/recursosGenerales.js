@@ -14,7 +14,7 @@ function getStatusBadge(status) {
       color: '#fa8c16',
       border: '#ffd591'
     },
-    'COMPLETADO': {
+    'PAGADO': {
       bg: '#f6ffed',
       color: '#52c41a',
       border: '#b7eb8f'

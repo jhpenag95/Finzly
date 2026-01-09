@@ -13,7 +13,7 @@ $(document).ready(function () {
 
 // Mostrar el modal de nuevo pago
 function showModal_pagos() {
-    document.getElementById('new-payment-modal').style.display = 'flex';
+    $('#new-payment-modal').css('display', 'flex');
 
     //Obtener el listado de categorias y pasarlo al select del modal
     $.ajax({
@@ -64,7 +64,7 @@ function showModal_pagos() {
 
 // Cerrar el modal de nuevo pago
 function closeModal_pagos() {
-    document.getElementById('new-payment-modal').style.display = 'none';
+    $('#new-payment-modal').hide();
     limpiarCampos();
 }
 

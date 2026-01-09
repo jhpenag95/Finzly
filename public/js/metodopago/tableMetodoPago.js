@@ -37,7 +37,6 @@ function consultarListadometodopagos() {
         url: '/metodos_pago/obtener',
         type: 'GET',
         success: function (response) {
-            // console.log(response);
             $('#loading-spinner_metodopago').hide();
             $('#metodopagos-table').show();
 
@@ -266,8 +265,6 @@ function actualizarmetodopago() {
     let nombre = $('#editarMetodoPago_nombre').val().trim();
     let estatus = $('#editarEstatus_metodopago').val().trim();
 
-    console.log("nombre:", nombre);
-    console.log("estatus:", estatus);
 
     if (nombre === '' || estatus === '') {
         if (nombre === '') $('#editarMetodoPago_nombre').css('border-color', 'var(--border-color-required)');

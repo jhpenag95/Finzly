@@ -113,7 +113,7 @@ function renderizarPagina_pago(pagina) {
                         <button class="btn-action btn-complete" title="Marcar como completado" onclick="completarpago('${item.id_pagos}')">
                             <i class="fas fa-check" style="color: #fff;"></i>
                         </button>
-                        <button class="btn-action btn-edit" title="Editar pago" onclick="editarpago('${item.id_pagos}')">
+                        <button class="btn-action btn-edit" title="Editar pago" onclick="editarpago_table('${item.id_pagos}')">
                             <i class="fas fa-edit"></i>
                         </button>
                         <button class="btn-action btn-delete" title="Eliminar pago" onclick="eliminarpago('${item.id_pagos}')">
@@ -228,73 +228,254 @@ function actualizarControlesPaginacion_pago() {
 }
 
 
-// Función para eliminar un pago de saldo inicial
-function eliminarpago(id) {
-    var modal = $("#confirmDeleteModal");
-    modal.css("display", "flex");
+//cambiar el color si el campo es llenado
+$('#editarPago_nombre, #editarEstatus_pago').on('input change', function () {
+    if ($(this).val() !== '') {
+        $(this).css('border-color', 'var(--border-color-valid)');
+    }
+});
 
-    // Remover cualquier evento anterior y asignar el nuevo
-    $('#confirmDelete').off('click').on('click', function () {
-        confirmarDeletepago(id);
-    });
+//=====================================================================================
+//====================== SECCIÓN PARA LA CONFIRMACIÓN DE PAGOS ===========================//
+//=====================================================================================
 
+
+function completarpago(id) {
+    // Mostrar confirmación antes de completar el pago
+    $('#modalOverlay_confirm').css('display', 'flex');
 }
 
-// Función para editar un pago
-function editarpago(id) {
-    // Ocultar el modal de confirmación de eliminación
-    $('.addEditpago').css('display', 'flex').addClass('show');
+function cerrarModal_confirm() {
+    $('#modalOverlay_confirm').css('display', 'none');
+}
 
-    // Obtener los datos del pago por ID y mostrarlos en el modal
+function confirmarAccion_confirm() {
+    // Enviar solicitud AJAX para completar el pago
     $.ajax({
-        url: '/pagos/consulta/' + id,
+        url: '/pagos/completar/' + id,
+        type: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                // Mostrar mensaje de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Pago completado',
+                    text: 'El pago ha sido completado con éxito.',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+                // Recargar la tabla de pagos para reflejar el cambio
+                renderizarPagina_pago(paginaActualPago);
+            } else {
+                // Mostrar mensaje de error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: response.message || 'Ocurrió un error al completar el pago.',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+        }
+    });
+}
+
+
+
+//=====================================================================================
+//====================== SECCIÓN PARA LA EDICIÓN DE PAGOS ===========================//
+//=====================================================================================
+
+
+// Cerrar el modal de edición
+function closeModalEdit() {
+    $('#modalPagos_edit').hide();
+}
+
+
+//botones tabla pagos
+// Mostrar el modal de nuevo pago
+function editarpago_table(id) {
+    $('#modalPagos_edit').css('display', 'flex');
+    // Almacena el ID del pago para editar
+    $('#paymentid_edit').val(id);
+
+    // Almacena datos del pago para seleccionar opciones cuando carguen
+    let pagoData = null;
+
+    //Obtener el listado de categorias y pasarlo al select del modal
+    $.ajax({
+        url: '/pagos/consulta/categorias',
         type: 'GET',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
             if (response.success) {
-                // Llenar el formulario con los datos del pago
-                $('#editarPago_nombre').val(response.pago.nombre_pag);
-                $('#editarEstatus_pago').val(response.pago.estatus_pag === 'Activo' ? 'Activo' : 'Inactivo');
-                // Guardar el ID del pago en el formulario para usarlo en la actualización
-                $('#editarPago_id').val(id);
-            } else {
-                // Mostrar mensaje de error
-                showAlert.error(
-                    'Error',
-                    'Hubo un error al obtener los datos del pago',
-                    {
-                        duration: 4000,
-                        animation: 'slide'
-                    }
-                );
+                // Llenar el select con las categorias
+                $('#paymentcategory_edit').empty();
+                $('#paymentcategory_edit').append(new Option('Seleccione una categoría', ''));
+
+                response.categorias.forEach(categorias => {
+                    $('#paymentcategory_edit').append(new Option(categorias.nombre_cat, categorias.id_categoria));
+                });
+
+                // Selecciona la categoría del pago cuando esté disponible
+                if (pagoData && pagoData.id_categoria) {
+                    $('#paymentcategory_edit').val(pagoData.id_categoria);
+                }
             }
         }
     });
+
+    //consultar los metodos de pago para el select del modal
+    $.ajax({
+        url: '/pagos/consulta/metodos',
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success) {
+                // Llenar el select con los metodos de pago
+                $('#paymentmethod_edit').empty();
+                $('#paymentmethod_edit').append(new Option('Seleccione un método de pago', ''));
+
+                response.metodos.forEach(metodos => {
+                    $('#paymentmethod_edit').append(new Option(metodos.nombre_mp, metodos.id_met_pag));
+                });
+
+                // Selecciona el método del pago cuando esté disponible
+                if (pagoData && pagoData.id_met_pag) {
+                    $('#paymentmethod_edit').val(pagoData.id_met_pag);
+                }
+            }
+        }
+    });
+
+    // Consultar datos del pago
+    $.ajax({
+        url: '/pagos/consulta/pagos/' + id,
+        type: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+            if (response.success && response.pago) {
+                pagoData = response.pago;
+                // Llenar el formulario con los datos del pago usando IDs correctos
+                $('#editarPago_id').val(response.pago.id_pagos);
+                $('#payment-name_edit').val(response.pago.nombre_pg);
+                $('#paymentamount_edit').val(response.pago.monto_pg);
+                $('#paymentrepeat_edit').val(response.pago.repetcion_pg);
+                $('#paymentdate_edit').val(response.pago.fecha_pg);
+
+                // Intentar seleccionar si los selects ya están poblados
+                if ($('#paymentcategory_edit option').length > 0 && pagoData.id_categoria) {
+                    $('#paymentcategory_edit').val(pagoData.id_categoria);
+                }
+                if ($('#paymentmethod_edit option').length > 0 && pagoData.id_met_pag) {
+                    $('#paymentmethod_edit').val(pagoData.id_met_pag);
+                }
+            }
+        }
+    });
+
 }
 
-// Función para actualizar un pago
-function actualizarpago() {
+// Función para guardar un pago
+function validarCampos_editar() {
 
-    // Obtener el ID del pago del formulario
-    let id = $('#editarPago_id').val().trim();
-    let nombre = $('#editarPago_nombre').val().trim();
-    let estatus = $('#editarEstatus_pago').val().trim();
+    // Validar campos vacíos
+    if (
+        $('#payment-name_edit').val() === '' ||
+        $('#paymentcategory_edit').val() === '' ||
+        $('#paymentamount_edit').val() === '' ||
+        $('#paymentdate_edit').val() === '' ||
+        $('#paymentmethod_edit').val() === ''
+    ) {
+        // Nombre del pago
+        if ($('#payment-name_edit').val() === '') {
+            $('#payment-name_edit').css('border-color', 'red');
+        } else {
+            $('#payment-name_edit').css('border-color', '');
+        }
 
-    console.log("nombre:", nombre);
-    console.log("estatus:", estatus);
+        // Categoría
+        if ($('#paymentcategory_edit').val() === '') {
+            $('#paymentcategory_edit').css('border-color', 'red');
+        } else {
+            $('#paymentcategory_edit').css('border-color', '');
+        }
 
-    if (nombre === '' || estatus === '') {
-        if (nombre === '') $('#editarPago_nombre').css('border-color', 'var(--border-color-required)');
-        if (estatus === '') $('#editarEstatus_pago').css('border-color', 'var(--border-color-required)');
+        // Monto
+        if ($('#paymentamount_edit').val() === '') {
+            $('#paymentamount_edit').css('border-color', 'red');
+        } else {
+            $('#paymentamount_edit').css('border-color', '');
+        }
 
-        showAlert.error('Error', 'Por favor, complete todos los campos.', {
-            duration: 4000,
-            animation: 'slide'
-        });
+        // Fecha de vencimiento
+        if ($('#paymentdate_edit').val() === '') {
+            $('#paymentdate_edit').css('border-color', 'red');
+        } else {
+            $('#paymentdate_edit').css('border-color', '');
+        }
+
+        // Método de pago
+        if ($('#paymentmethod_edit').val() === '') {
+            $('#paymentmethod_edit').css('border-color', 'red');
+        } else {
+            $('#paymentmethod_edit').css('border-color', '');
+        }
+
+        // Repetición
+        if ($('#paymentrepeat_edit').val() === '') {
+            $('#paymentrepeat_edit').css('border-color', 'red');
+        } else {
+            $('#paymentrepeat_edit').css('border-color', '');
+        }
+
+        showAlert.error('Error', 'Por favor, complete todos los campos obligatorios.');
         return;
     }
+
+    // Validaciones individuales
+
+    if (!$('#payment-name_edit').val()) {
+        showAlert.error('Error', 'El nombre del pago es obligatorio.');
+        return;
+    }
+
+    if (!$('#paymentcategory_edit').val()) {
+        showAlert.error('Error', 'La categoría es obligatoria.');
+        return;
+    }
+
+    if (isNaN(parseFloat($('#paymentamount_edit').val().replace(/,/g, '')))) {
+        showAlert.error('Error', 'El monto debe ser un número válido.');
+        return;
+    }
+
+    if (!$('#paymentrepeat_edit').val()) {
+        showAlert.error('Error', 'La repetición es obligatoria.');
+        return;
+    }
+
+    if (!$('#paymentdate_edit').val()) {
+        showAlert.error('Error', 'La fecha de vencimiento es obligatoria.');
+        return;
+    }
+
+    if (!$('#paymentmethod_edit').val()) {
+        showAlert.error('Error', 'El método de pago es obligatorio.');
+        return;
+    }
+
+    var id = $('#paymentid_edit').val();
 
     $("#confirmEditModal").css("display", "flex");
     $('#confirmEditBtn').off('click').on('click', function () {
@@ -304,86 +485,40 @@ function actualizarpago() {
 
 
 //cambiar el color si el campo es llenado
-$('#editarPago_nombre, #editarEstatus_pago').on('input change', function () {
+$('#paymentname_edit, #paymentcategory_edit, #paymentamount_edit, #paymentdate_edit, #paymentmethod_edit, #paymentrepeat_edit').on('input change', function () {
     if ($(this).val() !== '') {
         $(this).css('border-color', 'var(--border-color-valid)');
     }
 });
 
-// Cerrar el modal de edición
-function closeModalEdit() {
-    $('.addEditpago').hide();
-    $('#editarPago_nombre').css('border-color', 'var(--border-color)');
-    $('#editarEstatus_pago').css('border-color', 'var(--border-color)');
-}
 
-
-
-// Función para confirmar la eliminación de un pago
-function confirmarDeletepago(id) {
-
-    var modal = $("#confirmDeleteModal");
-    modal.css("display", "none");
-
-    // Enviar solicitud al servidor para eliminar el pago
-    $.ajax({
-        url: '/pagos/eliminar/' + id,
-        type: 'DELETE',
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function (response) {
-            if (response.success) {
-                // Mostrar mensaje de éxito
-                showAlert.success(
-                    'Eliminación Exitosa',
-                    'El metodopago ha sido eliminado correctamente.',
-                    {
-                        duration: 4000,
-                        animation: 'slide'
-                    }
-                );
-
-                // Recargar la tabla con el listado actualizado
-                consultarListadopagos();
-            } else {
-                // Mostrar mensaje de error
-                showAlert.error(
-                    'Error',
-                    'Hubo un error al eliminar el registro',
-                    {
-                        duration: 4000,
-                        animation: 'slide'
-                    }
-                );
-            }
-        }
-    });
-}
-
-// Función para confirmar la actualización de un pago
 function confirmarEditpago(id) {
-    var modal = $("#confirmEditModal");
-    modal.css("display", "none");
 
-    // Obtener los datos del formulario
-    var pago = $('#editarPago_nombre').val();
-    var estatus = $('#editarEstatus_pago').val();
+    var paymentname = $('#payment-name_edit').val();
+    var paymentcategory = $('#paymentcategory_edit').val();
+    var paymentamount = $('#paymentamount_edit').val();
+    var paymentdate = $('#paymentdate_edit').val();
+    var paymentrepeat = $('#paymentrepeat_edit').val();
+    var paymentmethod = $('#paymentmethod_edit').val();
 
-    // Enviar solicitud al servidor para actualizar el pago
+    var datos = {
+        concepto: paymentname,
+        id_categoria: paymentcategory,
+        monto: paymentamount,
+        fecha: paymentdate,
+        repeticion: paymentrepeat,
+        metodo_pago: paymentmethod,
+    };
+
     $.ajax({
         url: '/pagos/editar/' + id,
         type: 'PUT',
+        data: datos,
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        data: {
-            pago: pago,
-            estatus: estatus
-        },
         success: function (response) {
             if (response.success) {
-                // Mostrar mensaje de éxito
                 showAlert.success(
                     'Actualización Exitosa',
                     'El pago ha sido actualizado correctamente.',
@@ -392,22 +527,41 @@ function confirmarEditpago(id) {
                         animation: 'slide'
                     }
                 );
-                // Cerrar el modal de confirmación
-                closeModalEdit();
-                // Recargar la tabla con el listado actualizado
-                consultarListadopagos();
+                $("#confirmEditModal").css("display", "none");  
+                closeModal_pagosEdit();
+                consultarListadoPagos();
             } else {
-                // Mostrar mensaje de error
-                showAlert.error(
-                    'Error',
-                    'Hubo un error al actualizar el registro',
-                    {
-                        duration: 4000,
-                        animation: 'slide'
-                    }
-                );
+                showAlert.error('Error', 'No se pudo actualizar el pago.');
             }
+        },
+        error: function () {
+            showAlert.error('Error', 'No se pudo actualizar el pago.');
         }
     });
 }
 
+// Cerrar el modal de nuevo pago
+function closeModal_pagosEdit() {
+    $('#modalPagos_edit').hide();
+    limpiarCamposEdit();
+}
+
+function limpiarCamposEdit() {
+    // Limpiar los campos del formulario
+    $('#paymentid_edit').val('');
+    $('#payment-name_edit').val('');
+    $('#paymentcategory_edit').val('');
+    $('#paymentamount_edit').val('');
+    $('#paymentdate_edit').val('');
+    $('#paymentrepeat_edit').val('');
+    $('#paymentmethod_edit').val('');
+    $('#paymentcategory_edit').val('');
+    $('#paymentmethod_edit').val('');
+
+    $('#paymentname_edit').css('border-color', 'var(--border-color)');
+    $('#paymentcategory_edit').css('border-color', 'var(--border-color)');
+    $('#paymentamount_edit').css('border-color', 'var(--border-color)');
+    $('#paymentdate_edit').css('border-color', 'var(--border-color)');
+    $('#paymentrepeat_edit').css('border-color', 'var(--border-color)');
+    $('#paymentmethod_edit').css('border-color', 'var(--border-color)');
+}

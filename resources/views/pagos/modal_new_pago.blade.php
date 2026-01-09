@@ -54,5 +54,5 @@
                 <button class="btn btn-primary" id="save-payment" onclick="validarCampos()">Guardar Pago</button>
             </div>
         </div>
-    </d>
+    </div>
 </div>
